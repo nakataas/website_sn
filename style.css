@@ -823,4 +823,19 @@ body {
         font-size: 0.85rem;
         padding: 10px 15px;
     }
+
+    /* Fix close button overlap on mobile */
+    .modal-close {
+        top: 10px;
+        right: 10px;
+        width: 32px;
+        height: 32px;
+        background: rgba(255, 255, 255, 0.08);
+        /* Better visibility on mobile */
+    }
+
+    .modal-header {
+        margin-top: 20px;
+        /* Push content down to clear button */
+    }
 }

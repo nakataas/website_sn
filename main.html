@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Date Plan 🖤💗</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600&family=Quicksand:wght@400;600&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        body {
+            font-family: 'Fredoka', sans-serif;
+            background-color: #121212;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .font-body {
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        /* Scrollbar Cute */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1e1e1e;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #ff80bf;
+            border-radius: 10px;
+        }
+
+        /* Gradient Text */
+        .text-gradient {
+            background: linear-gradient(to right, #ff80bf, #ff99cc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Glassmorphism Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 128, 191, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 128, 191, 0.6);
+            box-shadow: 0 0 20px rgba(255, 128, 191, 0.3);
+        }
+
+        /* Animations */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0% {
+                transform: scale(1);
+            }
+
+            15% {
+                transform: scale(1.3);
+            }
+
+            30% {
+                transform: scale(1);
+            }
+
+            45% {
+                transform: scale(1.15);
+            }
+
+            60% {
+                transform: scale(1);
+            }
+        }
+
+        .heart-beat {
+            animation: heartbeat 2s infinite;
+        }
+
+        /* Background shapes */
+        .blob {
+            position: absolute;
+            filter: blur(50px);
+            z-index: -1;
+            opacity: 0.4;
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+
+<body class="relative min-h-screen">
+
+    <!-- Background Blobs -->
+    <div class="blob bg-pink-500 w-64 h-64 rounded-full top-10 left-10"></div>
+    <div class="blob bg-purple-500 w-72 h-72 rounded-full bottom-20 right-10 animation-delay-2000"></div>
+
+    <!-- Navbar -->
+    <nav
+        class="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center glass-card border-b-0 rounded-none bg-black/80">
+        <div class="text-xl font-bold text-pink-300">My Fav Person <span class="text-white">♡</span></div>
+        <div class="text-sm bg-pink-500/20 px-4 py-1 rounded-full border border-pink-500/50 text-pink-200">
+            Design Mode: On ₍ᐢ•ﻌ•ᐢ₎
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex flex-col justify-center items-center text-center px-4 pt-20">
+        <div class="animate-float mb-6 text-6xl">
+            💌
+        </div>
+        <h1 class="text-5xl md:text-7xl font-bold mb-4 tracking-tight">
+            Are You Ready? <br>
+            <span class="text-gradient">For Our Date?</span>
+        </h1>
+        <p class="text-lg md:text-xl text-gray-300 font-body mb-8 max-w-lg">
+            Gue udah nyiapin plan spesial buat kamu. Siap-siap ya cantik! (｡♥‿♥｡)
+        </p>
+
+        <button onclick="scrollToPlan()"
+            class="group relative px-8 py-4 bg-pink-500 rounded-full font-bold text-black transition hover:bg-pink-400 hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(255,105,180,0.5)]">
+            <span class="relative z-10 flex items-center gap-2">
+                Let's See The Plan! <span class="group-hover:rotate-12 transition-transform">🚀</span>
+            </span>
+        </button>
+    </section>
+
+    <!-- The Plan Section -->
+    <section id="plan" class="py-20 px-4 max-w-6xl mx-auto">
+        <h2 class="text-4xl font-bold text-center mb-16">
+            The Masterplan <span class="text-pink-400">✨</span>
+            <div class="text-base font-normal text-gray-400 mt-2 font-body">Don't forget to smile today (◕‿◕✿)</div>
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Card 1 -->
+            <div class="glass-card p-6 rounded-3xl relative overflow-hidden group">
+                <div
+                    class="absolute -right-4 -top-4 w-24 h-24 bg-pink-500/20 rounded-full blur-xl group-hover:bg-pink-500/40 transition">
+                </div>
+                <div class="text-4xl mb-4">🍽️</div>
+                <h3 class="text-2xl font-bold text-pink-300 mb-2">Makan Enak</h3>
+                <p class="text-gray-300 font-body text-sm mb-4">Kita bakal makan di tempat favorit kamu atau cobain
+                    hidden gem baru!</p>
+                <div
+                    class="inline-block bg-gray-800 rounded-lg px-3 py-1 text-xs text-pink-200 border border-pink-500/30">
+                    Jam: 18:00 WIB
+                </div>
+                <div class="mt-4 text-right text-xs text-gray-500 italic">"Yummy tummy (っ˘ڡ˘ς)"</div>
+            </div>
+
+            <!-- Card 2 -->
+            <div
+                class="glass-card p-6 rounded-3xl relative overflow-hidden group border-pink-500/50 transform scale-105 shadow-[0_0_30px_rgba(255,105,180,0.15)] z-10">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-pink-500 to-purple-500"></div>
+                <div class="text-4xl mb-4 heart-beat">🎬</div>
+                <h3 class="text-2xl font-bold text-pink-300 mb-2">Main Event</h3>
+                <p class="text-gray-300 font-body text-sm mb-4">Nonton film horror (biar kamu peluk aku hehe) atau
+                    jalan-jalan liat city light?</p>
+                <div class="inline-block bg-pink-600 rounded-lg px-3 py-1 text-xs text-white font-bold">
+                    Jam: 20:00 WIB
+                </div>
+                <div class="mt-4 text-right text-xs text-gray-500 italic">"Can't wait! (≧◡≦)"</div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="glass-card p-6 rounded-3xl relative overflow-hidden group">
+                <div
+                    class="absolute -left-4 -bottom-4 w-24 h-24 bg-purple-500/20 rounded-full blur-xl group-hover:bg-purple-500/40 transition">
+                </div>
+                <div class="text-4xl mb-4">🍦</div>
+                <h3 class="text-2xl font-bold text-pink-300 mb-2">Sweet Closing</h3>
+                <p class="text-gray-300 font-body text-sm mb-4">Cari dessert lucu atau es krim. Wajib foto-foto estetik!
+                </p>
+                <div
+                    class="inline-block bg-gray-800 rounded-lg px-3 py-1 text-xs text-pink-200 border border-pink-500/30">
+                    Jam: 22:00 WIB
+                </div>
+                <div class="mt-4 text-right text-xs text-gray-500 italic">"Sweet like you ʕ•ᴥ•ʔ"</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Outfit Check Section -->
+    <section class="py-10 px-4 mb-20">
+        <div class="glass-card max-w-2xl mx-auto rounded-3xl p-8 text-center border-dashed border-2 border-pink-500/30">
+            <h3 class="text-2xl font-bold mb-4">👗 Outfit Code</h3>
+            <div class="flex justify-center gap-6 mb-4 text-4xl">
+                <span>🖤</span>
+                <span>➕</span>
+                <span>💗</span>
+            </div>
+            <p class="font-body text-gray-300">
+                Pake baju item favorit kamu, nanti aku yang match warna pink-nya (atau sebaliknya)!
+                <br> <span class="text-pink-400 italic text-sm">You look good in anything though (´ε｀ )♡</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="pb-20 text-center px-4">
+        <h2 class="text-3xl font-bold mb-8">Jadi gimana? Gas?</h2>
+        <div class="flex justify-center gap-6">
+            <button onclick="acceptDate()" id="btnYes"
+                class="bg-gradient-to-r from-pink-500 to-pink-600 text-black font-bold py-4 px-10 rounded-full shadow-lg transform transition hover:scale-110 active:scale-95">
+                GASSSS 💯 (ﾉ◕ヮ◕)ﾉ
+            </button>
+            <button onmouseover="dodgeButton()" id="btnNo"
+                class="bg-gray-800 text-gray-400 font-bold py-4 px-10 rounded-full border border-gray-700 transition absolute md:relative">
+                Gak dulu deh...
+            </button>
+        </div>
+        <p id="responseMsg"
+            class="mt-8 text-pink-400 text-xl font-bold hidden opacity-0 transition-opacity duration-1000">
+            YAYYY! See you soon sayanggg! <br> ʕ♡˙ᴥ˙♡ʔ
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 text-center text-gray-600 text-sm font-body border-t border-gray-800">
+        <p>Made with 🖤 & ☕ for You.</p>
+        <p class="mt-2 text-xs opacity-50">Website ini cuman buat kamu, jangan di-share ke cowok lain ya wkwk</p>
+    </footer>
+
+    <script>
+        function scrollToPlan() {
+            document.getElementById('plan').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Fitur tombol "Gak dulu" yang kabur kalau dideketin (Classic joke)
+        function dodgeButton() {
+            const btn = document.getElementById('btnNo');
+            const x = Math.random() * (window.innerWidth - 200);
+            const y = Math.random() * (window.innerHeight - 100);
+
+            // Cek biar ga keluar layar di mobile
+            if (window.innerWidth < 768) {
+                // Di HP mending diem aja biar ga annoying, atau ganti text
+                btn.innerText = "Yakin? 🥺";
+                btn.style.backgroundColor = "#333";
+            } else {
+                btn.style.position = 'absolute';
+                btn.style.left = x + 'px';
+                btn.style.top = y + 'px';
+            }
+        }
+
+        function acceptDate() {
+            // Confetti Effect
+            var duration = 3 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            var interval = setInterval(function () {
+                var timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                }
+
+                var particleCount = 50 * (timeLeft / duration);
+                // since particles fall down, start a bit higher than random
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+            }, 250);
+
+            // Show Message
+            const msg = document.getElementById('responseMsg');
+            msg.classList.remove('hidden');
+            setTimeout(() => {
+                msg.classList.remove('opacity-0');
+            }, 100);
+
+            // Hide buttons
+            document.getElementById('btnYes').style.display = 'none';
+            document.getElementById('btnNo').style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>

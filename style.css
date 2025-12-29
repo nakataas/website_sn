@@ -782,7 +782,8 @@ body {
 
 @media (max-width: 600px) {
     .modal-content {
-        padding: 25px 20px;
+        padding: 50px 20px 25px 20px;
+        /* Increased top padding for close button */
         width: 90%;
         max-height: 80vh;
         /* Prevent it from being too tall on mobile */
@@ -832,11 +833,5 @@ body {
         height: 32px;
         background: rgba(255, 255, 255, 0.08);
         /* Better visibility on mobile */
-    }
-
-    .modal-header {
-        margin-top: 40px;
-        /* Increased to push title below close button */
-        padding: 0 10px;
     }
 }

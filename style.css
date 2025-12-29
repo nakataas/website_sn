@@ -835,7 +835,8 @@ body {
     }
 
     .modal-header {
-        margin-top: 20px;
-        /* Push content down to clear button */
+        margin-top: 40px;
+        /* Increased to push title below close button */
+        padding: 0 10px;
     }
 }

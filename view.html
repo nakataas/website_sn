@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading Letter | S ♡ N</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@300;500;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="https://fav.farm/❤️">
+</head>
+
+<body class="view-letter-body">
+    <div class="glow-container">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="top-nav">
+        <a href="letters.html" class="back-link">
+            <svg viewBox="0 0 24 24">
+                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" />
+            </svg>
+            Back to Letters
+        </a>
+    </nav>
+
+    <main class="letter-viewer">
+        <div class="letter-paper full-view">
+            <div class="letter-header">
+                <span id="view-date" class="letter-date">...</span>
+                <h1 id="view-title">Loading...</h1>
+            </div>
+            <div class="letter-body">
+                <p id="view-text">Please wait...</p>
+            </div>
+            <div class="letter-footer">
+                With all my love,<br>
+                <span id="view-signature" class="signature">...</span>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script src="letters-loader.js"></script>
+    <script src="view-letter.js"></script>
+</body>
+
+</html>

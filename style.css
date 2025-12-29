@@ -835,3 +835,838 @@ body {
         /* Better visibility on mobile */
     }
 }
+
+/* Password Protection Overlay */
+.password-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 10, 12, 0.98);
+    backdrop-filter: blur(20px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.password-overlay.unlocked {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.password-container {
+    text-align: center;
+    padding: 50px 40px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 32px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    max-width: 450px;
+    width: 90%;
+    animation: slideUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.password-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.password-title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #fff 0%, #aaa 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.password-subtitle {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    margin-bottom: 35px;
+    letter-spacing: 0.5px;
+}
+
+.password-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.password-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-input {
+    width: 100%;
+    padding: 16px 50px 16px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid var(--glass-border);
+    border-radius: 16px;
+    color: var(--text-main);
+    font-size: 1rem;
+    font-family: var(--font-body);
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.password-input:focus {
+    border-color: var(--accent-color);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.password-input::placeholder {
+    color: var(--text-dim);
+}
+
+.lock-icon {
+    position: absolute;
+    right: 18px;
+    width: 22px;
+    height: 22px;
+    fill: var(--text-dim);
+    pointer-events: none;
+    transition: fill 0.3s ease;
+}
+
+.password-input:focus+.lock-icon {
+    fill: var(--accent-color);
+}
+
+.password-submit {
+    padding: 16px 32px;
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 16px;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 6px 20px var(--accent-glow);
+}
+
+.password-submit:hover {
+    background: #ff6b81;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px var(--accent-glow);
+}
+
+.password-submit:active {
+    transform: translateY(0);
+}
+
+.password-error {
+    color: #ff4d6d;
+    font-size: 0.9rem;
+    min-height: 20px;
+    animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-10px);
+    }
+
+    75% {
+        transform: translateX(10px);
+    }
+}
+
+@media (max-width: 600px) {
+    .password-container {
+        padding: 40px 25px;
+    }
+
+    .password-title {
+        font-size: 1.6rem;
+    }
+
+    .password-input {
+        padding: 14px 45px 14px 18px;
+        font-size: 0.95rem;
+    }
+
+    .password-submit {
+        padding: 14px 28px;
+        font-size: 0.95rem;
+    }
+}
+
+/* Letters Section Styles */
+.letters-section {
+    padding: 60px 20px;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto 100px auto;
+    text-align: center;
+}
+
+.section-subtitle {
+    color: var(--text-dim);
+    margin-bottom: 40px;
+    font-size: 1rem;
+    font-style: italic;
+}
+
+.letters-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.letter-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 30px;
+    width: 100%;
+    max-width: 350px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    backdrop-filter: blur(10px);
+}
+
+.letter-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+.letter-card.for-her:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 15px 40px rgba(255, 77, 109, 0.2);
+}
+
+.letter-card.for-him:hover {
+    border-color: #4d9eff;
+    box-shadow: 0 15px 40px rgba(77, 158, 255, 0.2);
+}
+
+.envelope-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.letter-card:hover .envelope-icon {
+    transform: scale(1.1) rotate(-5deg);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.envelope-icon svg {
+    width: 40px;
+    height: 40px;
+    fill: var(--text-dim);
+    transition: fill 0.3s ease;
+}
+
+.letter-card.for-her .envelope-icon svg {
+    fill: var(--accent-color);
+}
+
+.letter-card.for-him .envelope-icon svg {
+    fill: #4d9eff;
+}
+
+.heart-seal {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    background: var(--primary-bg);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    border: 2px solid var(--glass-border);
+}
+
+.heart-seal.blue {
+    color: #4d9eff;
+}
+
+.letter-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: var(--text-main);
+}
+
+.letter-card p {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.open-letter-btn {
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    color: var(--text-main);
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: var(--font-heading);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.letter-card:hover .open-letter-btn {
+    background: var(--text-main);
+    color: var(--primary-bg);
+    border-color: var(--text-main);
+}
+
+/* Letter Box CTA (for index.html) */
+.letter-box-cta {
+    text-align: center;
+    padding: 60px 40px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    backdrop-filter: blur(10px);
+    max-width: 600px;
+    margin: 0 auto;
+    transition: all 0.4s ease;
+}
+
+.letter-box-cta:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    border-color: var(--accent-color);
+}
+
+.letter-box-icon {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 30px;
+    background: rgba(255, 77, 109, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.letter-box-cta:hover .letter-box-icon {
+    transform: scale(1.1) rotate(5deg);
+    background: rgba(255, 77, 109, 0.2);
+}
+
+.letter-box-icon svg {
+    width: 60px;
+    height: 60px;
+    fill: var(--accent-color);
+}
+
+.letter-box-cta h3 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, #fff 0%, #aaa 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.letter-box-cta p {
+    color: var(--text-dim);
+    font-size: 1rem;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+/* Letter Recipient Label */
+.letter-recipient {
+    display: inline-block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    color: var(--accent-color);
+    background: rgba(255, 77, 109, 0.1);
+    padding: 6px 14px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    border: 1px solid rgba(255, 77, 109, 0.3);
+}
+
+.letter-recipient.blue {
+    color: #4d9eff;
+    background: rgba(77, 158, 255, 0.1);
+    border-color: rgba(77, 158, 255, 0.3);
+}
+
+.letter-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    color: var(--text-main);
+}
+
+.letter-preview {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+
+/* Letter Modal Specifics */
+.letter-paper {
+    background: #f9f9f9;
+    color: #1a1a1d;
+    padding: 40px;
+    border-radius: 5px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    position: relative;
+    max-height: 70vh;
+    overflow-y: auto;
+    font-family: 'Playfair Display', serif;
+    /* Handwrit-ish font */
+    line-height: 1.8;
+}
+
+.letter-content {
+    background: transparent !important;
+    /* Override default modal dark bg */
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    max-width: 600px !important;
+}
+
+.letter-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.letter-header {
+    border-bottom: 2px solid #eee;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.letter-date {
+    display: block;
+    color: #888;
+    font-size: 0.85rem;
+    margin-bottom: 5px;
+    font-family: var(--font-body);
+}
+
+.letter-header h3 {
+    font-size: 2rem;
+    color: #333;
+    font-weight: 700;
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+}
+
+.letter-body {
+    font-size: 1.1rem;
+    white-space: pre-line;
+    /* Respect newlines in text */
+    margin-bottom: 40px;
+    opacity: 0.9;
+}
+
+.letter-footer {
+    text-align: right;
+    margin-top: 30px;
+    font-style: italic;
+    color: #555;
+}
+
+.signature {
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: 'Playfair Display', serif;
+    display: block;
+    margin-top: 5px;
+}
+
+/* Responsive styles for letter cards */
+@media (max-width: 600px) {
+    .letters-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .letter-card {
+        width: 100%;
+    }
+
+    .letter-paper {
+        padding: 25px;
+    }
+
+    .letter-header h3 {
+        font-size: 1.5rem;
+    }
+
+    .letter-body {
+        font-size: 1rem;
+    }
+}
+
+/* New Pages Styles */
+
+/* Navigation */
+.top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 40px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+}
+
+.back-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-dim);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 10px 20px;
+    border-radius: 30px;
+    backdrop-filter: blur(5px);
+    border: 1px solid var(--glass-border);
+}
+
+.back-link:hover {
+    color: var(--accent-color);
+    background: rgba(255, 77, 109, 0.1);
+    border-color: var(--accent-color);
+    transform: translateX(-5px);
+}
+
+.back-link svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+/* Letters Page Grid Layout */
+.letters-page {
+    padding: 120px 20px 100px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.letters-header {
+    text-align: center;
+    margin-bottom: 60px;
+    animation: fadeInDown 0.8s ease-out;
+}
+
+/* Write Letter Button */
+.write-letter-cta {
+    margin-top: 30px;
+}
+
+.write-letter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 32px;
+    background: linear-gradient(135deg, var(--accent-color) 0%, #ff6b81 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 8px 25px var(--accent-glow);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.write-letter-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.write-letter-btn:hover::before {
+    left: 100%;
+}
+
+.write-letter-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 12px 35px var(--accent-glow);
+}
+
+.write-letter-btn:active {
+    transform: translateY(-1px) scale(1.02);
+}
+
+.write-letter-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+    transition: transform 0.3s ease;
+}
+
+.write-letter-btn:hover svg {
+    transform: rotate(-5deg) scale(1.1);
+}
+
+.page-title {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, #fff 0%, #aaa 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.page-subtitle {
+    color: var(--text-dim);
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+.letters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    width: 100%;
+    max-width: 1000px;
+    animation: fadeInUp 0.8s ease-out 0.2s backwards;
+}
+
+/* Interactive Card Links */
+.letter-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    height: 100%;
+}
+
+.letter-card-link .letter-card {
+    height: 100%;
+    margin: 0;
+    max-width: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.read-more {
+    margin-top: 25px;
+    color: var(--accent-color);
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: gap 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: var(--font-heading);
+}
+
+.letter-card-link:hover .read-more {
+    gap: 10px;
+}
+
+/* Loading State */
+.loading-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.loader {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--glass-border);
+    border-top-color: var(--accent-color);
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-state p {
+    color: var(--text-dim);
+    font-size: 1rem;
+}
+
+/* Empty State */
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--text-dim);
+    font-size: 1.1rem;
+}
+
+/* Letter Date Stamp */
+.letter-date-stamp {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-top: 10px;
+    margin-bottom: 15px;
+    font-style: italic;
+    font-family: var(--font-body);
+}
+
+
+/* View Letter Page */
+.view-letter-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 100px 20px 60px;
+}
+
+.letter-viewer {
+    width: 100%;
+    max-width: 800px;
+    animation: fadeInUp 0.8s ease-out;
+    position: relative;
+    z-index: 10;
+}
+
+.letter-paper.full-view {
+    max-height: none;
+    overflow: visible;
+    padding: 80px;
+    background: #fff url('https://www.transparenttextures.com/patterns/cream-paper.png');
+    /* Subtle texture if possible, or just white */
+    transform: rotate(0deg) !important;
+    /* Ensure no rotation from hover effects if shared */
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.letter-paper.full-view .letter-body {
+    flex-grow: 1;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 600px) {
+    .page-title {
+        font-size: 2.5rem;
+    }
+
+    .letters-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .letter-paper.full-view {
+        padding: 40px 25px;
+    }
+
+    .top-nav {
+        padding: 15px 20px;
+        background: rgba(10, 10, 12, 0.8);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--glass-border);
+    }
+}

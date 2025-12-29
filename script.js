@@ -77,7 +77,7 @@ updateCounter();
 // Plan Details Modal
 const planModal = document.getElementById('plan-modal');
 const planDetailsBtn = document.getElementById('plan-details-btn');
-const modalCloseBtn = document.querySelector('.modal-close');
+const planModalCloseBtn = document.querySelector('#plan-modal .modal-close');
 
 if (planDetailsBtn && planModal) {
     planDetailsBtn.addEventListener('click', (e) => {
@@ -86,8 +86,8 @@ if (planDetailsBtn && planModal) {
     });
 }
 
-if (modalCloseBtn && planModal) {
-    modalCloseBtn.addEventListener('click', () => {
+if (planModalCloseBtn && planModal) {
+    planModalCloseBtn.addEventListener('click', () => {
         planModal.classList.remove('active');
     });
 }

@@ -782,10 +782,45 @@ body {
 
 @media (max-width: 600px) {
     .modal-content {
-        padding: 30px 20px;
+        padding: 25px 20px;
+        width: 90%;
+        max-height: 80vh;
+        /* Prevent it from being too tall on mobile */
+        -webkit-overflow-scrolling: touch;
+        /* Enable smooth scrolling on iOS */
     }
 
     .modal-header h3 {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
+    }
+
+    .modal-subtitle {
+        font-size: 0.8rem;
+    }
+
+    /* Compact timeline for mobile */
+    .time-col {
+        min-width: 45px;
+    }
+
+    .time {
+        font-size: 0.9rem;
+    }
+
+    .event-title {
+        font-size: 1rem;
+    }
+
+    .event-desc {
+        font-size: 0.85rem !important;
+    }
+
+    .modal-section {
+        margin-bottom: 20px;
+    }
+
+    .dress-code-tag {
+        font-size: 0.85rem;
+        padding: 10px 15px;
     }
 }

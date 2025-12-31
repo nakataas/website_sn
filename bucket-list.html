@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Bucket List 📝</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600&family=Inter:wght@300;400;600&family=Quicksand:wght@400;600&family=Outfit:wght@400;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Specific overrides for Bucket List if needed */
+        .category-tab {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            color: var(--text-dim);
+        }
+
+        .category-tab.active {
+            color: var(--accent-color);
+            border-bottom-color: var(--accent-color);
+        }
+
+        .bucket-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 128, 191, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .bucket-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 128, 191, 0.6);
+            box-shadow: 0 0 20px rgba(255, 128, 191, 0.3);
+        }
+
+
+
+        /* Hide scrollbar for category list on mobile */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body class="relative min-h-screen bg-[#0a0a0c] text-white overflow-x-hidden">
+
+    <!-- Background Blobs -->
+    <div class="blob bg-pink-500 w-64 h-64 rounded-full top-10 left-10 fixed z-[-1]"></div>
+    <div class="blob bg-purple-500 w-72 h-72 rounded-full bottom-20 right-10 animation-delay-2000 fixed z-[-1]"></div>
+
+    <!-- Navbar -->
+    <nav
+        class="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center glass-card border-b-0 rounded-none bg-black/80">
+        <a href="index.html" class="text-xl font-bold text-pink-300 hover:text-pink-400 transition">
+            ← Back
+        </a>
+        <div class="text-sm bg-pink-500/20 px-4 py-1 rounded-full border border-pink-500/50 text-pink-200">
+            Bucket List Mode 📝
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 px-4 text-center">
+        <h1 class="text-4xl md:text-6xl font-bold mb-4 tracking-tight">
+            Our <span class="text-gradient">Bucket List</span>
+        </h1>
+        <p class="text-gray-400 max-w-lg mx-auto font-body text-lg">
+            Places we want to visit, food we want to try, and all the fun things we'll do together! (｡♥‿♥｡)
+        </p>
+    </section>
+
+    <!-- Category Filter -->
+    <section class="mt-10 px-4">
+        <div
+            class="flex justify-center gap-8 border-b border-gray-800 max-w-2xl mx-auto overflow-x-auto no-scrollbar pb-2">
+            <button onclick="filterCategory('all')" id="tab-all"
+                class="category-tab active text-lg font-bold pb-2 whitespace-nowrap">
+                All Items
+            </button>
+            <button onclick="filterCategory('food')" id="tab-food"
+                class="category-tab text-lg font-bold pb-2 whitespace-nowrap">
+                🍱 Food
+            </button>
+            <button onclick="filterCategory('places')" id="tab-places"
+                class="category-tab text-lg font-bold pb-2 whitespace-nowrap">
+                🗺️ Places
+            </button>
+            <button onclick="filterCategory('activity')" id="tab-activity"
+                class="category-tab text-lg font-bold pb-2 whitespace-nowrap">
+                🎨 Activity
+            </button>
+        </div>
+    </section>
+
+    <!-- Grid Content -->
+    <section class="py-10 px-4 max-w-6xl mx-auto min-h-[60vh]">
+        <div id=" bucket-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- Activity: Hand Painting Canvas -->
+            <div class="bucket-card rounded-2xl p-4 data-item" data-category="activity" data-name="Hand Painting Canvas"
+                data-location="Home / Studio"
+                data-description="DIY Hand painting kit on canvas! We'll use pink and blue colors to make our handprints together. A special memory that we can hang on the wall forever. (｡♥‿♥｡)"
+                data-highlights="-" data-status="Planned" data-image="images/hand_painting_date.png"
+                onclick="showDetail(this)">
+                <div class="h-48 bg-gray-800 rounded-xl mb-4 relative overflow-hidden group">
+                    <img src="images/hand_painting_date.png" alt="Hand Painting"
+                        class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div
+                        class="absolute top-2 right-2 bg-pink-500/80 backdrop-blur px-2 py-1 rounded text-xs font-bold">
+                        Planned</div>
+                </div>
+                <div class="flex justify-between items-start mb-2">
+                    <div>
+                        <h3 class="text-xl font-bold text-pink-100">Hand Painting Canvas</h3>
+                        <p class="text-sm text-gray-400 font-body">Activity Date</p>
+                    </div>
+
+                </div>
+                <p class="text-xs text-gray-500 mt-2 font-body">Memory in the making...</p>
+            </div>
+
+            <!-- Zoo Bandung -->
+            <div class="bucket-card rounded-2xl p-4 data-item" data-category="places" data-name="Zoo Bandung"
+                data-location="Bandung Zoological Garden"
+                data-description="A fun day out at the zoo! Let's see the animals, walk around the park, and take lots of cute photos. 🦁🌿"
+                data-highlights="Animal encounters, Nature walk, Picnic spots" data-status="Planned"
+                data-image="images/zoo_bandung.png"
+                data-map-url="https://maps.google.com/maps?q=Bandung+Zoological+Garden&output=embed"
+                onclick="showDetail(this)">
+                <div class="h-48 bg-gray-800 rounded-xl mb-4 relative overflow-hidden group">
+                    <img src="images/zoo_bandung.png" alt="Zoo Bandung"
+                        class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div
+                        class="absolute top-2 right-2 bg-pink-500/80 backdrop-blur px-2 py-1 rounded text-xs font-bold">
+                        Planned</div>
+                </div>
+                <div class="flex justify-between items-start mb-2">
+                    <div>
+                        <h3 class="text-xl font-bold text-pink-100">Zoo Bandung</h3>
+                        <p class="text-sm text-gray-400 font-body">Bandung</p>
+                    </div>
+                </div>
+                <p class="text-xs text-gray-500 mt-2 font-body">Liat jerapah bareng! 🦒</p>
+            </div>
+
+            <!-- IKEA Date -->
+            <div class="bucket-card rounded-2xl p-4 data-item" data-category="places" data-name="IKEA Date"
+                data-location="IKEA Kota Baru Parahyangan"
+                data-description="Playing house at IKEA! We can walk through the showrooms, pretend we live there, and eat Swedish meatballs. 🇸🇪🏠"
+                data-highlights="Showroom tour, Swedish meatballs, Aesthetic photos" data-status="Planned"
+                data-image="images/ikea_date.png"
+                data-map-url="https://maps.google.com/maps?q=IKEA+Kota+Baru+Parahyangan&output=embed"
+                onclick="showDetail(this)">
+                <div class="h-48 bg-gray-800 rounded-xl mb-4 relative overflow-hidden group">
+                    <img src="images/ikea_date.png" alt="IKEA Date"
+                        class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div
+                        class="absolute top-2 right-2 bg-pink-500/80 backdrop-blur px-2 py-1 rounded text-xs font-bold">
+                        Planned</div>
+                </div>
+                <div class="flex justify-between items-start mb-2">
+                    <div>
+                        <h3 class="text-xl font-bold text-pink-100">IKEA Date</h3>
+                        <p class="text-sm text-gray-400 font-body">Padalarang</p>
+                    </div>
+                </div>
+                <p class="text-xs text-gray-500 mt-2 font-body">Meatballs time! 🍝</p>
+            </div>
+
+            <!-- Nangkring Seblak -->
+            <div class="bucket-card rounded-2xl p-4 data-item" data-category="food" data-name="Nangkring Seblak"
+                data-location="Nangkring Seblak"
+                data-description="Spicy food challenge! Let's try the famous Seblak here. Perfect for a casual and yummy date. 🌶️🍜"
+                data-highlights="Spicy Seblak, Street food vibes, Affordable" data-status="Planned"
+                data-image="images/seblak_nangkring.png"
+                data-map-url="https://maps.google.com/maps?q=Nangkring+Seblak&output=embed" onclick="showDetail(this)">
+                <div class="h-48 bg-gray-800 rounded-xl mb-4 relative overflow-hidden group">
+                    <img src="images/seblak_nangkring.png" alt="Nangkring Seblak"
+                        class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div
+                        class="absolute top-2 right-2 bg-pink-500/80 backdrop-blur px-2 py-1 rounded text-xs font-bold">
+                        Planned</div>
+                </div>
+                <div class="flex justify-between items-start mb-2">
+                    <div>
+                        <h3 class="text-xl font-bold text-pink-100">Nangkring Seblak</h3>
+                        <p class="text-sm text-gray-400 font-body">Kuliner</p>
+                    </div>
+                </div>
+                <p class="text-xs text-gray-500 mt-2 font-body">Pedesss nampol! 🔥</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Detail Modal -->
+    <div id="detailModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div class="modal-header">
+                <h3 id="modalTitle">Item Name</h3>
+                <p class="modal-subtitle" id="modalLocation">Location</p>
+            </div>
+            <div class="modal-body">
+                <div class="mb-6">
+                    <img id="modalImage" src="" alt="" class="w-full h-64 object-cover rounded-xl">
+                </div>
+                <div class="modal-section">
+                    <h4>Description</h4>
+                    <p id="modalDescription"></p>
+                </div>
+                <div class="modal-section">
+                    <h4>Highlights</h4>
+                    <p id="modalHighlights"></p>
+                </div>
+
+                <div class="modal-section">
+                    <span class="dress-code-tag" id="modalStatus">Status</span>
+                </div>
+
+                <div class="modal-section">
+                    <h4>Location Map</h4>
+                    <div style="width: 100%; height: 250px; border-radius: 12px; overflow: hidden; margin-top: 10px;">
+                        <iframe id="modalMap" width="100%" height="100%" frameborder="0" style="border:0" src=""
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-8 text-center text-gray-600 text-sm font-body border-t border-gray-800">
+        <p>Let's check them all! ✈️</p>
+    </footer>
+
+    <script>
+        function filterCategory(category) {
+            // Update Tabs
+            document.querySelectorAll('.category-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById('tab-' + category).classList.add('active');
+
+            // Filter Items
+            const items = document.querySelectorAll('.data-item');
+            items.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'block';
+                    // Optional: Add fadeIn animation
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+
+
+        function showDetail(card) {
+            const modal = document.getElementById('detailModal');
+            document.getElementById('modalTitle').textContent = card.dataset.name;
+            document.getElementById('modalLocation').textContent = card.dataset.location;
+            document.getElementById('modalDescription').textContent = card.dataset.description;
+            document.getElementById('modalHighlights').textContent = card.dataset.highlights;
+            document.getElementById('modalStatus').textContent = card.dataset.status;
+            document.getElementById('modalImage').src = card.dataset.image;
+            document.getElementById('modalImage').alt = card.dataset.name;
+
+            // Update Map
+            const mapUrl = card.dataset.mapUrl;
+            const mapFrame = document.getElementById('modalMap');
+            if (mapUrl) {
+                mapFrame.src = mapUrl;
+                mapFrame.parentElement.parentElement.style.display = 'block';
+            } else {
+                mapFrame.parentElement.parentElement.style.display = 'none';
+            }
+
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('detailModal').classList.remove('active');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('detailModal').addEventListener('click', function (e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+
+</html>

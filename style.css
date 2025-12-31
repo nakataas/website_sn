@@ -1670,3 +1670,19 @@ body {
         border-bottom: 1px solid var(--glass-border);
     }
 }
+/* Shared Utilities from main.html */
+.text-gradient {
+    background: linear-gradient(to right, #ff80bf, #ff99cc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent; /* Fallback */
+}
+
+.blob {
+    position: absolute;
+    filter: blur(50px);
+    z-index: -1;
+    opacity: 0.4;
+    animation: float 6s ease-in-out infinite;
+}

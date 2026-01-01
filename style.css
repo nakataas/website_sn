@@ -316,12 +316,18 @@ body {
     width: 100%;
     max-width: 800px;
     opacity: 0.6;
+    padding: 0 20px;
+    /* Add padding for mobile safety */
+    box-sizing: border-box;
 }
 
 .divider-line {
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
-    flex: 1;
+    background: linear-gradient(90deg, transparent, var(--accent-color, #ff4d6d), transparent);
+    flex-grow: 1;
+    /* Explicitly grow */
+    width: auto;
+    /* Allow width to be determined by flex */
 }
 
 .divider-icon {

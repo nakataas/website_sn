@@ -319,8 +319,9 @@ document.addEventListener('DOMContentLoaded', function () {
 function updateMiniCountdowns() {
     const now = new Date();
 
-    // Salon Date - Jan 4, 2026
-    const salonDate = new Date('2026-01-04T00:00:00');
+    // Salon Date - Jan 4, 2026 (Month is 0-indexed: 0 = Jan)
+    // Using new Date(year, monthIndex, day) is safer for mobile browsers than string parsing
+    const salonDate = new Date(2026, 0, 4); // Jan 4, 2026
     const salonDiff = salonDate - now;
 
     if (salonDiff > 0) {
@@ -340,8 +341,8 @@ function updateMiniCountdowns() {
         }
     }
 
-    // Painting Date - Jan 3, 2026
-    const paintingDate = new Date('2026-01-03T00:00:00');
+    // Painting Date - Jan 3, 2026 (Month is 0-indexed: 0 = Jan)
+    const paintingDate = new Date(2026, 0, 3); // Jan 3, 2026
     const paintingDiff = paintingDate - now;
 
     if (paintingDiff > 0) {
@@ -362,11 +363,20 @@ function updateMiniCountdowns() {
     }
 }
 
-// Initialize mini countdowns when DOM is ready
-document.addEventListener('DOMContentLoaded', function () {
-    // Small delay to ensure all elements are rendered (especially on mobile)
-    setTimeout(function () {
-        updateMiniCountdowns();
-        setInterval(updateMiniCountdowns, 1000);
-    }, 100);
-});
+// Initialize mini countdowns with multiple fallbacks
+function initCountdowns() {
+    updateMiniCountdowns();
+    // Clear any existing interval to prevent duplicates
+    if (window.miniCountdownInterval) clearInterval(window.miniCountdownInterval);
+    window.miniCountdownInterval = setInterval(updateMiniCountdowns, 1000);
+}
+
+// Run immediately if DOM is ready
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    initCountdowns();
+} else {
+    document.addEventListener('DOMContentLoaded', initCountdowns);
+}
+
+// Backup check for mobile (window 'load' often safer for full asset loading)
+window.addEventListener('load', initCountdowns);

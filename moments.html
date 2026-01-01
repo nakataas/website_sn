@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Our Precious Moments | S ♡ N</title>
+    <meta name="description" content="A detailed timeline of all our beautiful moments together.">
+    <!-- Google Fonts: Inter and Outfit for a premium feel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@300;500;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="https://fav.farm/❤️">
+    <style>
+        /* Moments Page Enhanced Styles */
+        .moments-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .view-toggle {
+            display: flex;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            padding: 5px;
+            gap: 5px;
+        }
+
+        .view-toggle-btn {
+            padding: 10px 24px;
+            border: none;
+            background: transparent;
+            color: var(--text-dim);
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .view-toggle-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        .view-toggle-btn.active {
+            background: var(--accent-color);
+            color: white;
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        .view-toggle-btn:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+        }
+
+        .sort-select {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            padding: 10px 20px;
+        }
+
+        .sort-select label {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .sort-select select {
+            background: transparent;
+            border: none;
+            color: var(--accent-color);
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .sort-select select option {
+            background: var(--primary-bg);
+            color: var(--text-main);
+        }
+
+        /* Stats Summary */
+        .moments-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 25px 35px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 30px rgba(255, 77, 109, 0.15);
+        }
+
+        .stat-number {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Countdown Timer */
+        .countdown-container {
+            margin-top: 15px;
+            padding: 15px;
+            background: linear-gradient(135deg, rgba(77, 158, 255, 0.1) 0%, rgba(77, 158, 255, 0.05) 100%);
+            border: 1px solid rgba(77, 158, 255, 0.3);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .countdown-label {
+            font-size: 0.75rem;
+            color: #4d9eff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .countdown-display {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .countdown-unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .countdown-number {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #4d9eff;
+            line-height: 1;
+            text-shadow: 0 0 10px rgba(77, 158, 255, 0.3);
+        }
+
+        .countdown-text {
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        /* Calendar Styles */
+        .calendar-container {
+            display: none;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .calendar-container.active {
+            display: block;
+        }
+
+        .timeline-view {
+            display: block;
+        }
+
+        .timeline-view.hidden {
+            display: none;
+        }
+
+        .calendar-wrapper {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .calendar-nav {
+            display: flex;
+            gap: 10px;
+        }
+
+        .calendar-nav-btn {
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--glass-border);
+            background: transparent;
+            color: var(--text-dim);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .calendar-nav-btn:hover {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            color: white;
+        }
+
+        .calendar-nav-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .calendar-month-year {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--text-main);
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+        }
+
+        .calendar-day-header {
+            text-align: center;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-dim);
+            padding: 10px 0 15px;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            cursor: default;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .calendar-day.other-month {
+            opacity: 0.3;
+        }
+
+        .calendar-day.today {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+        }
+
+        .calendar-day.has-moment {
+            background: linear-gradient(135deg, rgba(255, 77, 109, 0.2) 0%, rgba(255, 77, 109, 0.1) 100%);
+            border: 1px solid var(--accent-color);
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        .calendar-day.has-moment:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: scale(1.1);
+            box-shadow: 0 5px 20px var(--accent-glow);
+            z-index: 10;
+        }
+
+        .calendar-day.upcoming-moment {
+            background: linear-gradient(135deg, rgba(77, 158, 255, 0.2) 0%, rgba(77, 158, 255, 0.1) 100%);
+            border: 1px dashed #4d9eff;
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        .calendar-day.upcoming-moment:hover {
+            background: #4d9eff;
+            color: white;
+            transform: scale(1.1);
+            box-shadow: 0 5px 20px rgba(77, 158, 255, 0.4);
+            z-index: 10;
+        }
+
+        .moment-indicator {
+            position: absolute;
+            bottom: 4px;
+            width: 6px;
+            height: 6px;
+            background: var(--accent-color);
+            border-radius: 50%;
+        }
+
+        .calendar-day.upcoming-moment .moment-indicator {
+            background: #4d9eff;
+        }
+
+        /* Calendar Legend */
+        .calendar-legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 4px;
+        }
+
+        .legend-dot.past {
+            background: var(--accent-color);
+        }
+
+        .legend-dot.upcoming {
+            background: #4d9eff;
+            border: 1px dashed #4d9eff;
+        }
+
+        .legend-dot.today {
+            border: 2px solid var(--text-dim);
+            background: transparent;
+        }
+
+        /* Moment Detail Popup */
+        .moment-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            background: rgba(20, 20, 25, 0.98);
+            border: 1px solid var(--accent-color);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 400px;
+            width: 90%;
+            z-index: 3000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .moment-popup.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2500;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .popup-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: transparent;
+            border: none;
+            color: var(--text-dim);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .popup-close:hover {
+            color: var(--accent-color);
+        }
+
+        .popup-date {
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .popup-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--text-main);
+            margin-bottom: 15px;
+        }
+
+        .popup-desc {
+            color: var(--text-dim);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .popup-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .popup-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px var(--accent-glow);
+        }
+
+        .popup-link svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        /* Year Tabs */
+        .year-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .year-tab {
+            padding: 8px 20px;
+            background: transparent;
+            border: 1px solid var(--glass-border);
+            color: var(--text-dim);
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .year-tab.active {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            color: white;
+        }
+
+        .year-tab:hover:not(.active) {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .moments-controls {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .moments-stats {
+                gap: 15px;
+            }
+
+            .stat-card {
+                padding: 20px 25px;
+                flex: 1;
+                min-width: 100px;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .calendar-wrapper {
+                padding: 20px 15px;
+            }
+
+            .calendar-month-year {
+                font-size: 1.2rem;
+            }
+
+            .calendar-day {
+                font-size: 0.85rem;
+            }
+
+            .calendar-legend {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="glow-container">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+    </div>
+
+    <header class="premium-header" style="padding: 40px 20px;">
+        <div class="counter-wrapper">
+            <div class="couple-logo">
+                <span class="initial">S</span>
+                <span class="kaomoji-icon">♡</span>
+                <span class="initial">N</span>
+            </div>
+            <h2 class="counter-label" style="font-size: 2.5rem; letter-spacing: 2px;">All Our Precious Moments</h2>
+            <p class="start-date">Every memory we've shared, from the first to the latest ♡</p>
+        </div>
+    </header>
+
+    <main class="content-reveal">
+        <section class="dates-section">
+            <!-- Back Button -->
+            <div style="text-align: center; margin-bottom: 40px;">
+                <a href="index.html" class="photo-link secondary" style="display: inline-flex; padding: 10px 24px;">
+                    <svg viewBox="0 0 24 24" style="margin-right: 8px;">
+                        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" />
+                    </svg>
+                    Back to Home
+                </a>
+            </div>
+
+            <!-- Stats Summary -->
+            <div class="moments-stats">
+                <div class="stat-card">
+                    <span class="stat-number" id="total-moments">4</span>
+                    <span class="stat-label">Total Moments</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="past-dates">2</span>
+                    <span class="stat-label">Past Dates</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="upcoming-dates">2</span>
+                    <span class="stat-label">Upcoming</span>
+                </div>
+            </div>
+
+            <!-- View Toggle & Sort Controls -->
+            <div class="moments-controls">
+                <div class="view-toggle">
+                    <button class="view-toggle-btn active" data-view="timeline">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z" />
+                        </svg>
+                        Timeline
+                    </button>
+                    <button class="view-toggle-btn" data-view="calendar">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM9 10H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z" />
+                        </svg>
+                        Calendar
+                    </button>
+                </div>
+
+                <div class="sort-select">
+                    <label>Sort:</label>
+                    <select id="sort-order">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Timeline View -->
+            <div class="timeline-view" id="timeline-view">
+                <!-- Scroll Up Arrow -->
+                <button class="scroll-arrow up" id="scroll-up-btn">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z" />
+                    </svg>
+                </button>
+
+                <div class="timeline-container" id="timeline-container">
+                    <div class="timeline" id="timeline-list">
+                        <!-- Moments will be rendered here by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Scroll Down Arrow -->
+                <button class="scroll-arrow down" id="scroll-down-btn">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Calendar View -->
+            <div class="calendar-container" id="calendar-view">
+                <!-- Year Tabs -->
+                <div class="year-tabs" id="year-tabs">
+                    <!-- Generated by JS -->
+                </div>
+
+                <div class="calendar-wrapper">
+                    <div class="calendar-header">
+                        <button class="calendar-nav-btn" id="prev-month">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+                            </svg>
+                        </button>
+                        <h3 class="calendar-month-year" id="calendar-title">January 2026</h3>
+                        <button class="calendar-nav-btn" id="next-month">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="calendar-grid" id="calendar-grid">
+                        <div class="calendar-day-header">Sun</div>
+                        <div class="calendar-day-header">Mon</div>
+                        <div class="calendar-day-header">Tue</div>
+                        <div class="calendar-day-header">Wed</div>
+                        <div class="calendar-day-header">Thu</div>
+                        <div class="calendar-day-header">Fri</div>
+                        <div class="calendar-day-header">Sat</div>
+                        <!-- Calendar days will be generated by JavaScript -->
+                    </div>
+
+                    <div class="calendar-legend">
+                        <div class="legend-item">
+                            <div class="legend-dot past"></div>
+                            <span>Past Moment</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-dot upcoming"></div>
+                            <span>Upcoming</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-dot today"></div>
+                            <span>Today</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Back Button at bottom -->
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="index.html" class="photo-link"
+                    style="display: inline-flex; padding: 14px 32px; font-size: 1rem; background: linear-gradient(135deg, #ff4d6d 0%, #ff758f 100%); box-shadow: 0 6px 20px rgba(255, 77, 109, 0.4);">
+                    <svg viewBox="0 0 24 24" style="margin-right: 8px;">
+                        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" />
+                    </svg>
+                    Back to Home
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Moment Popup -->
+    <div class="popup-overlay" id="popup-overlay"></div>
+    <div class="moment-popup" id="moment-popup">
+        <button class="popup-close" id="popup-close">&times;</button>
+        <p class="popup-date" id="popup-date"></p>
+        <h3 class="popup-title" id="popup-title"></h3>
+        <p class="popup-desc" id="popup-desc"></p>
+        <a href="#" class="popup-link" id="popup-link" target="_blank">
+            <svg viewBox="0 0 24 24">
+                <path
+                    d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5.04-6.71l-2.75 3.54-1.96-2.36L6.5 17h11l-3.54-4.71z" />
+            </svg>
+            View Photos
+        </a>
+    </div>
+
+    <!-- Floating Navigation Dock -->
+    <nav class="floating-dock">
+        <a href="letters.html" class="dock-item">
+            <svg viewBox="0 0 24 24">
+                <path
+                    d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z" />
+            </svg>
+            <span class="dock-tooltip">Letters</span>
+        </a>
+        <a href="bucket-list.html" class="dock-item">
+            <svg viewBox="0 0 24 24">
+                <path
+                    d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+            </svg>
+            <span class="dock-tooltip">Bucket List</span>
+        </a>
+        <a href="index.html" class="dock-item">
+            <svg viewBox="0 0 24 24">
+                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+            </svg>
+            <span class="dock-tooltip">Home</span>
+        </a>
+        <a href="#about-us" class="dock-item">
+            <svg viewBox="0 0 24 24">
+                <path
+                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+            </svg>
+            <span class="dock-tooltip">About Us</span>
+        </a>
+    </nav>
+
+    <!-- Plan Details Modal (High Tea) -->
+    <div id="plan-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div class="modal-header">
+                <h3>High Tea & Painting Date</h3>
+                <p class="modal-subtitle">Jan 3, 2026 • Coffee, Homemade Food & Art</p>
+            </div>
+
+            <div class="modal-section">
+                <h4>Description</h4>
+                <p>A full afternoon and evening of delights! Starting with a cozy coffee time at Bagi Kopi Buah Batu
+                    where we'll enjoy the special meal I cooked for you. Then, we're off to Swiss-Belresort Dago
+                    Heritage for a fancy High Tea, painting session, and tumblr decorating with a view! ( ✂️🎨🍹 )</p>
+            </div>
+
+            <div class="modal-section">
+                <h4>The Timeline</h4>
+                <div class="modal-items">
+                    <div class="modal-timeline-item">
+                        <div class="time-col">
+                            <span class="time">16:00</span>
+                        </div>
+                        <div class="marker-col">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-line"></div>
+                        </div>
+                        <div class="event">
+                            <p class="event-title">Pick Up</p>
+                            <p class="event-desc">Picking you up at your place! (ETA 10 mins from my house) 🚗💨</p>
+                        </div>
+                    </div>
+                    <div class="modal-timeline-item">
+                        <div class="time-col">
+                            <span class="time">16:15</span>
+                        </div>
+                        <div class="marker-col">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-line"></div>
+                        </div>
+                        <div class="event">
+                            <p class="event-title">Bagi Kopi Buah Batu</p>
+                            <p class="event-desc">Arrival at <a href="https://maps.app.goo.gl/4gxj89jZi3dUphxV6"
+                                    target="_blank" style="color: var(--accent-color); text-decoration: none;">Bagi
+                                    Kopi</a>. Time for coffee and enjoying the special homemade meal I cooked for you!
+                                🍱☕</p>
+                        </div>
+                    </div>
+                    <div class="modal-timeline-item">
+                        <div class="time-col">
+                            <span class="time">17:30</span>
+                        </div>
+                        <div class="marker-col">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-line"></div>
+                        </div>
+                        <div class="event">
+                            <p class="event-title">OTW to Dago Header</p>
+                            <p class="event-desc">Leaving for Swiss-Belresort Dago Heritage. Let's enjoy the ride! 🎶🚙
+                            </p>
+                        </div>
+                    </div>
+                    <div class="modal-timeline-item">
+                        <div class="time-col">
+                            <span class="time">19:00</span>
+                        </div>
+                        <div class="marker-col">
+                            <div class="timeline-dot"></div>
+                        </div>
+                        <div class="event">
+                            <p class="event-title">High Tea & Creativity</p>
+                            <p class="event-desc">Reservation at <a href="https://maps.app.goo.gl/mT6QsDVrpk6LNtnM9"
+                                    target="_blank"
+                                    style="color: var(--accent-color); text-decoration: none;">Swiss-Belresort Dago</a>.
+                                High tea, painting canvas & decorating tumblers! 🍵🖼️🧴</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-section">
+                <h4>Location Map</h4>
+                <div
+                    style="width: 100%; height: 250px; border-radius: 12px; overflow: hidden; margin-top: 10px; border: 1px solid rgba(255, 77, 109, 0.3);">
+                    <iframe width="100%" height="100%" frameborder="0" style="border:0"
+                        src="https://maps.google.com/maps?q=Swiss-Belresort+Dago+Heritage&output=embed" allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="dress-code-tag" style="margin-top: 15px;">
+                    <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: currentColor;">
+                        <path
+                            d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                    </svg>
+                    <span><a href="https://maps.app.goo.gl/mT6QsDVrpk6LNtnM9" target="_blank"
+                            style="color: inherit; text-decoration: none;">Open Swiss-Belresort Map</a></span>
+                </div>
+                <div class="dress-code-tag" style="margin-top: 8px;">
+                    <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: currentColor;">
+                        <path
+                            d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                    </svg>
+                    <span><a href="https://maps.app.goo.gl/4gxj89jZi3dUphxV6" target="_blank"
+                            style="color: inherit; text-decoration: none;">Open Bagi Kopi Map</a></span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Salon Plan Details Modal -->
+    <div id="plan-modal-salon" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div class="modal-header">
+                <h3>Salon & Sate Date</h3>
+                <p class="modal-subtitle">Jan 4, 2026 • Pampering & Good Food</p>
+            </div>
+
+            <div class="modal-section">
+                <h4>Description</h4>
+                <p>A relaxing afternoon starting with a treatment at Salon Anata Cihapit, followed by a delightful
+                    dinner at Sate Khas Senayan TSM ( ˶ˆ ᗜ ˆ˵ )</p>
+            </div>
+
+            <div class="modal-section">
+                <h4>The Timeline</h4>
+                <div class="modal-items">
+                    <div class="modal-timeline-item">
+                        <div class="time-col">
+                            <span class="time">13:35</span>
+                        </div>
+                        <div class="marker-col">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-line"></div>
+                        </div>
+                        <div class="event">
+                            <p class="event-title">Departure</p>
+                            <p class="event-desc">I'm leaving my house to pick you up! (10 min drive) 🚗💨</p>
+                        </div>
+                    </div>
+                    <div class="modal-timeline-item">
+                        <div class="time-col">
+                            <span class="time">13:45</span>
+                        </div>
+                        <div class="marker-col">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-line"></div>
+                        </div>
+                        <div class="event">
+                            <p class="event-title">Pick Up</p>
+                            <p class="event-desc">Picking you up and heading straight to Cihapit. (15 min drive)</p>
+                        </div>
+                    </div>
+                    <div class="modal-timeline-item">
+                        <div class="time-col">
+                            <span class="time">14:00</span>
+                        </div>
+                        <div class="marker-col">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-line"></div>
+                        </div>
+                        <div class="event">
+                            <p class="event-title">Salon Anata</p>
+                            <p class="event-desc">Arrival at <a href="https://maps.app.goo.gl/qgH3DqizBuEpvxeLA"
+                                    target="_blank" style="color: var(--accent-color); text-decoration: none;">Anata
+                                    Cihapit</a>. Time to relax! 💆🏻‍♀️</p>
+                        </div>
+                    </div>
+                    <div class="modal-timeline-item">
+                        <div class="time-col">
+                            <span class="time">16:00</span>
+                        </div>
+                        <div class="marker-col">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-line"></div>
+                        </div>
+                        <div class="event">
+                            <p class="event-title">Heading to TSM</p>
+                            <p class="event-desc">Feeling refreshed! Now off to Trans Studio Mall.</p>
+                        </div>
+                    </div>
+                    <div class="modal-timeline-item">
+                        <div class="time-col">
+                            <span class="time">16:30</span>
+                        </div>
+                        <div class="marker-col">
+                            <div class="timeline-dot"></div>
+                        </div>
+                        <div class="event">
+                            <p class="event-title">Sate Khas Senayan</p>
+                            <p class="event-desc">Dinner time! Enjoying the best sate in town. 🍢🍚</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-section">
+                <h4>Location Map</h4>
+                <div
+                    style="width: 100%; height: 250px; border-radius: 12px; overflow: hidden; margin-top: 10px; border: 1px solid rgba(255, 77, 109, 0.3);">
+                    <iframe width="100%" height="100%" frameborder="0" style="border:0"
+                        src="https://maps.google.com/maps?q=Anata+Salon+Cihapit&output=embed" allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="dress-code-tag" style="margin-top: 15px;">
+                    <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: currentColor;">
+                        <path
+                            d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                    </svg>
+                    <span><a href="https://maps.app.goo.gl/qgH3DqizBuEpvxeLA" target="_blank"
+                            style="color: inherit; text-decoration: none;">Open in Google Maps</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Moments Data
+        const momentsData = [
+            {
+                id: 1,
+                date: '2025-12-24',
+                title: 'Avatar Movie Date & McDonald\'s',
+                description: 'Watched Avatar and ended the night with some classic McDonald\'s late-night meal. Our very first special memory. ( ੭ ˙ᗜ˙ )੭',
+                photos: 'https://photos.app.goo.gl/kEvmETayE7RJsdz37',
+                type: 'past'
+            },
+            {
+                id: 2,
+                date: '2025-12-26',
+                title: 'Zootopia Movie Date & Sushi Night',
+                description: 'Spent a wonderful time watching Zootopia 2 and enjoyed a delicious dinner at Sushi Tei. (˶ᵔ ᵕ ᵔ˶) ♡',
+                photos: 'https://photos.app.goo.gl/SfdLXaZCNG2JgVr89',
+                type: 'past',
+                isLatest: true
+            },
+            {
+                id: 3,
+                date: '2026-01-03',
+                title: 'High Tea & Painting Date',
+                description: 'Starting with a cozy coffee time at Bagi Kopi, then heading to Swiss-Belresort for High Tea, painting, and tumblr decorating with a view! ☕🎨✨',
+                type: 'upcoming',
+                modalId: 'plan-modal'
+            },
+            {
+                id: 4,
+                date: '2026-01-04',
+                title: 'Salon + Sate Date',
+                description: 'We\'re heading to Salon Anata followed by a delicious satay dinner at Sate Khas Senayan in TSM. ( ˘▽˘)っ♨',
+                type: 'upcoming',
+                modalId: 'plan-modal-salon'
+            }
+        ];
+
+        // Current state
+        let currentView = 'timeline';
+        let sortOrder = 'newest';
+        let currentYear = 2026;
+        let currentMonth = 0; // January
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            updateStats();
+            renderTimeline();
+            setupViewToggle();
+            setupSortSelect();
+            setupCalendarNav();
+            setupYearTabs();
+            renderCalendar();
+            setupPopup();
+            setupModals();
+            setupScrollArrows();
+        });
+
+        // Update stats
+        function updateStats() {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            const pastDates = momentsData.filter(m => new Date(m.date) < today).length;
+            const upcomingDates = momentsData.filter(m => new Date(m.date) >= today).length;
+
+            document.getElementById('total-moments').textContent = momentsData.length;
+            document.getElementById('past-dates').textContent = pastDates;
+            document.getElementById('upcoming-dates').textContent = upcomingDates;
+        }
+
+        // Format date
+        function formatDate(dateStr) {
+            const date = new Date(dateStr);
+            const options = { month: 'short', day: 'numeric', year: 'numeric' };
+            return date.toLocaleDateString('en-US', options);
+        }
+
+        // Render Timeline
+        function renderTimeline() {
+            const container = document.getElementById('timeline-list');
+            let sortedMoments = [...momentsData];
+
+            if (sortOrder === 'newest') {
+                sortedMoments.sort((a, b) => new Date(b.date) - new Date(a.date));
+            } else {
+                sortedMoments.sort((a, b) => new Date(a.date) - new Date(b.date));
+            }
+
+            container.innerHTML = sortedMoments.map(moment => {
+                const isUpcoming = moment.type === 'upcoming';
+                const isLatest = moment.isLatest;
+                let cardClass = 'date-card';
+                if (isUpcoming) cardClass += ' upcoming';
+                if (isLatest) cardClass += ' latest';
+
+                const dateLabel = isUpcoming ? `Upcoming • ${formatDate(moment.date)}` :
+                    isLatest ? `Latest Date • ${formatDate(moment.date)}` :
+                        formatDate(moment.date);
+
+                let actionHtml = '';
+                if (moment.photos) {
+                    actionHtml = `
+                        <a href="${moment.photos}" target="_blank" class="photo-link">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5.04-6.71l-2.75 3.54-1.96-2.36L6.5 17h11l-3.54-4.71z"/>
+                            </svg>
+                            View Photos
+                        </a>`;
+                } else if (moment.modalId) {
+                    actionHtml = `
+                        <div class="card-actions">
+                            <a href="#" class="photo-link" data-modal="${moment.modalId}">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+                                </svg>
+                                Plan Details
+                            </a>
+                        </div>`;
+                }
+
+                // Add countdown for upcoming dates
+                let countdownHtml = '';
+                if (isUpcoming) {
+                    countdownHtml = `
+                        <div class="countdown-container" data-date="${moment.date}">
+                            <span class="countdown-label">Countdown</span>
+                            <div class="countdown-display" id="countdown-${moment.id}">
+                                <div class="countdown-unit">
+                                    <span class="countdown-number" data-days>0</span>
+                                    <span class="countdown-text">Days</span>
+                                </div>
+                                <div class="countdown-unit">
+                                    <span class="countdown-number" data-hours>0</span>
+                                    <span class="countdown-text">Hours</span>
+                                </div>
+                                <div class="countdown-unit">
+                                    <span class="countdown-number" data-minutes>0</span>
+                                    <span class="countdown-text">Minutes</span>
+                                </div>
+                            </div>
+                        </div>`;
+                }
+
+                return `
+                    <article class="${cardClass}" data-moment-id="${moment.id}">
+                        <span class="date-meta">${dateLabel}</span>
+                        <h3>${moment.title}</h3>
+                        <p>${moment.description}</p>
+                        ${countdownHtml}
+                        ${actionHtml}
+                    </article>
+                `;
+            }).join('');
+
+            // Re-attach modal event listeners
+            document.querySelectorAll('[data-modal]').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const modalId = btn.dataset.modal;
+                    document.getElementById(modalId).classList.add('active');
+                });
+            });
+
+            // Start countdown timers
+            startCountdownTimers();
+        }
+
+        // Countdown Timer Functions
+        function startCountdownTimers() {
+            // Clear any existing interval
+            if (window.countdownInterval) {
+                clearInterval(window.countdownInterval);
+            }
+
+            // Update immediately
+            updateCountdowns();
+
+            // Update every second
+            window.countdownInterval = setInterval(updateCountdowns, 1000);
+        }
+
+        function updateCountdowns() {
+            const now = new Date();
+
+            momentsData.filter(m => m.type === 'upcoming').forEach(moment => {
+                const targetDate = new Date(moment.date);
+                const diff = targetDate - now;
+
+                if (diff > 0) {
+                    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+                    const countdownEl = document.getElementById(`countdown-${moment.id}`);
+                    if (countdownEl) {
+                        const daysEl = countdownEl.querySelector('[data-days]');
+                        const hoursEl = countdownEl.querySelector('[data-hours]');
+                        const minutesEl = countdownEl.querySelector('[data-minutes]');
+
+                        if (daysEl) daysEl.textContent = days;
+                        if (hoursEl) hoursEl.textContent = hours;
+                        if (minutesEl) minutesEl.textContent = minutes;
+                    }
+                }
+            });
+        }
+
+        // Setup View Toggle
+        function setupViewToggle() {
+            document.querySelectorAll('.view-toggle-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.view-toggle-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    currentView = btn.dataset.view;
+
+                    if (currentView === 'calendar') {
+                        document.getElementById('timeline-view').classList.add('hidden');
+                        document.getElementById('calendar-view').classList.add('active');
+                    } else {
+                        document.getElementById('timeline-view').classList.remove('hidden');
+                        document.getElementById('calendar-view').classList.remove('active');
+                    }
+                });
+            });
+        }
+
+        // Setup Sort Select
+        function setupSortSelect() {
+            document.getElementById('sort-order').addEventListener('change', (e) => {
+                sortOrder = e.target.value;
+                renderTimeline();
+            });
+        }
+
+        // Setup Year Tabs
+        function setupYearTabs() {
+            const years = [...new Set(momentsData.map(m => new Date(m.date).getFullYear()))].sort();
+            const container = document.getElementById('year-tabs');
+
+            container.innerHTML = years.map(year => `
+                <button class="year-tab ${year === currentYear ? 'active' : ''}" data-year="${year}">${year}</button>
+            `).join('');
+
+            container.querySelectorAll('.year-tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    document.querySelectorAll('.year-tab').forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    currentYear = parseInt(tab.dataset.year);
+                    currentMonth = 0; // Reset to January
+                    renderCalendar();
+                });
+            });
+        }
+
+        // Setup Calendar Navigation
+        function setupCalendarNav() {
+            document.getElementById('prev-month').addEventListener('click', () => {
+                currentMonth--;
+                if (currentMonth < 0) {
+                    currentMonth = 11;
+                    currentYear--;
+                    setupYearTabs();
+                }
+                renderCalendar();
+            });
+
+            document.getElementById('next-month').addEventListener('click', () => {
+                currentMonth++;
+                if (currentMonth > 11) {
+                    currentMonth = 0;
+                    currentYear++;
+                    setupYearTabs();
+                }
+                renderCalendar();
+            });
+        }
+
+        // Render Calendar
+        function renderCalendar() {
+            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+                'July', 'August', 'September', 'October', 'November', 'December'];
+
+            document.getElementById('calendar-title').textContent = `${monthNames[currentMonth]} ${currentYear}`;
+
+            const grid = document.getElementById('calendar-grid');
+
+            // Keep day headers
+            const headers = Array.from(grid.querySelectorAll('.calendar-day-header'));
+            grid.innerHTML = '';
+            headers.forEach(h => grid.appendChild(h));
+
+            const firstDay = new Date(currentYear, currentMonth, 1);
+            const lastDay = new Date(currentYear, currentMonth + 1, 0);
+            const startingDay = firstDay.getDay();
+            const totalDays = lastDay.getDate();
+
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            // Get moments for this month
+            const monthMoments = momentsData.filter(m => {
+                const d = new Date(m.date);
+                return d.getFullYear() === currentYear && d.getMonth() === currentMonth;
+            });
+
+            // Previous month days
+            const prevMonthLastDay = new Date(currentYear, currentMonth, 0).getDate();
+            for (let i = startingDay - 1; i >= 0; i--) {
+                const dayEl = document.createElement('div');
+                dayEl.className = 'calendar-day other-month';
+                dayEl.textContent = prevMonthLastDay - i;
+                grid.appendChild(dayEl);
+            }
+
+            // Current month days
+            for (let day = 1; day <= totalDays; day++) {
+                const dayEl = document.createElement('div');
+                dayEl.className = 'calendar-day';
+                dayEl.textContent = day;
+
+                const currentDate = new Date(currentYear, currentMonth, day);
+                currentDate.setHours(0, 0, 0, 0);
+
+                // Check if today
+                if (currentDate.getTime() === today.getTime()) {
+                    dayEl.classList.add('today');
+                }
+
+                // Check if has moment
+                const moment = monthMoments.find(m => {
+                    const d = new Date(m.date);
+                    return d.getDate() === day;
+                });
+
+                if (moment) {
+                    if (moment.type === 'upcoming') {
+                        dayEl.classList.add('upcoming-moment');
+                    } else {
+                        dayEl.classList.add('has-moment');
+                    }
+
+                    const indicator = document.createElement('div');
+                    indicator.className = 'moment-indicator';
+                    dayEl.appendChild(indicator);
+
+                    dayEl.dataset.momentId = moment.id;
+                    dayEl.addEventListener('click', () => showMomentPopup(moment));
+                }
+
+                grid.appendChild(dayEl);
+            }
+
+            // Next month days
+            const totalCells = startingDay + totalDays;
+            const remaining = totalCells % 7 === 0 ? 0 : 7 - (totalCells % 7);
+            for (let i = 1; i <= remaining; i++) {
+                const dayEl = document.createElement('div');
+                dayEl.className = 'calendar-day other-month';
+                dayEl.textContent = i;
+                grid.appendChild(dayEl);
+            }
+        }
+
+        // Popup functions
+        function setupPopup() {
+            document.getElementById('popup-close').addEventListener('click', closeMomentPopup);
+            document.getElementById('popup-overlay').addEventListener('click', closeMomentPopup);
+        }
+
+        function showMomentPopup(moment) {
+            document.getElementById('popup-date').textContent = formatDate(moment.date);
+            document.getElementById('popup-title').textContent = moment.title;
+            document.getElementById('popup-desc').textContent = moment.description;
+
+            const linkEl = document.getElementById('popup-link');
+            if (moment.photos) {
+                linkEl.href = moment.photos;
+                linkEl.innerHTML = `
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5.04-6.71l-2.75 3.54-1.96-2.36L6.5 17h11l-3.54-4.71z"/>
+                    </svg>
+                    View Photos`;
+                linkEl.style.display = 'inline-flex';
+            } else if (moment.modalId) {
+                linkEl.href = '#';
+                linkEl.innerHTML = `
+                    <svg viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+                    </svg>
+                    View Plan Details`;
+                linkEl.style.display = 'inline-flex';
+                linkEl.onclick = (e) => {
+                    e.preventDefault();
+                    closeMomentPopup();
+                    document.getElementById(moment.modalId).classList.add('active');
+                };
+            } else {
+                linkEl.style.display = 'none';
+            }
+
+            document.getElementById('popup-overlay').classList.add('active');
+            document.getElementById('moment-popup').classList.add('active');
+        }
+
+        function closeMomentPopup() {
+            document.getElementById('popup-overlay').classList.remove('active');
+            document.getElementById('moment-popup').classList.remove('active');
+        }
+
+        // Modal setup
+        function setupModals() {
+            document.querySelectorAll('.modal-close').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    btn.closest('.modal-overlay').classList.remove('active');
+                });
+            });
+
+            document.querySelectorAll('.modal-overlay').forEach(overlay => {
+                overlay.addEventListener('click', (e) => {
+                    if (e.target === overlay) {
+                        overlay.classList.remove('active');
+                    }
+                });
+            });
+        }
+
+        // Scroll arrows
+        function setupScrollArrows() {
+            const container = document.getElementById('timeline-container');
+            const upBtn = document.getElementById('scroll-up-btn');
+            const downBtn = document.getElementById('scroll-down-btn');
+
+            if (!container) return;
+
+            function updateArrows() {
+                const { scrollTop, scrollHeight, clientHeight } = container;
+
+                if (scrollTop > 50) {
+                    upBtn.classList.add('visible');
+                } else {
+                    upBtn.classList.remove('visible');
+                }
+
+                if (scrollTop < scrollHeight - clientHeight - 50) {
+                    downBtn.classList.add('visible');
+                } else {
+                    downBtn.classList.remove('visible');
+                }
+            }
+
+            container.addEventListener('scroll', updateArrows);
+            updateArrows();
+
+            upBtn.addEventListener('click', () => {
+                container.scrollBy({ top: -300, behavior: 'smooth' });
+            });
+
+            downBtn.addEventListener('click', () => {
+                container.scrollBy({ top: 300, behavior: 'smooth' });
+            });
+        }
+    </script>
+</body>
+
+</html>

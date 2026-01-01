@@ -230,3 +230,137 @@ if (window.location.pathname.endsWith('view.html') || window.location.pathname.e
         viewSignature.textContent = "";
     }
 }
+
+// Timeline Scroll Arrow Navigation
+const timelineContainer = document.querySelector('.timeline-container');
+const scrollUpBtn = document.getElementById('scroll-up-btn');
+const scrollDownBtn = document.getElementById('scroll-down-btn');
+
+if (timelineContainer && scrollUpBtn && scrollDownBtn) {
+    const scrollAmount = 300; // pixels to scroll per click
+
+    // Check scroll position and show/hide arrows
+    function updateArrowVisibility() {
+        const { scrollTop, scrollHeight, clientHeight } = timelineContainer;
+
+        // Show up arrow if scrolled down
+        if (scrollTop > 20) {
+            scrollUpBtn.classList.add('visible');
+        } else {
+            scrollUpBtn.classList.remove('visible');
+        }
+
+        // Show down arrow if there's more content below
+        if (scrollTop + clientHeight < scrollHeight - 20) {
+            scrollDownBtn.classList.add('visible');
+        } else {
+            scrollDownBtn.classList.remove('visible');
+        }
+    }
+
+    // Scroll up when up arrow is clicked
+    scrollUpBtn.addEventListener('click', () => {
+        timelineContainer.scrollBy({
+            top: -scrollAmount,
+            behavior: 'smooth'
+        });
+    });
+
+    // Scroll down when down arrow is clicked
+    scrollDownBtn.addEventListener('click', () => {
+        timelineContainer.scrollBy({
+            top: scrollAmount,
+            behavior: 'smooth'
+        });
+    });
+
+    // Update arrow visibility on scroll
+    timelineContainer.addEventListener('scroll', updateArrowVisibility);
+
+    // Initial check
+    updateArrowVisibility();
+
+    // Recheck on window resize
+    window.addEventListener('resize', updateArrowVisibility);
+}
+
+// Salon Plan Details Modal
+const planModalSalon = document.getElementById('plan-modal-salon');
+const planDetailsBtnSalon = document.getElementById('plan-btn-salon');
+const planModalCloseBtnSalon = document.querySelector('#plan-modal-salon .modal-close');
+
+if (planDetailsBtnSalon && planModalSalon) {
+    planDetailsBtnSalon.addEventListener('click', (e) => {
+        e.preventDefault();
+        planModalSalon.classList.add('active');
+    });
+}
+
+if (planModalCloseBtnSalon && planModalSalon) {
+    planModalCloseBtnSalon.addEventListener('click', () => {
+        planModalSalon.classList.remove('active');
+    });
+}
+
+// Close on outside click for Salon Plan Modal
+if (planModalSalon) {
+    window.addEventListener('click', (e) => {
+        if (e.target === planModalSalon) {
+            planModalSalon.classList.remove('active');
+        }
+    });
+}
+
+// Mini Countdown Timers for Upcoming Dates
+function updateMiniCountdowns() {
+    const now = new Date();
+
+    // Salon Date - Jan 4, 2026
+    const salonDate = new Date('2026-01-04T00:00:00');
+    const salonDiff = salonDate - now;
+
+    if (salonDiff > 0) {
+        const salonDays = Math.floor(salonDiff / (1000 * 60 * 60 * 24));
+        const salonHours = Math.floor((salonDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const salonMinutes = Math.floor((salonDiff % (1000 * 60 * 60)) / (1000 * 60));
+
+        const salonCountdown = document.getElementById('mini-countdown-salon');
+        if (salonCountdown) {
+            const daysEl = salonCountdown.querySelector('[data-days]');
+            const hoursEl = salonCountdown.querySelector('[data-hours]');
+            const minutesEl = salonCountdown.querySelector('[data-minutes]');
+
+            if (daysEl) daysEl.textContent = salonDays;
+            if (hoursEl) hoursEl.textContent = salonHours;
+            if (minutesEl) minutesEl.textContent = salonMinutes;
+        }
+    }
+
+    // Painting Date - Jan 3, 2026
+    const paintingDate = new Date('2026-01-03T00:00:00');
+    const paintingDiff = paintingDate - now;
+
+    if (paintingDiff > 0) {
+        const paintingDays = Math.floor(paintingDiff / (1000 * 60 * 60 * 24));
+        const paintingHours = Math.floor((paintingDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const paintingMinutes = Math.floor((paintingDiff % (1000 * 60 * 60)) / (1000 * 60));
+
+        const paintingCountdown = document.getElementById('mini-countdown-painting');
+        if (paintingCountdown) {
+            const daysEl = paintingCountdown.querySelector('[data-days]');
+            const hoursEl = paintingCountdown.querySelector('[data-hours]');
+            const minutesEl = paintingCountdown.querySelector('[data-minutes]');
+
+            if (daysEl) daysEl.textContent = paintingDays;
+            if (hoursEl) hoursEl.textContent = paintingHours;
+            if (minutesEl) minutesEl.textContent = paintingMinutes;
+        }
+    }
+}
+
+// Update mini countdowns immediately and then every second
+if (document.getElementById('mini-countdown-salon') || document.getElementById('mini-countdown-painting')) {
+    updateMiniCountdowns();
+    setInterval(updateMiniCountdowns, 1000);
+}
+

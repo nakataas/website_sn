@@ -74,32 +74,34 @@ setInterval(updateCounter, 1000);
 // Initial call
 updateCounter();
 
-// Plan Details Modal
-const planModal = document.getElementById('plan-modal');
-const planDetailsBtn = document.getElementById('plan-details-btn');
-const planModalCloseBtn = document.querySelector('#plan-modal .modal-close');
+// Plan Details Modal (High Tea)
+document.addEventListener('DOMContentLoaded', function () {
+    const planModal = document.getElementById('plan-modal');
+    const planDetailsBtn = document.getElementById('plan-details-btn');
+    const planModalCloseBtn = document.querySelector('#plan-modal .modal-close');
 
-if (planDetailsBtn && planModal) {
-    planDetailsBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        planModal.classList.add('active');
-    });
-}
+    if (planDetailsBtn && planModal) {
+        planDetailsBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            planModal.classList.add('active');
+        });
+    }
 
-if (planModalCloseBtn && planModal) {
-    planModalCloseBtn.addEventListener('click', () => {
-        planModal.classList.remove('active');
-    });
-}
-
-// Close on outside click for Plan Modal
-if (planModal) {
-    window.addEventListener('click', (e) => {
-        if (e.target === planModal) {
+    if (planModalCloseBtn && planModal) {
+        planModalCloseBtn.addEventListener('click', () => {
             planModal.classList.remove('active');
-        }
-    });
-}
+        });
+    }
+
+    // Close on outside click for Plan Modal
+    if (planModal) {
+        window.addEventListener('click', (e) => {
+            if (e.target === planModal) {
+                planModal.classList.remove('active');
+            }
+        });
+    }
+});
 
 /* Letters Feature Logic */
 const letters = {
@@ -285,31 +287,33 @@ if (timelineContainer && scrollUpBtn && scrollDownBtn) {
 }
 
 // Salon Plan Details Modal
-const planModalSalon = document.getElementById('plan-modal-salon');
-const planDetailsBtnSalon = document.getElementById('plan-btn-salon');
-const planModalCloseBtnSalon = document.querySelector('#plan-modal-salon .modal-close');
+document.addEventListener('DOMContentLoaded', function () {
+    const planModalSalon = document.getElementById('plan-modal-salon');
+    const planDetailsBtnSalon = document.getElementById('plan-btn-salon');
+    const planModalCloseBtnSalon = document.querySelector('#plan-modal-salon .modal-close');
 
-if (planDetailsBtnSalon && planModalSalon) {
-    planDetailsBtnSalon.addEventListener('click', (e) => {
-        e.preventDefault();
-        planModalSalon.classList.add('active');
-    });
-}
+    if (planDetailsBtnSalon && planModalSalon) {
+        planDetailsBtnSalon.addEventListener('click', (e) => {
+            e.preventDefault();
+            planModalSalon.classList.add('active');
+        });
+    }
 
-if (planModalCloseBtnSalon && planModalSalon) {
-    planModalCloseBtnSalon.addEventListener('click', () => {
-        planModalSalon.classList.remove('active');
-    });
-}
-
-// Close on outside click for Salon Plan Modal
-if (planModalSalon) {
-    window.addEventListener('click', (e) => {
-        if (e.target === planModalSalon) {
+    if (planModalCloseBtnSalon && planModalSalon) {
+        planModalCloseBtnSalon.addEventListener('click', () => {
             planModalSalon.classList.remove('active');
-        }
-    });
-}
+        });
+    }
+
+    // Close on outside click for Salon Plan Modal
+    if (planModalSalon) {
+        window.addEventListener('click', (e) => {
+            if (e.target === planModalSalon) {
+                planModalSalon.classList.remove('active');
+            }
+        });
+    }
+});
 
 // Mini Countdown Timers for Upcoming Dates
 function updateMiniCountdowns() {
@@ -358,9 +362,11 @@ function updateMiniCountdowns() {
     }
 }
 
-// Update mini countdowns immediately and then every second
-if (document.getElementById('mini-countdown-salon') || document.getElementById('mini-countdown-painting')) {
-    updateMiniCountdowns();
-    setInterval(updateMiniCountdowns, 1000);
-}
-
+// Initialize mini countdowns when DOM is ready
+document.addEventListener('DOMContentLoaded', function () {
+    // Small delay to ensure all elements are rendered (especially on mobile)
+    setTimeout(function () {
+        updateMiniCountdowns();
+        setInterval(updateMiniCountdowns, 1000);
+    }, 100);
+});

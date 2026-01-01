@@ -321,7 +321,9 @@ function updateMiniCountdowns() {
 
     // Salon Date - Jan 4, 2026 (Month is 0-indexed: 0 = Jan)
     // Using new Date(year, monthIndex, day) is safer for mobile browsers than string parsing
-    const salonDate = new Date(2026, 0, 4); // Jan 4, 2026
+    // Salon Date - Jan 4, 2026 13:35 (Departure time)
+    // Using new Date(year, monthIndex, day, hours, minutes)
+    const salonDate = new Date(2026, 0, 4, 13, 35, 0);
     const salonDiff = salonDate - now;
 
     if (salonDiff > 0) {
@@ -341,8 +343,8 @@ function updateMiniCountdowns() {
         }
     }
 
-    // Painting Date - Jan 3, 2026 (Month is 0-indexed: 0 = Jan)
-    const paintingDate = new Date(2026, 0, 3); // Jan 3, 2026
+    // Painting Date - Jan 3, 2026 16:00 (Pick Up time)
+    const paintingDate = new Date(2026, 0, 3, 16, 0, 0);
     const paintingDiff = paintingDate - now;
 
     if (paintingDiff > 0) {

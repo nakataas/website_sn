@@ -1,5 +1,5 @@
 // Password Protection
-const CORRECT_PASSWORD = 'jakesully';
+const CORRECT_PASSWORD = 'bungasilvia';
 const passwordOverlay = document.getElementById('password-overlay');
 const passwordForm = document.getElementById('password-form');
 const passwordInput = document.getElementById('password-input');
@@ -27,13 +27,16 @@ if (passwordOverlay) {
             if (enteredPassword === CORRECT_PASSWORD) {
                 // Success
                 passwordError.textContent = '';
-                passwordOverlay.classList.add('unlocked');
-                sessionStorage.setItem('unlocked', 'true');
 
-                // Optional: Remove overlay from DOM after transition
+                // Trigger Proposal Animation instead of immediate unlock
+                passwordOverlay.style.transition = 'opacity 1s ease';
+                passwordOverlay.style.opacity = '0';
+
                 setTimeout(() => {
                     passwordOverlay.style.display = 'none';
-                }, 500);
+                    startProposal();
+                }, 1000);
+
             } else {
                 // Wrong password
                 passwordError.textContent = '❌ Incorrect password. Please try again.';
@@ -381,4 +384,251 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
 }
 
 // Backup check for mobile (window 'load' often safer for full asset loading)
+// Backup check for mobile (window 'load' often safer for full asset loading)
 window.addEventListener('load', initCountdowns);
+
+// ==========================================
+// PROPOSAL ANIMATION LOGIC
+// ==========================================
+
+const proposalOverlay = document.getElementById('proposal-overlay');
+const typewriterElement = document.getElementById('typewriter-text');
+const proposalLetter = document.getElementById('proposal-letter');
+const nextToProposalBtn = document.getElementById('next-to-proposal-btn');
+const finalProposal = document.getElementById('final-proposal');
+const heartsContainer = document.getElementById('hearts-container');
+const yesBtn = document.getElementById('yes-btn');
+const noBtn = document.getElementById('no-btn');
+const successMessage = document.getElementById('success-message');
+const enterWorldBtn = document.getElementById('enter-world-btn');
+
+// Messages to type out
+const messages = [
+    "Processing Access...",      // 0
+    "Verified: Bunga Silvia",    // 1
+    "Access Granted.",           // 2
+    "Hi Sayang... ❤️",           // 3
+    "Aku mau ngomong sesuatu..." // 4
+];
+
+// Music Control Logic
+const bgMusic = document.getElementById('bg-music');
+const musicControl = document.getElementById('music-control');
+const musicToggleBtn = document.getElementById('music-toggle');
+const playIcon = document.querySelector('.play-icon');
+const pauseIcon = document.querySelector('.pause-icon');
+
+function toggleMusic() {
+    if (bgMusic.paused) {
+        bgMusic.play();
+        musicControl.classList.remove('paused');
+        playIcon.classList.add('hidden');
+        pauseIcon.classList.remove('hidden');
+    } else {
+        bgMusic.pause();
+        musicControl.classList.add('paused');
+        playIcon.classList.remove('hidden');
+        pauseIcon.classList.add('hidden');
+    }
+}
+
+if (musicToggleBtn) {
+    musicToggleBtn.addEventListener('click', toggleMusic);
+}
+
+// Logic to show music control when music starts
+function showMusicControl() {
+    if (musicControl) {
+        musicControl.classList.remove('hidden');
+    }
+}
+
+function startProposal() {
+    if (!proposalOverlay) return;
+
+    proposalOverlay.style.display = 'flex';
+    proposalOverlay.style.opacity = '1';
+
+    // Play music
+    if (bgMusic) {
+        bgMusic.volume = 0.5; // Set volume to 50%
+        bgMusic.play().then(() => {
+            showMusicControl();
+        }).catch(e => {
+            console.log("Audio play failed initially:", e);
+            // Show control anyway so user can manual play
+            showMusicControl();
+            musicControl.classList.add('paused'); // Visual state paused
+            playIcon.classList.remove('hidden');
+            pauseIcon.classList.add('hidden');
+        });
+    }
+
+    // Start typing sequence
+    playMessageSequence(0);
+}
+
+function playMessageSequence(index) {
+    if (index >= messages.length) {
+        // End of messages, show LETTER
+        setTimeout(() => {
+            typewriterElement.style.display = 'none';
+            showLetter();
+        }, 1000);
+        return;
+    }
+
+    const text = messages[index];
+    typewriterElement.textContent = "";
+    typewriterElement.style.opacity = 1;
+    typewriterElement.style.display = 'block';
+
+    let charIndex = 0;
+
+    function typeChar() {
+        if (charIndex < text.length) {
+            typewriterElement.textContent += text.charAt(charIndex);
+            charIndex++;
+            setTimeout(typeChar, 80); // Typing speed
+        } else {
+            // Text finished, wait then fade out
+            setTimeout(() => {
+                typewriterElement.style.opacity = 0;
+                typewriterElement.style.transition = 'opacity 0.5s';
+
+                setTimeout(() => {
+                    playMessageSequence(index + 1);
+                }, 600); // Wait for fade out
+            }, 1500); // Read time
+        }
+    }
+
+    typeChar();
+}
+
+// Letter Navigation Logic
+const nextStoryBtn = document.getElementById('next-story-btn');
+const slides = document.querySelectorAll('.story-slide');
+let currentSlide = 0;
+
+function showLetter() {
+    if (proposalLetter) {
+        proposalLetter.classList.remove('hidden');
+        setTimeout(() => {
+            proposalLetter.classList.add('show');
+        }, 50);
+    }
+}
+
+// Letter "Next" Button
+if (nextStoryBtn) {
+    nextStoryBtn.addEventListener('click', () => {
+        // Find current slide index
+        const totalSlides = slides.length;
+
+        // Hide current
+        if (slides[currentSlide]) {
+            slides[currentSlide].classList.remove('active');
+            slides[currentSlide].classList.add('hidden'); // Ensure CSS hides it
+        }
+
+        // Move to next
+        currentSlide++;
+
+        if (currentSlide < totalSlides) {
+            // Show next slide
+            slides[currentSlide].classList.remove('hidden');
+            slides[currentSlide].classList.add('active');
+
+            // If it's the last slide, change button text/style maybe?
+            if (currentSlide === totalSlides - 1) {
+                nextStoryBtn.textContent = "The Question... ❤️";
+            }
+        } else {
+            // Finished slides, go to final proposal
+            proposalLetter.classList.remove('show');
+            setTimeout(() => {
+                proposalLetter.classList.add('hidden');
+
+                // Show Final Proposal
+                finalProposal.classList.remove('hidden');
+                setTimeout(() => {
+                    finalProposal.classList.add('show');
+                    startFloatingHearts();
+                }, 100);
+            }, 500);
+        }
+    });
+}
+
+function startFloatingHearts() {
+    setInterval(() => {
+        const heart = document.createElement('div');
+        heart.classList.add('floating-heart');
+        heart.innerHTML = '❤️';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+        heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+        heartsContainer.appendChild(heart);
+
+        // Cleanup
+        setTimeout(() => {
+            heart.remove();
+        }, 8000);
+    }, 300);
+}
+
+// Button Events
+if (yesBtn) {
+    yesBtn.addEventListener('click', () => {
+        // Success State
+        finalProposal.classList.remove('show');
+        finalProposal.classList.add('hidden');
+
+        successMessage.classList.remove('hidden');
+
+        // MORE Hearts!
+        setInterval(() => {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            heart.innerHTML = ['❤️', '💖', '💝', '💕'][Math.floor(Math.random() * 4)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 2 + 2) + 's';
+            heart.style.fontSize = (Math.random() * 30 + 20) + 'px';
+            heartsContainer.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 5000);
+        }, 100);
+    });
+}
+
+if (noBtn) {
+    noBtn.addEventListener('mouseover', (e) => {
+        // Run away button
+        const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+        const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+
+        noBtn.style.position = 'fixed';
+        noBtn.style.left = x + 'px';
+        noBtn.style.top = y + 'px';
+    });
+
+    noBtn.addEventListener('click', () => {
+        alert("Error: Option unavailable. Only 'Yes' is accepted! 😉");
+    });
+}
+
+if (enterWorldBtn) {
+    enterWorldBtn.addEventListener('click', () => {
+        proposalOverlay.style.transition = 'opacity 1s';
+        proposalOverlay.style.opacity = 0;
+
+        sessionStorage.setItem('unlocked', 'true');
+
+        setTimeout(() => {
+            proposalOverlay.style.display = 'none';
+            // Show main site content properly
+            const overlay = document.getElementById('password-overlay');
+            if (overlay) overlay.classList.add('unlocked');
+        }, 1000);
+    });
+}

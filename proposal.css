@@ -1,0 +1,240 @@
+/* =========================================
+   Proposal / Surprise Animation Styles
+   ========================================= */
+.proposal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 9999;
+    /* Above everything */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: var(--font-heading);
+}
+
+.proposal-container {
+    text-align: center;
+    max-width: 600px;
+    padding: 20px;
+    z-index: 2;
+    position: relative;
+    width: 100%;
+}
+
+.typewriter-text {
+    font-size: 2rem;
+    font-weight: 700;
+    min-height: 3rem;
+    /* Prevent layout shift */
+    margin-bottom: 2rem;
+    background: linear-gradient(135deg, #fff 0%, #ff4d6d 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glowText 2s infinite alternate;
+}
+
+@keyframes glowText {
+    from {
+        text-shadow: 0 0 10px rgba(255, 77, 109, 0.2);
+    }
+
+    to {
+        text-shadow: 0 0 20px rgba(255, 77, 109, 0.6), 0 0 30px rgba(255, 77, 109, 0.4);
+    }
+}
+
+.final-proposal {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.final-proposal.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.final-proposal.hidden,
+.success-message.hidden {
+    display: none;
+}
+
+.heart-beat {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    animation: heartBeat 1.2s infinite ease-in-out;
+}
+
+@keyframes heartBeat {
+    0% {
+        transform: scale(1);
+    }
+
+    15% {
+        transform: scale(1.3);
+    }
+
+    30% {
+        transform: scale(1);
+    }
+
+    45% {
+        transform: scale(1.15);
+    }
+
+    60% {
+        transform: scale(1);
+    }
+}
+
+.proposal-heading {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.proposal-sub {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 40px;
+    font-family: var(--font-body);
+}
+
+.proposal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.action-btn {
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: var(--font-heading);
+}
+
+.action-btn.yes {
+    background: var(--accent-color);
+    color: white;
+    box-shadow: 0 0 20px rgba(255, 77, 109, 0.4);
+}
+
+.action-btn.yes:hover {
+    transform: scale(1.05) translateY(-3px);
+    box-shadow: 0 10px 30px rgba(255, 77, 109, 0.6);
+}
+
+.action-btn.no {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.action-btn.no:hover {
+    border-color: #fff;
+    color: #fff;
+}
+
+/* Success Message Styles */
+.success-message {
+    animation: fadeIn 1s ease-out;
+    text-align: center;
+}
+
+.vote-count {
+    font-size: 0.8rem;
+    color: #555;
+    margin-top: 5px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.love-note {
+    font-size: 1.5rem;
+    margin: 20px 0 40px;
+    font-style: italic;
+    color: var(--accent-color);
+}
+
+.action-btn.enter {
+    background: white;
+    color: var(--accent-color);
+}
+
+.action-btn.enter:hover {
+    background: #f0f0f0;
+    transform: scale(1.05);
+}
+
+/* Floating Hearts Background */
+.hearts-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.floating-heart {
+    position: absolute;
+    bottom: -20px;
+    color: var(--accent-color);
+    opacity: 0.6;
+    animation: floatUp linear forwards;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+    .typewriter-text {
+        font-size: 1.5rem;
+    }
+
+    .proposal-heading {
+        font-size: 2.2rem;
+    }
+
+    .proposal-actions {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .action-btn {
+        width: 100%;
+    }
+}

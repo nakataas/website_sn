@@ -1,0 +1,112 @@
+/* Proposal Letter Styles */
+.proposal-letter {
+    background: rgba(255, 255, 255, 0.95);
+    color: #333;
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+    font-family: var(--font-body);
+    box-shadow: 0 0 50px rgba(255, 77, 109, 0.3);
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    min-height: 400px;
+    /* Ensure height consistency */
+}
+
+.proposal-letter.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.proposal-letter.hidden {
+    display: none;
+}
+
+.letter-opener {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.proposal-letter p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-align: left;
+    color: #444;
+}
+
+.proposal-letter strong {
+    color: var(--accent-color);
+}
+
+.letter-nav {
+    margin-top: 30px;
+    text-align: right;
+    /* Button on the right */
+}
+
+.action-btn.next {
+    background: var(--accent-color);
+    color: white;
+    width: auto;
+    padding: 12px 30px;
+}
+
+.action-btn.next:hover {
+    background: #ff3355;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(255, 77, 109, 0.4);
+}
+
+/* Slides */
+.story-slide {
+    display: none;
+    animation: fadeInSlide 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.story-slide.active {
+    display: block;
+}
+
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.story-slide.hidden {
+    display: none;
+}
+
+/* Bi-lingual Poem Styles */
+.poem-block {
+    margin-bottom: 15px;
+}
+
+.poem-en {
+    display: block;
+    margin-bottom: 4px;
+    color: #222;
+    font-weight: 500;
+}
+
+.poem-id {
+    display: block;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: #777;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}

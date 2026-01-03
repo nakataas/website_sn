@@ -13,10 +13,39 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@300;500;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="proposal.css">
+    <link rel="stylesheet" href="proposal_letter.css">
+    <link rel="stylesheet" href="music.css">
     <link rel="icon" href="https://fav.farm/❤️">
 </head>
 
 <body>
+    <audio id="bg-music" loop>
+        <source src="audio/JVKE - her (official lyric video).mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Music Control -->
+    <div id="music-control" class="music-control hidden">
+        <div class="music-icon-wave">
+            <span></span><span></span><span></span>
+        </div>
+        <div class="music-info">
+            <span class="now-playing-label">Now Playing</span>
+            <span class="track-name">JVKE - Her</span>
+        </div>
+        <button id="music-toggle" class="music-toggle-btn">
+            <!-- Pause Icon -->
+            <svg class="pause-icon" viewBox="0 0 24 24" width="24" height="24">
+                <path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+            </svg>
+            <!-- Play Icon (hidden by default) -->
+            <svg class="play-icon hidden" viewBox="0 0 24 24" width="24" height="24">
+                <path fill="currentColor" d="M8 5v14l11-7z" />
+            </svg>
+        </button>
+    </div>
+
     <!-- Password Protection Overlay -->
     <div id="password-overlay" class="password-overlay">
         <div class="password-container">
@@ -552,6 +581,224 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- Proposal Overlay -->
+    <div id="proposal-overlay" class="proposal-overlay" style="display: none;">
+        <div class="proposal-container">
+            <div id="typewriter-text" class="typewriter-text"></div>
+
+            <div id="proposal-letter" class="proposal-letter hidden">
+                <div class="letter-content-animate">
+                    <!-- Slide 1: First Meeting -->
+                    <div class="story-slide active" data-slide="1">
+                        <h3 class="letter-opener">Our First Chapter...</h3>
+                        <p>
+                            Ingat gak waktu pertama kali kita ketemu? Nonton <strong>Avatar</strong>, aku jemput kamu
+                            telat, belum mandi, masih pake baju gym lagi... 😭
+                        </p>
+                        <p>
+                            Kamu sempet takut aku udah punya cewek kan? Hahaha. Tapi malem itu berakhir indah, kita
+                            pelukan di bioskop, terus makan <strong>McDonald's</strong> bareng. Our first special
+                            memory. ( ˘͈ ᵕ ˘͈ ♡)
+                        </p>
+                    </div>
+
+                    <!-- Slide 2: The Fear -->
+                    <div class="story-slide hidden" data-slide="2">
+                        <h3 class="letter-opener">The Next Day...</h3>
+                        <p>
+                            Terus besoknya... kamu tiba-tiba cuekin aku. Aku panik banget, bahkan sampe <strong>nangis
+                                curhat ke Gaby</strong>, takut kehilangan kamu padahal baru aja ketemu.
+                        </p>
+                        <p>
+                            Segitu takutnya aku kehilangan kamu, Sil... :"
+                        </p>
+                    </div>
+
+                    <!-- Slide 3: The Connection -->
+                    <div class="story-slide hidden" data-slide="3">
+                        <h3 class="letter-opener">Closer...</h3>
+                        <p>
+                            Tapi untungnya kita ketemu lagi. Ingat pas ke <strong>Sushi Tei</strong> & nonton
+                            <strong>Zootopia 2</strong>?
+                        </p>
+                        <p>
+                            Kita muter-muter gak jelas, tapi rasanya seneng banget. Terus di mobil, kita <strong>pelukan
+                                satu jam</strong> gak kerasa... Waktu rasanya berhenti kalau sama kamu.
+                        </p>
+                    </div>
+
+                    <!-- Slide 4: The Feeling -->
+                    <div class="story-slide hidden" data-slide="4">
+                        <h3 class="letter-opener">Dear Silvia,</h3>
+                        <p>
+                            Jujur, selama sama kamu, aku ngerasa <strong>nyaman banget</strong>. Aku ngerasa dihargai,
+                            dipeduliin, dan disayang setiap detiknya.
+                        </p>
+                        <p>
+                            Kamu bikin hidup aku jauh lebih berwarna. Makasih ya udah hadir di hidup aku. ❤️
+                        </p>
+                    </div>
+
+                    <!-- Slide 5: The Bond -->
+                    <div class="story-slide hidden" data-slide="5">
+                        <h3 class="letter-opener">Us Against The World</h3>
+                        <p>
+                            Walau baru jalan sebentar, kita udah sejauh ini. Kita udah saling sayang, udah saling
+                            perhatian, dan rasanya... hati aku udah sepenuhnya jadi milik kamu.
+                        </p>
+                        <p>
+                            Setiap panggil "Sayang", itu bukan cuma kata-kata buat aku. Itu janji kalau aku peduli sama
+                            kamu lebih dari siapapun.
+                        </p>
+                    </div>
+
+                    <!-- Slide 6: Poem Part 1 -->
+                    <div class="story-slide hidden" data-slide="6" style="max-height: 500px; overflow-y: auto;">
+                        <h3 class="letter-opener">Logic Went Out The Window</h3>
+
+                        <div class="poem-block">
+                            <span class="poem-en">It almost sounds crazy to say this out loud, considering we have only
+                                known each other for a few days.</span>
+                            <span class="poem-id">Rasanya mungkin agak gila kalau diomongin sekarang, mengingat kita
+                                baru kenal beberapa hari.</span>
+                        </div>
+
+                        <div class="poem-block">
+                            <span class="poem-en">By all logical standards, we should still be strangers, carefully
+                                learning the basics about one another.</span>
+                            <span class="poem-id">Secara logika, harusnya kita masih kayak orang asing yang masih
+                                canggung belajar hal-hal dasar tentang satu sama lain.</span>
+                        </div>
+
+                        <div class="poem-block">
+                            <span class="poem-en">But from the very first moment, logic went out the window. It feels
+                                like I have known you for years, not days.</span>
+                            <span class="poem-id">Tapi sejak momen pertama, logika itu kayak ilang gitu aja. Rasanya aku
+                                udah kenal kamu bertahun-tahun, bukan cuma hitungan hari.</span>
+                        </div>
+
+                        <div class="poem-block">
+                            <span class="poem-en">There is a familiarity between us that defies time, a magnetic pull
+                                that suggests our souls were acquainted long before we actually met.</span>
+                            <span class="poem-id">Ada rasa akrab yang gak masuk akal di antara kita, kayak ada magnet
+                                yang bilang kalau jiwa kita sebenernya udah saling kenal jauh sebelum kita ketemu
+                                fisik.</span>
+                        </div>
+
+                        <div class="poem-block">
+                            <span class="poem-en">It’s rare, it’s intense, and it scares me in the best way possible
+                                because I never expected to fall this hard, this fast.</span>
+                            <span class="poem-id">Ini langka, ini intens, dan jujur ini bikin aku takut, tapi takut yang
+                                menyenangkan, karena aku gak pernah nyangka bakal jatuh secepet dan sedalam ini.</span>
+                        </div>
+                    </div>
+
+                    <!-- Slide 7: Poem Part 2 -->
+                    <div class="story-slide hidden" data-slide="7" style="max-height: 500px; overflow-y: auto;">
+                        <h3 class="letter-opener">The Script Has Flipped</h3>
+
+                        <div class="poem-block">
+                            <span class="poem-en">For the longest time, I was used to being the one who loved harder,
+                                the one constantly checking to see if the other person was still there.</span>
+                            <span class="poem-id">Selama ini, aku terbiasa jadi orang yang mencintai lebih keras, orang
+                                yang selalu cemas ngecek buat mastiin pasangannya masih ada di sana atau enggak.</span>
+                        </div>
+
+                        <div class="poem-block">
+                            <span class="poem-en">But with you, the script has flipped. There is this specific moment
+                                that captures my heart every single time: whenever I’m away even for a moment, and I see
+                                you reaching out... searching for me through your calls and messages.</span>
+                            <span class="poem-id">Tapi sama kamu, skripnya kebalik total. Ada satu momen kecil yang
+                                selalu bikin hati aku luluh: setiap kali aku lagi gak ada kabar sebentar, terus aku liat
+                                kamu beneran nyariin aku... lewat chat atau telpon kamu.</span>
+                        </div>
+
+                        <div class="poem-block">
+                            <span class="poem-en">Seeing your name pop up on my screen or seeing your missed calls just
+                                to find me heals parts of me I
+                                didn't know were broken.</span>
+                            <span class="poem-id">Ngeliat nama kamu muncul di layar atau panggilan tak terjawab dari
+                                kamu cuma buat nyariin aku tuh
+                                rasanya nyembuhin luka yang bahkan aku gak sadar kalau itu ada.</span>
+                        </div>
+
+                        <div class="poem-block">
+                            <span class="poem-en">It hits me every time: She actually wants me here. She values
+                                me.</span>
+                            <span class="poem-id">Itu selalu ngena banget di hati aku: Dia beneran mau aku ada di sini.
+                                Dia menghargai aku.</span>
+                        </div>
+                    </div>
+
+                    <!-- Slide 8: Poem Part 3 -->
+                    <div class="story-slide hidden" data-slide="8" style="max-height: 500px; overflow-y: auto;">
+                        <h3 class="letter-opener">Genuine Care</h3>
+
+                        <div class="poem-block">
+                            <span class="poem-en">You have shown me what it actually feels like to be on the receiving
+                                end of genuine care.</span>
+                            <span class="poem-id">Kamu ngasih liat aku gimana rasanya jadi pihak yang dipeduliin dengan
+                                tulus.</span>
+                        </div>
+
+                        <div class="poem-block">
+                            <span class="poem-en">For the first time, I don’t feel like I have to fight to be seen or
+                                perform to be loved.</span>
+                            <span class="poem-id">Buat pertama kalinya, aku gak ngerasa harus berjuang mati-matian cuma
+                                biar dilihat, atau harus "perform" biar disayang.</span>
+                        </div>
+
+                        <div class="poem-block">
+                            <span class="poem-en">You appreciate the things I do, you listen when I speak, and you treat
+                                my heart like it’s something precious.</span>
+                            <span class="poem-id">Kamu menghargai apa yang aku lakuin, kamu dengerin setiap aku ngomong,
+                                dan kamu memperlakukan hati aku kayak sesuatu yang berharga.</span>
+                        </div>
+
+                        <div class="poem-block">
+                            <span class="poem-en">I’m so used to being the "giver" that being cared for this way feels
+                                almost foreign, yet it is the most comfortable feeling I have ever known.</span>
+                            <span class="poem-id">Aku udah terlalu biasa jadi "si pemberi" sampai rasanya agak asing
+                                diperlakukan selembut ini, tapi ini adalah perasaan paling nyaman yang pernah aku
+                                rasain.</span>
+                        </div>
+
+                        <div class="poem-block">
+                            <span class="poem-en">You make me feel safe, worthy, and deeply appreciated in a way I
+                                haven't experienced before.</span>
+                            <span class="poem-id">Kamu bikin aku ngerasa aman, ngerasa pantes, dan ngerasa sangat
+                                dihargai dengan cara yang belum pernah aku rasain sebelumnya.</span>
+                        </div>
+                    </div>
+
+                    <div class="letter-nav">
+                        <button id="next-story-btn" class="action-btn next">Lanjut ❤️</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="final-proposal" class="final-proposal hidden">
+                <div class="heart-beat">❤️</div>
+                <h2 class="proposal-heading">Silvia...</h2>
+                <p class="proposal-sub">Would you be my girlfriend?</p>
+                <div class="proposal-actions">
+                    <button id="yes-btn" class="action-btn yes">Yes, I will!</button>
+                    <button id="no-btn" class="action-btn no">No...</button>
+                </div>
+            </div>
+
+            <div id="success-message" class="success-message hidden">
+                <h1>I Knew It! (≧◡≦) ♡</h1>
+                <p>You just made me the happiest person in the world!</p>
+                <p class="love-note">I love you so much, Silvia.</p>
+                <button id="enter-world-btn" class="action-btn enter">Enter Our World</button>
+            </div>
+        </div>
+
+        <!-- Floating hearts container -->
+        <div id="hearts-container" class="hearts-container"></div>
     </div>
 
     <script src="script.js?v=1.0"></script>

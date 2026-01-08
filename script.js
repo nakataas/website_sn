@@ -10,6 +10,10 @@ if (passwordOverlay) {
     // Check if already unlocked in session
     if (sessionStorage.getItem('unlocked') === 'true') {
         passwordOverlay.classList.add('unlocked');
+        // If already unlocked, show music control but don't autoplay
+        document.addEventListener('DOMContentLoaded', () => {
+            showMusicControl();
+        });
     }
 
     // Focus on input when page loads if not unlocked
@@ -28,13 +32,25 @@ if (passwordOverlay) {
                 // Success
                 passwordError.textContent = '';
 
-                // Trigger Proposal Animation instead of immediate unlock
+                // Transition unlock
                 passwordOverlay.style.transition = 'opacity 1s ease';
                 passwordOverlay.style.opacity = '0';
 
                 setTimeout(() => {
                     passwordOverlay.style.display = 'none';
-                    startProposal();
+                    passwordOverlay.classList.add('unlocked');
+                    sessionStorage.setItem('unlocked', 'true');
+
+                    // Show music control but don't autoplay music
+                    showMusicControl();
+                    if (bgMusic) {
+                        bgMusic.pause(); // Ensure it's paused
+                        if (musicControl) {
+                            musicControl.classList.add('paused');
+                            if (playIcon) playIcon.classList.remove('hidden');
+                            if (pauseIcon) pauseIcon.classList.add('hidden');
+                        }
+                    }
                 }, 1000);
 
             } else {
@@ -322,11 +338,9 @@ document.addEventListener('DOMContentLoaded', function () {
 function updateMiniCountdowns() {
     const now = new Date();
 
-    // Salon Date - Jan 4, 2026 (Month is 0-indexed: 0 = Jan)
-    // Using new Date(year, monthIndex, day) is safer for mobile browsers than string parsing
-    // Salon Date - Jan 4, 2026 13:35 (Departure time)
+    // Salon Date - Jan 4, 2026 08:45 (Pick Up time)
     // Using new Date(year, monthIndex, day, hours, minutes)
-    const salonDate = new Date(2026, 0, 4, 13, 35, 0);
+    const salonDate = new Date(2026, 0, 4, 8, 45, 0);
     const salonDiff = salonDate - now;
 
     if (salonDiff > 0) {
@@ -336,6 +350,7 @@ function updateMiniCountdowns() {
 
         const salonCountdown = document.getElementById('mini-countdown-salon');
         if (salonCountdown) {
+            salonCountdown.style.display = 'flex'; // Ensure visible if future
             const daysEl = salonCountdown.querySelector('[data-days]');
             const hoursEl = salonCountdown.querySelector('[data-hours]');
             const minutesEl = salonCountdown.querySelector('[data-minutes]');
@@ -344,10 +359,16 @@ function updateMiniCountdowns() {
             if (hoursEl) hoursEl.textContent = salonHours;
             if (minutesEl) minutesEl.textContent = salonMinutes;
         }
+    } else {
+        // Hide if passed
+        const salonCountdown = document.getElementById('mini-countdown-salon');
+        if (salonCountdown) {
+            salonCountdown.style.display = 'none';
+        }
     }
 
-    // Painting Date - Jan 3, 2026 16:00 (Pick Up time)
-    const paintingDate = new Date(2026, 0, 3, 16, 0, 0);
+    // High Tea & Proposal - Jan 3, 2026 17:00 (Pick Up time)
+    const paintingDate = new Date(2026, 0, 3, 17, 0, 0);
     const paintingDiff = paintingDate - now;
 
     if (paintingDiff > 0) {
@@ -357,6 +378,7 @@ function updateMiniCountdowns() {
 
         const paintingCountdown = document.getElementById('mini-countdown-painting');
         if (paintingCountdown) {
+            paintingCountdown.style.display = 'flex'; // Ensure visible if future
             const daysEl = paintingCountdown.querySelector('[data-days]');
             const hoursEl = paintingCountdown.querySelector('[data-hours]');
             const minutesEl = paintingCountdown.querySelector('[data-minutes]');
@@ -364,6 +386,12 @@ function updateMiniCountdowns() {
             if (daysEl) daysEl.textContent = paintingDays;
             if (hoursEl) hoursEl.textContent = paintingHours;
             if (minutesEl) minutesEl.textContent = paintingMinutes;
+        }
+    } else {
+        // Hide if passed
+        const paintingCountdown = document.getElementById('mini-countdown-painting');
+        if (paintingCountdown) {
+            paintingCountdown.style.display = 'none';
         }
     }
 }
@@ -437,30 +465,68 @@ if (musicToggleBtn) {
 }
 
 // Logic to show music control when music starts
+// Logic to show music control when music starts
 function showMusicControl() {
     if (musicControl) {
         musicControl.classList.remove('hidden');
+
+        // Sync UI with actual audio state immediately
+        if (bgMusic && bgMusic.paused) {
+            musicControl.classList.add('paused');
+            if (playIcon) playIcon.classList.remove('hidden');
+            if (pauseIcon) pauseIcon.classList.add('hidden');
+        } else {
+            musicControl.classList.remove('paused');
+            if (playIcon) playIcon.classList.add('hidden');
+            if (pauseIcon) pauseIcon.classList.remove('hidden');
+        }
     }
 }
 
 function startProposal() {
     if (!proposalOverlay) return;
 
+    // Reset state for revisit
+    currentSlide = 0;
+    slides.forEach((slide, idx) => {
+        if (idx === 0) {
+            slide.classList.add('active');
+            slide.classList.remove('hidden');
+        } else {
+            slide.classList.add('hidden');
+            slide.classList.remove('active');
+        }
+    });
+
+    // Reset final proposal and success message
+    if (finalProposal) {
+        finalProposal.classList.add('hidden');
+        finalProposal.classList.remove('show');
+    }
+    if (successMessage) successMessage.classList.add('hidden');
+    if (proposalLetter) {
+        proposalLetter.classList.add('hidden');
+        proposalLetter.classList.remove('show');
+    }
+    if (typewriterElement) typewriterElement.style.display = 'block';
+    if (nextStoryBtn) nextStoryBtn.textContent = "Lanjut ❤️";
+
     proposalOverlay.style.display = 'flex';
     proposalOverlay.style.opacity = '1';
 
-    // Play music
+    // Play music when explicit proposal is viewed
     if (bgMusic) {
-        bgMusic.volume = 0.5; // Set volume to 50%
+        bgMusic.volume = 0.5;
         bgMusic.play().then(() => {
             showMusicControl();
+            if (musicControl) {
+                musicControl.classList.remove('paused');
+                playIcon.classList.add('hidden');
+                pauseIcon.classList.remove('hidden');
+            }
         }).catch(e => {
             console.log("Audio play failed initially:", e);
-            // Show control anyway so user can manual play
             showMusicControl();
-            musicControl.classList.add('paused'); // Visual state paused
-            playIcon.classList.remove('hidden');
-            pauseIcon.classList.add('hidden');
         });
     }
 
@@ -629,6 +695,18 @@ if (enterWorldBtn) {
             // Show main site content properly
             const overlay = document.getElementById('password-overlay');
             if (overlay) overlay.classList.add('unlocked');
+            showMusicControl();
         }, 1000);
     });
 }
+
+// Add event listener for the Revisit Proposal button on Home
+document.addEventListener('DOMContentLoaded', () => {
+    const revisitBtn = document.getElementById('view-proposal-btn');
+    if (revisitBtn) {
+        revisitBtn.addEventListener('click', () => {
+            startProposal();
+        });
+    }
+});
+

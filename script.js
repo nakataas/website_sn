@@ -1,5 +1,5 @@
 // Password Protection
-const CORRECT_PASSWORD = 'bungasilvia';
+const CORRECT_PASSWORD = '03012026';
 const passwordOverlay = document.getElementById('password-overlay');
 const passwordForm = document.getElementById('password-form');
 const passwordInput = document.getElementById('password-input');
@@ -64,8 +64,8 @@ if (passwordOverlay) {
     }
 }
 
-// Target date: December 24, 2025, 18:50:00
-const startDate = new Date('2025-12-24T18:50:00').getTime();
+// Target date: January 3, 2026, 19:00:00
+const startDate = new Date('2026-01-03T19:00:00').getTime();
 
 function updateCounter() {
     const dayEl = document.getElementById('days');
@@ -334,86 +334,153 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-// Mini Countdown Timers for Upcoming Dates
-function updateMiniCountdowns() {
+// ==========================================
+// DYNAMIC HOME TIMELINE LOGIC
+// ==========================================
+
+function initHomeTimeline() {
+    const timelineGrid = document.querySelector('.timeline-grid');
+    if (!timelineGrid || typeof momentsData === 'undefined') return;
+
+    // Sort by date descending
+    const sortedMoments = [...momentsData].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    // Limit to 4 latest cards
+    const limitedMoments = sortedMoments.slice(0, 4);
+
+    // Clear existing content (legacy static HTML)
+    timelineGrid.innerHTML = '';
+
     const now = new Date();
 
-    // Salon Date - Jan 4, 2026 08:45 (Pick Up time)
-    // Using new Date(year, monthIndex, day, hours, minutes)
-    const salonDate = new Date(2026, 0, 4, 8, 45, 0);
-    const salonDiff = salonDate - now;
+    limitedMoments.forEach(moment => {
+        const momentDate = new Date(moment.date);
 
-    if (salonDiff > 0) {
-        const salonDays = Math.floor(salonDiff / (1000 * 60 * 60 * 24));
-        const salonHours = Math.floor((salonDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const salonMinutes = Math.floor((salonDiff % (1000 * 60 * 60)) / (1000 * 60));
+        // Simple logic: if date is strictly in the future (tomorrow onwards), it's Upcoming.
+        // Or if it matches today but we want to be specific, we'd need time.
+        // For now, let's treat "future" as > today's midnight?
+        // Actually, just nice standard date comparison.
+        // If moment.date is 'YYYY-MM-DD', it is 00:00 of that day.
+        // If today is 'YYYY-MM-DD' 15:00, then momentDate < now. (Past).
 
-        const salonCountdown = document.getElementById('mini-countdown-salon');
-        if (salonCountdown) {
-            salonCountdown.style.display = 'flex'; // Ensure visible if future
-            const daysEl = salonCountdown.querySelector('[data-days]');
-            const hoursEl = salonCountdown.querySelector('[data-hours]');
-            const minutesEl = salonCountdown.querySelector('[data-minutes]');
+        // Check if there is a specific time override in description? No, too complex.
+        // We will assume 'upcoming' if date > now.
+        // But if date is today (same day), it usually counts as 'Latest' or 'Today'.
 
-            if (daysEl) daysEl.textContent = salonDays;
-            if (hoursEl) hoursEl.textContent = salonHours;
-            if (minutesEl) minutesEl.textContent = salonMinutes;
+        let isFuture = momentDate > now;
+
+        // Override for 'Latest' logic:
+        // The first item in sortedMoments is naturally the latest/newest.
+        // We mark it as 'Latest' if it is NOT future.
+        const isLatest = !isFuture && moment === sortedMoments.find(m => new Date(m.date) <= now);
+
+        let cardClass = 'date-card';
+        let metaText = formatDate(moment.date);
+        let countdownHtml = '';
+
+        if (isFuture) {
+            cardClass += ' upcoming';
+            metaText = `Upcoming • ${formatDate(moment.date)}`;
+            // Generic countdown markup
+            countdownHtml = `
+            <div class="mini-countdown" data-date="${moment.date}"
+                style="margin: 15px 0; padding: 10px; background: linear-gradient(135deg, rgba(77, 158, 255, 0.1) 0%, rgba(77, 158, 255, 0.05) 100%); border: 1px solid rgba(77, 158, 255, 0.3); border-radius: 10px; display: flex; gap: 15px; justify-content: center; align-items: center; flex-wrap: wrap;">
+                <span style="font-size: 0.7rem; color: #4d9eff; text-transform: uppercase; letter-spacing: 1px;">⏱️ Countdown:</span>
+                <div style="display: flex; gap: 10px;">
+                    <div style="text-align: center;">
+                        <span class="mini-countdown-num" data-days style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 700; color: #4d9eff; display: block;">0</span>
+                        <span style="font-size: 0.65rem; color: var(--text-dim); text-transform: uppercase;">Days</span>
+                    </div>
+                </div>
+            </div>`;
+        } else if (isLatest) {
+            cardClass += ' latest';
+            metaText = `Latest Date • ${formatDate(moment.date)}`;
         }
-    } else {
-        // Hide if passed
-        const salonCountdown = document.getElementById('mini-countdown-salon');
-        if (salonCountdown) {
-            salonCountdown.style.display = 'none';
+
+        // Actions
+        let actionsHtml = '';
+        if (moment.modalId) {
+            actionsHtml += `
+            <a href="#" class="photo-link plan-btn" data-modal-target="${moment.modalId}">
+                <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                Plan Details
+            </a>`;
         }
-    }
-
-    // High Tea & Proposal - Jan 3, 2026 17:00 (Pick Up time)
-    const paintingDate = new Date(2026, 0, 3, 17, 0, 0);
-    const paintingDiff = paintingDate - now;
-
-    if (paintingDiff > 0) {
-        const paintingDays = Math.floor(paintingDiff / (1000 * 60 * 60 * 24));
-        const paintingHours = Math.floor((paintingDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const paintingMinutes = Math.floor((paintingDiff % (1000 * 60 * 60)) / (1000 * 60));
-
-        const paintingCountdown = document.getElementById('mini-countdown-painting');
-        if (paintingCountdown) {
-            paintingCountdown.style.display = 'flex'; // Ensure visible if future
-            const daysEl = paintingCountdown.querySelector('[data-days]');
-            const hoursEl = paintingCountdown.querySelector('[data-hours]');
-            const minutesEl = paintingCountdown.querySelector('[data-minutes]');
-
-            if (daysEl) daysEl.textContent = paintingDays;
-            if (hoursEl) hoursEl.textContent = paintingHours;
-            if (minutesEl) minutesEl.textContent = paintingMinutes;
+        if (moment.photos) {
+            actionsHtml += `
+            <a href="${moment.photos}" target="_blank" class="photo-link">
+                <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5.04-6.71l-2.75 3.54-1.96-2.36L6.5 17h11l-3.54-4.71z"/></svg>
+                View Photos
+            </a>`;
         }
-    } else {
-        // Hide if passed
-        const paintingCountdown = document.getElementById('mini-countdown-painting');
-        if (paintingCountdown) {
-            paintingCountdown.style.display = 'none';
-        }
-    }
+
+        const html = `
+            <article class="${cardClass}">
+                <span class="date-meta">${metaText}</span>
+                <h3>${moment.title}</h3>
+                <p>${moment.description}</p>
+                ${countdownHtml}
+                <div class="card-actions">
+                    ${actionsHtml}
+                </div>
+            </article>
+        `;
+        timelineGrid.insertAdjacentHTML('beforeend', html);
+    });
+
+    // Attach event listeners to new buttons
+    setupDynamicButtons();
+
+    // Start countdowns
+    updateTimelineCountdowns();
+    if (window.timelineInterval) clearInterval(window.timelineInterval);
+    window.timelineInterval = setInterval(updateTimelineCountdowns, 1000);
 }
 
-// Initialize mini countdowns with multiple fallbacks
-function initCountdowns() {
-    updateMiniCountdowns();
-    // Clear any existing interval to prevent duplicates
-    if (window.miniCountdownInterval) clearInterval(window.miniCountdownInterval);
-    window.miniCountdownInterval = setInterval(updateMiniCountdowns, 1000);
+function formatDate(dateStr) {
+    const date = new Date(dateStr);
+    const options = { month: 'short', day: 'numeric', year: 'numeric' };
+    return date.toLocaleDateString('en-US', options);
 }
 
-// Run immediately if DOM is ready
+function setupDynamicButtons() {
+    document.querySelectorAll('.plan-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = btn.dataset.modalTarget;
+            const modal = document.getElementById(targetId);
+            if (modal) modal.classList.add('active');
+        });
+    });
+}
+
+function updateTimelineCountdowns() {
+    const now = new Date();
+    document.querySelectorAll('.mini-countdown').forEach(el => {
+        const targetDate = new Date(el.dataset.date);
+        const diff = targetDate - now;
+
+        if (diff > 0) {
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            // Simplified display
+            el.querySelector('[data-days]').textContent = days;
+        } else {
+            el.style.display = 'none';
+        }
+    });
+}
+
+// Initial Run
 if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    initCountdowns();
+    initHomeTimeline();
 } else {
-    document.addEventListener('DOMContentLoaded', initCountdowns);
+    document.addEventListener('DOMContentLoaded', initHomeTimeline);
 }
 
-// Backup check for mobile (window 'load' often safer for full asset loading)
-// Backup check for mobile (window 'load' often safer for full asset loading)
-window.addEventListener('load', initCountdowns);
+// Backup check
+window.addEventListener('load', initHomeTimeline);
+
 
 // ==========================================
 // PROPOSAL ANIMATION LOGIC

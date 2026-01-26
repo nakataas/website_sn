@@ -6,7 +6,7 @@
 // Global function to be called after password unlock
 window.checkAndShowValentinePopup = function () {
     const valPopup = document.getElementById('valentine-popup');
-    const POPUP_SEEN_KEY = 'valentine_popup_seen_v2'; // Bump version to re-show if needed
+    const POPUP_SEEN_KEY = 'valentine_popup_seen_v3'; // Bump version to re-show if needed
 
     // Check if seen
     if (!localStorage.getItem(POPUP_SEEN_KEY)) {
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const valPopup = document.getElementById('valentine-popup');
     const valCloseBtn = document.querySelector('.valentine-close');
     const openValBtn = document.getElementById('open-valentine-btn');
-    const POPUP_SEEN_KEY = 'valentine_popup_seen_v2';
+    const POPUP_SEEN_KEY = 'valentine_popup_seen_v3';
 
     // NOTE: We REMOVED the auto-show on DOMContentLoaded.
     // It is now triggered manually by script.js after password success.

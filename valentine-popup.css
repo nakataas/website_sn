@@ -1,22 +1,37 @@
 /* Valentine Popup Styles */
 #valentine-popup {
-    z-index: 9999;
-    /* Highest priority */
+    z-index: 99999 !important;
+    /* Extremely high priority */
 }
 
 .valentine-card-popup {
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
     border: 2px solid var(--accent-color);
-    padding: 40px;
+    padding: 30px 20px;
     border-radius: 24px;
-    width: 90%;
-    max-width: 400px;
+    width: 85%;
+    max-width: 360px;
     text-align: center;
     position: relative;
     box-shadow: 0 0 60px rgba(255, 77, 109, 0.4);
     transform: scale(0.9) translateY(20px);
     transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     animation: pulse-border 3s infinite;
+}
+
+@media (max-width: 480px) {
+    .valentine-card-popup {
+        padding: 25px 15px;
+        width: 90%;
+    }
+
+    .val-body h2 {
+        font-size: 1.5rem;
+    }
+
+    .val-icon {
+        font-size: 3rem;
+    }
 }
 
 #valentine-popup.active .valentine-card-popup {

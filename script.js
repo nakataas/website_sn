@@ -13,6 +13,10 @@ if (passwordOverlay) {
         // If already unlocked, show music control but don't autoplay
         document.addEventListener('DOMContentLoaded', () => {
             showMusicControl();
+            // Trigger Valentine Popup on reload if already logged in and not seen
+            if (typeof window.checkAndShowValentinePopup === 'function') {
+                window.checkAndShowValentinePopup();
+            }
         });
     }
 
@@ -50,6 +54,11 @@ if (passwordOverlay) {
                             if (playIcon) playIcon.classList.remove('hidden');
                             if (pauseIcon) pauseIcon.classList.add('hidden');
                         }
+                    }
+
+                    // Trigger Valentine Popup if available
+                    if (typeof window.checkAndShowValentinePopup === 'function') {
+                        window.checkAndShowValentinePopup();
                     }
                 }, 1000);
 

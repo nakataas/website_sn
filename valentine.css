@@ -1,0 +1,177 @@
+/* Valentine Page Styling */
+
+.valentine-container {
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    width: 100%;
+    animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.valentine-header {
+    text-align: center;
+    margin-bottom: 50px;
+    padding-top: 40px;
+}
+
+.details-card {
+    background: rgba(20, 20, 25, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--accent-color);
+    border-radius: 24px;
+    padding: 30px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 60px;
+    box-shadow: 0 10px 40px rgba(255, 77, 109, 0.15);
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    min-width: 200px;
+}
+
+.detail-icon {
+    font-size: 2.5rem;
+    background: rgba(255, 77, 109, 0.1);
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.detail-text h3 {
+    font-family: var(--font-heading);
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.detail-text p {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.map-link {
+    font-size: 0.8rem;
+    color: #4d9eff;
+    text-decoration: none;
+    border-bottom: 1px dashed #4d9eff;
+}
+
+.menu-subtitle {
+    text-align: center;
+    color: var(--text-dim);
+    margin-bottom: 40px;
+    margin-top: -30px;
+    font-style: italic;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.menu-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 25px;
+    transition: transform 0.3s ease;
+}
+
+.menu-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-color);
+    box-shadow: 0 5px 20px rgba(255, 77, 109, 0.1);
+}
+
+.menu-card h3 {
+    font-family: var(--font-heading);
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 77, 109, 0.3);
+}
+
+.menu-card ul {
+    list-style: none;
+}
+
+.menu-card li {
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+    position: relative;
+    padding-left: 15px;
+}
+
+.menu-card li::before {
+    content: '•';
+    color: var(--accent-color);
+    position: absolute;
+    left: 0;
+}
+
+.menu-card.highlight {
+    border-color: #ffd700;
+    /* Gold for carving */
+    background: rgba(255, 215, 0, 0.05);
+}
+
+.menu-card.highlight h3 {
+    color: #ffd700;
+    border-bottom-color: rgba(255, 215, 0, 0.3);
+}
+
+.menu-card.highlight:hover {
+    box-shadow: 0 5px 20px rgba(255, 215, 0, 0.15);
+}
+
+.menu-card.sweet {
+    border-color: #ffb7c5;
+    /* Pink for dessert */
+}
+
+.romantic-footer {
+    text-align: center;
+    padding: 60px 0;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--accent-color);
+}
+
+@media (max-width: 768px) {
+    .details-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+}

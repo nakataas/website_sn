@@ -1,0 +1,95 @@
+/* Valentine Popup Styles */
+#valentine-popup {
+    z-index: 9999;
+    /* Highest priority */
+}
+
+.valentine-card-popup {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border: 2px solid var(--accent-color);
+    padding: 40px;
+    border-radius: 24px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 0 60px rgba(255, 77, 109, 0.4);
+    transform: scale(0.9) translateY(20px);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation: pulse-border 3s infinite;
+}
+
+#valentine-popup.active .valentine-card-popup {
+    transform: scale(1) translateY(0);
+}
+
+@keyframes pulse-border {
+    0% {
+        border-color: var(--accent-color);
+        box-shadow: 0 0 30px rgba(255, 77, 109, 0.2);
+    }
+
+    50% {
+        border-color: #ff8fa3;
+        box-shadow: 0 0 50px rgba(255, 77, 109, 0.5);
+    }
+
+    100% {
+        border-color: var(--accent-color);
+        box-shadow: 0 0 30px rgba(255, 77, 109, 0.2);
+    }
+}
+
+.val-icon {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: 20px;
+    animation: bounce-heart 2s infinite;
+}
+
+@keyframes bounce-heart {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1) translateY(-10px);
+    }
+}
+
+.val-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+
+.val-body h2 {
+    font-family: var(--font-heading);
+    color: white;
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 10px 0;
+}
+
+.val-body p {
+    color: var(--text-dim);
+    margin-bottom: 25px;
+}
+
+.val-details {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    font-size: 0.9rem;
+    color: #ffd700;
+}
+
+.val-footer {
+    display: flex;
+    justify-content: center;
+}

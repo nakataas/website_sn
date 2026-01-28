@@ -49,6 +49,17 @@
         align-items: center;
         justify-content: center;
     }
+
+    /* Fix Close Button on Mobile */
+    .valentine-card-popup .valentine-close {
+        top: 10px !important;
+        right: 10px !important;
+        width: 44px;
+        /* Bigger touch target */
+        height: 44px;
+        background: rgba(255, 77, 109, 0.1);
+        z-index: 1000;
+    }
 }
 
 #valentine-popup.active .valentine-card-popup {

@@ -48,6 +48,12 @@ document.addEventListener('DOMContentLoaded', () => {
         valCloseBtn.addEventListener('click', () => {
             console.log('[VALENTINE] Close button clicked');
             valPopup.classList.remove('active');
+            // Reset inline styles to allow CSS transitions to work
+            setTimeout(() => {
+                valPopup.style.display = '';
+                valPopup.style.opacity = '';
+                valPopup.style.visibility = '';
+            }, 400); // Match transition duration
             localStorage.setItem(POPUP_SEEN_KEY, 'true');
         });
     }
@@ -67,6 +73,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.target === valPopup) {
                 console.log('[VALENTINE] Outside click detected');
                 valPopup.classList.remove('active');
+                // Reset inline styles
+                setTimeout(() => {
+                    valPopup.style.display = '';
+                    valPopup.style.opacity = '';
+                    valPopup.style.visibility = '';
+                }, 400);
                 localStorage.setItem(POPUP_SEEN_KEY, 'true');
             }
         });

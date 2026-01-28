@@ -13,10 +13,12 @@ if (passwordOverlay) {
         // If already unlocked, show music control but don't autoplay
         document.addEventListener('DOMContentLoaded', () => {
             showMusicControl();
-            // Trigger Valentine Popup on reload if already logged in and not seen
+            // DISABLED: Valentine popup removed, now using card section
+            /*
             if (typeof window.checkAndShowValentinePopup === 'function') {
                 window.checkAndShowValentinePopup();
             }
+            */
         });
     }
 
@@ -56,10 +58,12 @@ if (passwordOverlay) {
                         }
                     }
 
-                    // Trigger Valentine Popup if available
+                    // DISABLED: Valentine popup removed, now using card section
+                    /*
                     if (typeof window.checkAndShowValentinePopup === 'function') {
                         window.checkAndShowValentinePopup();
                     }
+                    */
                 }, 1000);
 
             } else {

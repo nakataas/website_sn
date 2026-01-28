@@ -1,11 +1,13 @@
 
 // ==========================================
-// VALENTINE POPUP LOGIC
+// VALENTINE POPUP LOGIC - DISABLED
+// Valentine is now a regular card section on homepage
 // ==========================================
 
-console.log('[VALENTINE] Script loaded!');
+console.log('[VALENTINE] Script loaded (popup disabled - using card instead)');
 
-// Global function to be called after password unlock
+// DISABLED: Valentine is now shown as a regular card section
+/*
 window.checkAndShowValentinePopup = function () {
     console.log('[VALENTINE] checkAndShowValentinePopup called!');
     const valPopup = document.getElementById('valentine-popup');
@@ -33,6 +35,7 @@ window.checkAndShowValentinePopup = function () {
     }, 800);
     // }
 }
+*/
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('[VALENTINE] DOMContentLoaded fired');

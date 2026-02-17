@@ -1,70 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>S ♡ N</title>
     <meta name="description" content="A special place to track our beautiful journey together.">
-    <!-- Google Fonts: Inter and Outfit for a premium feel -->
+    <meta name="theme-color" content="#0a0a0c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@300;500;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="proposal.css">
-    <link rel="stylesheet" href="proposal_letter.css">
-    <link rel="stylesheet" href="music.css">
-    <link rel="stylesheet" href="valentine-popup.css?v=1.2">
+    
     <link rel="icon" href="https://fav.farm/❤️">
+    <link rel="apple-touch-icon" href="https://fav.farm/❤️">
 </head>
-
 <body>
-    <audio id="bg-music" loop>
+    <!-- Background Audio -->
+    <audio id="bg-music" loop preload="none">
         <source src="audio/JVKE - her (official lyric video).mp3" type="audio/mp3">
-        Your browser does not support the audio element.
     </audio>
 
-    <!-- Music Control -->
-    <div id="music-control" class="music-control hidden">
-        <div class="music-icon-wave">
-            <span></span><span></span><span></span>
-        </div>
-        <div class="music-info">
-            <span class="now-playing-label">Now Playing</span>
-            <span class="track-name">JVKE - Her</span>
-        </div>
-        <button id="music-toggle" class="music-toggle-btn">
-            <!-- Pause Icon -->
-            <svg class="pause-icon" viewBox="0 0 24 24" width="24" height="24">
-                <path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
-            </svg>
-            <!-- Play Icon (hidden by default) -->
-            <svg class="play-icon hidden" viewBox="0 0 24 24" width="24" height="24">
-                <path fill="currentColor" d="M8 5v14l11-7z" />
-            </svg>
-        </button>
+    <!-- Ambient Background -->
+    <div class="ambient-bg">
+        <div class="ambient-orb ambient-orb--1"></div>
+        <div class="ambient-orb ambient-orb--2"></div>
+        <div class="ambient-orb ambient-orb--3"></div>
     </div>
 
-    <!-- Password Protection Overlay -->
+    <!-- Password Overlay -->
     <div id="password-overlay" class="password-overlay">
-        <div class="password-container">
+        <div class="password-card">
             <div class="password-logo">
                 <span class="initial">S</span>
-                <span class="kaomoji-icon">♡</span>
+                <span class="heart">♡</span>
                 <span class="initial">N</span>
             </div>
-            <h2 class="password-title">Protected Content</h2>
+            <h2 class="password-title">Protected</h2>
             <p class="password-subtitle">Enter password to continue</p>
             <form id="password-form" class="password-form">
                 <div class="password-input-wrapper">
-                    <input type="password" id="password-input" class="password-input" placeholder="Enter password"
-                        autocomplete="off">
-                    <svg class="lock-icon" viewBox="0 0 24 24">
-                        <path
-                            d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z" />
+                    <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
                     </svg>
+                    <input type="password" id="password-input" class="password-input" placeholder="Password" autocomplete="off">
                 </div>
                 <button type="submit" class="password-submit">Unlock</button>
                 <p id="password-error" class="password-error"></p>
@@ -72,565 +56,414 @@
         </div>
     </div>
 
-    <div class="glow-container">
-        <div class="glow-orb orb-1"></div>
-        <div class="glow-orb orb-2"></div>
+    <!-- Music Control -->
+    <div id="music-control" class="music-control">
+        <button id="music-toggle" class="music-btn" aria-label="Toggle music">
+            <svg class="play-icon" viewBox="0 0 24 24" style="display: none;">
+                <path d="M8 5v14l11-7z"/>
+            </svg>
+            <svg class="pause-icon" viewBox="0 0 24 24">
+                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+            </svg>
+        </button>
     </div>
 
-    <header class="premium-header">
-        <div class="counter-wrapper">
-            <div class="couple-logo">
+    <!-- Main App Container -->
+    <div class="app-container">
+        
+        <!-- Hero Header -->
+        <header class="hero-header">
+            <div class="couple-brand">
                 <span class="initial">S</span>
-                <span class="kaomoji-icon">♡</span>
+                <span class="heart">♡</span>
                 <span class="initial">N</span>
             </div>
-            <h2 class="counter-label">Time Since We Officially Started 💖</h2>
-            <div id="countdown" class="premium-counter">
-                <div class="counter-unit">
-                    <span id="days">00</span>
-                    <label>Days</label>
+            <p class="countdown-label">Time Since We Started</p>
+            <div class="countdown-timer" id="countdown">
+                <div class="countdown-unit">
+                    <span class="number" id="days">00</span>
+                    <span class="label">Days</span>
                 </div>
-                <div class="counter-unit">
-                    <span id="hours">00</span>
-                    <label>Hours</label>
+                <div class="countdown-unit">
+                    <span class="number" id="hours">00</span>
+                    <span class="label">Hours</span>
                 </div>
-                <div class="counter-unit">
-                    <span id="minutes">00</span>
-                    <label>Minutes</label>
+                <div class="countdown-unit">
+                    <span class="number" id="minutes">00</span>
+                    <span class="label">Mins</span>
                 </div>
-                <div class="counter-unit">
-                    <span id="seconds">00</span>
-                    <label>Seconds</label>
+                <div class="countdown-unit">
+                    <span class="number" id="seconds">00</span>
+                    <span class="label">Secs</span>
                 </div>
             </div>
-            <p class="start-date">Since January 3, 2026 • 19:00</p>
-        </div>
-    </header>
+            <p class="countdown-meta">Since January 3, 2026 • 19:00</p>
+        </header>
 
-    <main class="content-reveal">
-        <section class="dates-section">
-            <h2 class="section-title">Our Precious Moments</h2>
-
-            <div class="timeline-grid">
-                <!-- Content loaded dynamically by script.js -->
+        <!-- Precious Moments Section -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">Our Precious Moments</h2>
+                <p class="section-subtitle">Every moment with you is a treasure</p>
             </div>
-
-            <!-- View All Moments Button -->
-            <div style="text-align: center; margin-top: 2rem;">
-                <a href="moments.html" class="photo-link"
-                    style="display: inline-flex; padding: 14px 32px; font-size: 1rem; background: linear-gradient(135deg, #ff4d6d 0%, #ff758f 100%); box-shadow: 0 6px 20px rgba(255, 77, 109, 0.4);">
-                    <svg viewBox="0 0 24 24" style="margin-right: 8px;">
-                        <path
-                            d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5.04-6.71l-2.75 3.54-1.96-2.36L6.5 17h11l-3.54-4.71z" />
+            
+            <div class="moments-grid" id="moments-grid">
+                <!-- Dynamically populated by JS -->
+            </div>
+            
+            <div class="view-all-container">
+                <a href="moments.html" class="btn btn--primary">
+                    <svg class="btn-icon" viewBox="0 0 24 24">
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5.04-6.71l-2.75 3.54-1.96-2.36L6.5 17h11l-3.54-4.71z"/>
                     </svg>
-                    All Moments
+                    View All Moments
                 </a>
             </div>
         </section>
 
-        <!-- Use Divider -->
+        <!-- Section Divider -->
         <div class="section-divider">
             <div class="divider-line"></div>
             <div class="divider-icon">♡</div>
             <div class="divider-line"></div>
         </div>
 
-        <!-- Proposal Revisit Section -->
-        <section id="proposal-section" class="letters-section" style="padding-top: 0;">
-            <div class="letter-box-cta"
-                style="border-color: var(--accent-color); background: rgba(255, 77, 109, 0.05);">
-                <div class="letter-box-icon" style="background: rgba(255, 77, 109, 0.1);">
-                    <svg viewBox="0 0 24 24" style="fill: var(--accent-color);">
-                        <path
-                            d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+        <!-- Proposal Section -->
+        <section class="section" style="padding-top: 0;">
+            <div class="proposal-card">
+                <div class="proposal-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                     </svg>
                 </div>
-                <h3
-                    style="background: linear-gradient(135deg, #fff 0%, #ff758f 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
-                    Our Special Chapter
-                </h3>
-                <p>A moment that changed everything... ( ˘͈ ᵕ ˘͈ ♡)</p>
-                <button id="view-proposal-btn" class="photo-link"
-                    style="background: var(--accent-color); box-shadow: 0 4px 15px rgba(255, 77, 109, 0.3); border: none; cursor: pointer;">
-                    <svg viewBox="0 0 24 24">
-                        <path
-                            d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                <h3 class="proposal-title">Our Special Chapter</h3>
+                <p class="proposal-subtitle">A moment that changed everything...</p>
+                <button id="view-proposal-btn" class="btn btn--primary" style="width: 100%;">
+                    <svg class="btn-icon" viewBox="0 0 24 24">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                     </svg>
                     Revisit The Proposal
                 </button>
             </div>
         </section>
 
+    </div>
 
-    </main>
-
-    <!-- Floating Navigation Dock -->
-    <nav class="floating-dock">
-        <a href="#playlist" class="dock-item">
-            <svg viewBox="0 0 24 24">
-                <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
-            </svg>
-            <span class="dock-tooltip">Our Playlist</span>
-        </a>
-        <a href="#about-us" class="dock-item">
-            <svg viewBox="0 0 24 24">
-                <path
-                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-            </svg>
-            <span class="dock-tooltip">About Us</span>
-        </a>
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <div class="bottom-nav__items" style="justify-content: space-evenly;">
+            <a href="index.html" class="bottom-nav__item bottom-nav__item--active">
+                <svg class="bottom-nav__icon" viewBox="0 0 24 24">
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                </svg>
+                <span class="bottom-nav__label">Home</span>
+            </a>
+            <a href="moments.html" class="bottom-nav__item">
+                <svg class="bottom-nav__icon" viewBox="0 0 24 24">
+                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5.04-6.71l-2.75 3.54-1.96-2.36L6.5 17h11l-3.54-4.71z"/>
+                </svg>
+                <span class="bottom-nav__label">Moments</span>
+            </a>
+        </div>
     </nav>
 
-    <!-- Letter Reader Modal -->
-    <div id="letter-modal" class="modal-overlay">
-        <div class="modal-content letter-content">
-            <button class="modal-close letter-close">&times;</button>
-            <div class="letter-paper">
-                <div class="letter-header">
-                    <span class="letter-date">Dec 30, 2025</span>
-                    <h3 id="letter-title">For My Dearest</h3>
-                </div>
-                <div class="letter-body">
-                    <p id="letter-text">Loading letter...</p>
-                </div>
-                <div class="letter-footer">
-                    With all my love,<br>
-                    <span id="letter-signature" class="signature">Your Love</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Plan Details Modal -->
+    <!-- Plan Details Modal (High Tea) -->
     <div id="plan-modal" class="modal-overlay">
-        <div class="modal-content">
-            <button class="modal-close">&times;</button>
-            <div class="modal-header">
-                <h3>High Tea & Proposal</h3>
-                <p class="modal-subtitle">Jan 3, 2026 • High Tea & A Special Moment</p>
+        <div class="modal-sheet">
+            <div class="modal-handle"></div>
+            <div class="modal-header" style="position: relative;">
+                <button class="modal-close" data-close-modal>&times;</button>
+                <h3 class="modal-title">High Tea & Proposal</h3>
+                <p class="modal-subtitle">Jan 3, 2026 • A Special Moment</p>
             </div>
-
-            <div class="modal-section">
-                <h4>Description</h4>
-                <p>We're heading straight to Swiss-Belresort Dago Heritage for a fancy High Tea and a moment that will
-                    change everything. No distractions, just us and a beautiful view.</p>
-            </div>
-
-            <div class="modal-section">
-                <h4>The Timeline</h4>
-                <div class="modal-items">
-                    <div class="modal-timeline-item">
-                        <div class="time-col">
-                            <span class="time">17:00</span>
-                        </div>
-                        <div class="marker-col">
+            <div class="modal-content">
+                <div class="modal-section">
+                    <h4 class="modal-section-title">About</h4>
+                    <p class="modal-text">We're heading straight to Swiss-Belresort Dago Heritage for a fancy High Tea and a moment that will change everything. No distractions, just us and a beautiful view.</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h4 class="modal-section-title">Timeline</h4>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-time">17:00</div>
                             <div class="timeline-dot"></div>
-                            <div class="timeline-line"></div>
+                            <div class="timeline-content">
+                                <p class="timeline-event-title">Pick Up</p>
+                                <p class="timeline-event-desc">Picking you up at your place! 🚗💨</p>
+                            </div>
                         </div>
-                        <div class="event">
-                            <p class="event-title">Pick Up</p>
-                            <p class="event-desc">Picking you up at your place! (OTW to Dago) 🚗💨</p>
-                        </div>
-                    </div>
-                    <div class="modal-timeline-item">
-                        <div class="time-col">
-                            <span class="time">18:45</span>
-                        </div>
-                        <div class="marker-col">
+                        <div class="timeline-item">
+                            <div class="timeline-time">18:45</div>
                             <div class="timeline-dot"></div>
-                        </div>
-                        <div class="event">
-                            <p class="event-title">High Tea & Proposal</p>
-                            <p class="event-desc">
-                                <a href="https://maps.app.goo.gl/mT6QsDVrpk6LNtnM9" target="_blank"
-                                    style="color: var(--accent-color); text-decoration: none;">Swiss-Belresort Dago</a>.
-                                High tea and a very special question... (Until 21:30) 💍❤️
-                            </p>
+                            <div class="timeline-content">
+                                <p class="timeline-event-title">High Tea & Proposal</p>
+                                <p class="timeline-event-desc">
+                                    <a href="https://maps.app.goo.gl/mT6QsDVrpk6LNtnM9" target="_blank" style="color: var(--color-accent); text-decoration: none;">Swiss-Belresort Dago</a>. High tea and a very special question... 💍❤️
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="modal-section">
-                <h4>Location Map</h4>
-                <div
-                    style="width: 100%; height: 250px; border-radius: 12px; overflow: hidden; margin-top: 10px; border: 1px solid rgba(255, 77, 109, 0.3);">
-                    <iframe width="100%" height="100%" frameborder="0" style="border:0"
-                        src="https://maps.google.com/maps?q=Swiss-Belresort+Dago+Heritage&output=embed" allowfullscreen>
-                    </iframe>
-                </div>
-                <div class="dress-code-tag" style="margin-top: 15px;">
-                    <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: currentColor;">
-                        <path
-                            d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-                    </svg>
-                    <span><a href="https://maps.app.goo.gl/mT6QsDVrpk6LNtnM9" target="_blank"
-                            style="color: inherit; text-decoration: none;">Open Swiss-Belresort Map</a></span>
+                
+                <div class="modal-section">
+                    <h4 class="modal-section-title">Location</h4>
+                    <div class="map-container">
+                        <iframe src="https://maps.google.com/maps?q=Swiss-Belresort+Dago+Heritage&output=embed" allowfullscreen loading="lazy"></iframe>
+                    </div>
                 </div>
             </div>
-
         </div>
     </div>
 
-    <!-- Salon Plan Details Modal -->
+    <!-- Plan Details Modal (Salon) -->
     <div id="plan-modal-salon" class="modal-overlay">
-        <div class="modal-content">
-            <button class="modal-close">&times;</button>
-            <div class="modal-header">
-                <h3>Salon & Sate Date</h3>
+        <div class="modal-sheet">
+            <div class="modal-handle"></div>
+            <div class="modal-header" style="position: relative;">
+                <button class="modal-close" data-close-modal>&times;</button>
+                <h3 class="modal-title">Salon & Sate Date</h3>
                 <p class="modal-subtitle">Jan 4, 2026 • Pampering & Good Food</p>
             </div>
-
-            <div class="modal-section">
-                <h4>Description</h4>
-                <p>A relaxing afternoon starting with a treatment at Salon Anata Cihapit, followed by a delightful
-                    dinner at Sate Khas Senayan TSM ( ˶ˆ ᗜ ˆ˵ )</p>
-            </div>
-
-            <div class="modal-section">
-                <h4>The Timeline</h4>
-                <div class="modal-items">
-                    <div class="modal-timeline-item">
-                        <div class="time-col">
-                            <span class="time">08:45</span>
-                        </div>
-                        <div class="marker-col">
+            <div class="modal-content">
+                <div class="modal-section">
+                    <h4 class="modal-section-title">About</h4>
+                    <p class="modal-text">A relaxing afternoon starting with a treatment at Salon Anata Cihapit, followed by a delightful dinner at Sate Khas Senayan TSM.</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h4 class="modal-section-title">Timeline</h4>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-time">08:45</div>
                             <div class="timeline-dot"></div>
-                            <div class="timeline-line"></div>
+                            <div class="timeline-content">
+                                <p class="timeline-event-title">Pick Up</p>
+                                <p class="timeline-event-desc">Coming to pick you up! 🚗💨</p>
+                            </div>
                         </div>
-                        <div class="event">
-                            <p class="event-title">Pick Up</p>
-                            <p class="event-desc">Coming to pick you up! 🚗💨</p>
-                        </div>
-                    </div>
-                    <div class="modal-timeline-item">
-                        <div class="time-col">
-                            <span class="time">09:00</span>
-                        </div>
-                        <div class="marker-col">
+                        <div class="timeline-item">
+                            <div class="timeline-time">09:00</div>
                             <div class="timeline-dot"></div>
-                            <div class="timeline-line"></div>
+                            <div class="timeline-content">
+                                <p class="timeline-event-title">Salon Anata</p>
+                                <p class="timeline-event-desc">
+                                    <a href="https://maps.app.goo.gl/qgH3DqizBuEpvxeLA" target="_blank" style="color: var(--color-accent); text-decoration: none;">Anata Cihapit</a>. Treatments until 10:30. 💆🏻‍♀️
+                                </p>
+                            </div>
                         </div>
-                        <div class="event">
-                            <p class="event-title">Salon Anata</p>
-                            <p class="event-desc">
-                                <a href="https://maps.app.goo.gl/qgH3DqizBuEpvxeLA" target="_blank"
-                                    style="color: var(--accent-color); text-decoration: none;">Anata Cihapit</a>.
-                                Treatments until 10:30. 💆🏻‍♀️
-                            </p>
-                        </div>
-                    </div>
-                    <div class="modal-timeline-item">
-                        <div class="time-col">
-                            <span class="time">11:00</span>
-                        </div>
-                        <div class="marker-col">
+                        <div class="timeline-item">
+                            <div class="timeline-time">11:00</div>
                             <div class="timeline-dot"></div>
-                            <div class="timeline-line"></div>
+                            <div class="timeline-content">
+                                <p class="timeline-event-title">Coffee & Lunch at TSM</p>
+                                <p class="timeline-event-desc">Trans Studio Mall: Fore Coffee & Sate Khas Senayan. ☕🍢</p>
+                            </div>
                         </div>
-                        <div class="event">
-                            <p class="event-title">Coffee & Lunch at TSM</p>
-                            <p class="event-desc">Trans Studio Mall: Fore Coffee & Sate Khas Senayan (Until 12:30). ☕🍢
-                            </p>
-                        </div>
-                    </div>
-                    <div class="modal-timeline-item">
-                        <div class="time-col">
-                            <span class="time">13:00</span>
-                        </div>
-                        <div class="marker-col">
+                        <div class="timeline-item">
+                            <div class="timeline-time">13:00</div>
                             <div class="timeline-dot"></div>
-                            <div class="timeline-line"></div>
+                            <div class="timeline-content">
+                                <p class="timeline-event-title">Painting Hand Canvas</p>
+                                <p class="timeline-event-desc">Creative time together! 🎨🖐️</p>
+                            </div>
                         </div>
-                        <div class="event">
-                            <p class="event-title">Painting Hand Canvas</p>
-                            <p class="event-desc">Creative time together! (Until 14:00) 🎨🖐️</p>
-                        </div>
-                    </div>
-                    <div class="modal-timeline-item">
-                        <div class="time-col">
-                            <span class="time">14:30</span>
-                        </div>
-                        <div class="marker-col">
+                        <div class="timeline-item">
+                            <div class="timeline-time">15:00</div>
                             <div class="timeline-dot"></div>
-                            <div class="timeline-line"></div>
+                            <div class="timeline-content">
+                                <p class="timeline-event-title">Netflix & Cuddle</p>
+                                <p class="timeline-event-desc">Quality time at home. 🍿🏠❤️</p>
+                            </div>
                         </div>
-                        <div class="event">
-                            <p class="event-title">Cafe Time</p>
-                            <p class="event-desc">Stopping by a cafe near my house. ☕</p>
-                        </div>
-                    </div>
-                    <div class="modal-timeline-item">
-                        <div class="time-col">
-                            <span class="time">15:00</span>
-                        </div>
-                        <div class="marker-col">
+                        <div class="timeline-item">
+                            <div class="timeline-time">20:00</div>
                             <div class="timeline-dot"></div>
-                            <div class="timeline-line"></div>
-                        </div>
-                        <div class="event">
-                            <p class="event-title">Netflix & Cuddle</p>
-                            <p class="event-desc">Quality time at home. (Until 19:45) 🍿🏠❤️</p>
-                        </div>
-                    </div>
-                    <div class="modal-timeline-item">
-                        <div class="time-col">
-                            <span class="time">20:00</span>
-                        </div>
-                        <div class="marker-col">
-                            <div class="timeline-dot"></div>
-                        </div>
-                        <div class="event">
-                            <p class="event-title">Dinner at Lengkong</p>
-                            <p class="event-desc">Street food dinner at Lengkong Kecil. (Until 20:30) 🍜</p>
+                            <div class="timeline-content">
+                                <p class="timeline-event-title">Dinner at Lengkong</p>
+                                <p class="timeline-event-desc">Street food dinner at Lengkong Kecil. 🍜</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="modal-section">
-                <h4>Location Map</h4>
-                <div
-                    style="width: 100%; height: 250px; border-radius: 12px; overflow: hidden; margin-top: 10px; border: 1px solid rgba(255, 77, 109, 0.3);">
-                    <iframe width="100%" height="100%" frameborder="0" style="border:0"
-                        src="https://maps.google.com/maps?q=Anata+Salon+Cihapit&output=embed" allowfullscreen>
-                    </iframe>
-                </div>
-                <div class="dress-code-tag" style="margin-top: 15px;">
-                    <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: currentColor;">
-                        <path
-                            d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-                    </svg>
-                    <span><a href="https://maps.app.goo.gl/qgH3DqizBuEpvxeLA" target="_blank"
-                            style="color: inherit; text-decoration: none;">Open in Google Maps</a></span>
+                
+                <div class="modal-section">
+                    <h4 class="modal-section-title">Location</h4>
+                    <div class="map-container">
+                        <iframe src="https://maps.google.com/maps?q=Anata+Salon+Cihapit&output=embed" allowfullscreen loading="lazy"></iframe>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-
 
     <!-- Proposal Overlay -->
-    <div id="proposal-overlay" class="proposal-overlay" style="display: none;">
-        <div class="proposal-container">
+    <div id="proposal-overlay" class="proposal-overlay">
+        <div class="proposal-stage" id="typewriter-stage">
             <div id="typewriter-text" class="typewriter-text"></div>
-
-            <div id="proposal-letter" class="proposal-letter hidden">
-                <div class="letter-content-animate">
-                    <!-- Slide 1: First Meeting -->
-                    <div class="story-slide active" data-slide="1">
-                        <h3 class="letter-opener">Our First Chapter...</h3>
-                        <p>
-                            Ingat gak waktu pertama kali kita ketemu? Nonton <strong>Avatar</strong>, aku jemput kamu
-                            telat, belum mandi, masih pake baju gym lagi... 😭
-                        </p>
-                        <p>
-                            Kamu sempet takut aku udah punya cewek kan? Hahaha. Tapi malem itu berakhir indah, kita
-                            pelukan di bioskop, terus makan <strong>McDonald's</strong> bareng. Our first special
-                            memory. ( ˘͈ ᵕ ˘͈ ♡)
-                        </p>
-                    </div>
-
-                    <!-- Slide 2: The Fear -->
-                    <div class="story-slide hidden" data-slide="2">
-                        <h3 class="letter-opener">The Next Day...</h3>
-                        <p>
-                            Terus besoknya... kamu tiba-tiba cuekin aku. Aku panik banget, bahkan sampe <strong>nangis
-                                curhat ke Gaby</strong>, takut kehilangan kamu padahal baru aja ketemu.
-                        </p>
-                        <p>
-                            Segitu takutnya aku kehilangan kamu, Sil... :"
-                        </p>
-                    </div>
-
-                    <!-- Slide 3: The Connection -->
-                    <div class="story-slide hidden" data-slide="3">
-                        <h3 class="letter-opener">Closer...</h3>
-                        <p>
-                            Tapi untungnya kita ketemu lagi. Ingat pas ke <strong>Sushi Tei</strong> & nonton
-                            <strong>Zootopia 2</strong>?
-                        </p>
-                        <p>
-                            Kita muter-muter gak jelas, tapi rasanya seneng banget. Terus di mobil, kita <strong>pelukan
-                                satu jam</strong> gak kerasa... Waktu rasanya berhenti kalau sama kamu.
-                        </p>
-                    </div>
-
-                    <!-- Slide 4: The Feeling -->
-                    <div class="story-slide hidden" data-slide="4">
-                        <h3 class="letter-opener">Dear Silvia,</h3>
-                        <p>
-                            Jujur, selama sama kamu, aku ngerasa <strong>nyaman banget</strong>. Aku ngerasa dihargai,
-                            dipeduliin, dan disayang setiap detiknya.
-                        </p>
-                        <p>
-                            Kamu bikin hidup aku jauh lebih berwarna. Makasih ya udah hadir di hidup aku. ❤️
-                        </p>
-                    </div>
-
-                    <!-- Slide 5: The Bond -->
-                    <div class="story-slide hidden" data-slide="5">
-                        <h3 class="letter-opener">Us Against The World</h3>
-                        <p>
-                            Walau baru jalan sebentar, kita udah sejauh ini. Kita udah saling sayang, udah saling
-                            perhatian, dan rasanya... hati aku udah sepenuhnya jadi milik kamu.
-                        </p>
-                        <p>
-                            Setiap panggil "Sayang", itu bukan cuma kata-kata buat aku. Itu janji kalau aku peduli sama
-                            kamu lebih dari siapapun.
-                        </p>
-                    </div>
-
-                    <!-- Slide 6: Poem Part 1 -->
-                    <div class="story-slide hidden" data-slide="6" style="max-height: 500px; overflow-y: auto;">
-                        <h3 class="letter-opener">Logic Went Out The Window</h3>
-
-                        <div class="poem-block">
-                            <span class="poem-en">It almost sounds crazy to say this out loud, considering we have only
-                                known each other for a few days.</span>
-                            <span class="poem-id">Rasanya mungkin agak gila kalau diomongin sekarang, mengingat kita
-                                baru kenal beberapa hari.</span>
-                        </div>
-
-                        <div class="poem-block">
-                            <span class="poem-en">By all logical standards, we should still be strangers, carefully
-                                learning the basics about one another.</span>
-                            <span class="poem-id">Secara logika, harusnya kita masih kayak orang asing yang masih
-                                canggung belajar hal-hal dasar tentang satu sama lain.</span>
-                        </div>
-
-                        <div class="poem-block">
-                            <span class="poem-en">But from the very first moment, logic went out the window. It feels
-                                like I have known you for years, not days.</span>
-                            <span class="poem-id">Tapi sejak momen pertama, logika itu kayak ilang gitu aja. Rasanya aku
-                                udah kenal kamu bertahun-tahun, bukan cuma hitungan hari.</span>
-                        </div>
-
-                        <div class="poem-block">
-                            <span class="poem-en">There is a familiarity between us that defies time, a magnetic pull
-                                that suggests our souls were acquainted long before we actually met.</span>
-                            <span class="poem-id">Ada rasa akrab yang gak masuk akal di antara kita, kayak ada magnet
-                                yang bilang kalau jiwa kita sebenernya udah saling kenal jauh sebelum kita ketemu
-                                fisik.</span>
-                        </div>
-
-                        <div class="poem-block">
-                            <span class="poem-en">It’s rare, it’s intense, and it scares me in the best way possible
-                                because I never expected to fall this hard, this fast.</span>
-                            <span class="poem-id">Ini langka, ini intens, dan jujur ini bikin aku takut, tapi takut yang
-                                menyenangkan, karena aku gak pernah nyangka bakal jatuh secepet dan sedalam ini.</span>
-                        </div>
-                    </div>
-
-                    <!-- Slide 7: Poem Part 2 -->
-                    <div class="story-slide hidden" data-slide="7" style="max-height: 500px; overflow-y: auto;">
-                        <h3 class="letter-opener">The Script Has Flipped</h3>
-
-                        <div class="poem-block">
-                            <span class="poem-en">For the longest time, I was used to being the one who loved harder,
-                                the one constantly checking to see if the other person was still there.</span>
-                            <span class="poem-id">Selama ini, aku terbiasa jadi orang yang mencintai lebih keras, orang
-                                yang selalu cemas ngecek buat mastiin pasangannya masih ada di sana atau enggak.</span>
-                        </div>
-
-                        <div class="poem-block">
-                            <span class="poem-en">But with you, the script has flipped. There is this specific moment
-                                that captures my heart every single time: whenever I’m away even for a moment, and I see
-                                you reaching out... searching for me through your calls and messages.</span>
-                            <span class="poem-id">Tapi sama kamu, skripnya kebalik total. Ada satu momen kecil yang
-                                selalu bikin hati aku luluh: setiap kali aku lagi gak ada kabar sebentar, terus aku liat
-                                kamu beneran nyariin aku... lewat chat atau telpon kamu.</span>
-                        </div>
-
-                        <div class="poem-block">
-                            <span class="poem-en">Seeing your name pop up on my screen or seeing your missed calls just
-                                to find me heals parts of me I
-                                didn't know were broken.</span>
-                            <span class="poem-id">Ngeliat nama kamu muncul di layar atau panggilan tak terjawab dari
-                                kamu cuma buat nyariin aku tuh
-                                rasanya nyembuhin luka yang bahkan aku gak sadar kalau itu ada.</span>
-                        </div>
-
-                        <div class="poem-block">
-                            <span class="poem-en">It hits me every time: She actually wants me here. She values
-                                me.</span>
-                            <span class="poem-id">Itu selalu ngena banget di hati aku: Dia beneran mau aku ada di sini.
-                                Dia menghargai aku.</span>
-                        </div>
-                    </div>
-
-                    <!-- Slide 8: Poem Part 3 -->
-                    <div class="story-slide hidden" data-slide="8" style="max-height: 500px; overflow-y: auto;">
-                        <h3 class="letter-opener">Genuine Care</h3>
-
-                        <div class="poem-block">
-                            <span class="poem-en">You have shown me what it actually feels like to be on the receiving
-                                end of genuine care.</span>
-                            <span class="poem-id">Kamu ngasih liat aku gimana rasanya jadi pihak yang dipeduliin dengan
-                                tulus.</span>
-                        </div>
-
-                        <div class="poem-block">
-                            <span class="poem-en">For the first time, I don’t feel like I have to fight to be seen or
-                                perform to be loved.</span>
-                            <span class="poem-id">Buat pertama kalinya, aku gak ngerasa harus berjuang mati-matian cuma
-                                biar dilihat, atau harus "perform" biar disayang.</span>
-                        </div>
-
-                        <div class="poem-block">
-                            <span class="poem-en">You appreciate the things I do, you listen when I speak, and you treat
-                                my heart like it’s something precious.</span>
-                            <span class="poem-id">Kamu menghargai apa yang aku lakuin, kamu dengerin setiap aku ngomong,
-                                dan kamu memperlakukan hati aku kayak sesuatu yang berharga.</span>
-                        </div>
-
-                        <div class="poem-block">
-                            <span class="poem-en">I’m so used to being the "giver" that being cared for this way feels
-                                almost foreign, yet it is the most comfortable feeling I have ever known.</span>
-                            <span class="poem-id">Aku udah terlalu biasa jadi "si pemberi" sampai rasanya agak asing
-                                diperlakukan selembut ini, tapi ini adalah perasaan paling nyaman yang pernah aku
-                                rasain.</span>
-                        </div>
-
-                        <div class="poem-block">
-                            <span class="poem-en">You make me feel safe, worthy, and deeply appreciated in a way I
-                                haven't experienced before.</span>
-                            <span class="poem-id">Kamu bikin aku ngerasa aman, ngerasa pantes, dan ngerasa sangat
-                                dihargai dengan cara yang belum pernah aku rasain sebelumnya.</span>
-                        </div>
-                    </div>
-
-                    <div class="letter-nav">
-                        <button id="next-story-btn" class="action-btn next">Lanjut ❤️</button>
-                    </div>
+        </div>
+        
+        <div id="proposal-story" class="proposal-stage hidden">
+            <div class="proposal-story">
+                <!-- Slide 1 -->
+                <div class="story-slide active" data-slide="0">
+                    <p class="story-chapter">Our First Chapter...</p>
+                    <p class="story-text">
+                        Ingat gak waktu pertama kali kita ketemu? Nonton <strong>Avatar</strong>, aku jemput kamu telat, belum mandi, masih pake baju gym lagi... 😭
+                    </p>
+                    <p class="story-text">
+                        Kamu sempet takut aku udah punya cewek kan? Hahaha. Tapi malem itu berakhir indah, kita pelukan di bioskop, terus makan <strong>McDonald's</strong> bareng.
+                    </p>
+                </div>
+                
+                <!-- Slide 2 -->
+                <div class="story-slide" data-slide="1">
+                    <p class="story-chapter">The Next Day...</p>
+                    <p class="story-text">
+                        Terus besoknya... kamu tiba-tiba cuekin aku. Aku panik banget, bahkan sampe <strong>nangis curhat ke Gaby</strong>, takut kehilangan kamu padahal baru aja ketemu.
+                    </p>
+                    <p class="story-text">
+                        Segitu takutnya aku kehilangan kamu... :"
+                    </p>
+                </div>
+                
+                <!-- Slide 3 -->
+                <div class="story-slide" data-slide="2">
+                    <p class="story-chapter">Closer...</p>
+                    <p class="story-text">
+                        Tapi untungnya kita ketemu lagi. Ingat pas ke <strong>Sushi Tei</strong> & nonton <strong>Zootopia 2</strong>?
+                    </p>
+                    <p class="story-text">
+                        Kita muter-muter gak jelas, tapi rasanya seneng banget. Terus di mobil, kita <strong>pelukan satu jam</strong> gak kerasa...
+                    </p>
+                </div>
+                
+                <!-- Slide 4 -->
+                <div class="story-slide" data-slide="3">
+                    <p class="story-chapter">Dear Silvia,</p>
+                    <p class="story-text">
+                        Jujur, selama sama kamu, aku ngerasa <strong>nyaman banget</strong>. Aku ngerasa dihargai, dipeduliin, dan disayang setiap detiknya.
+                    </p>
+                    <p class="story-text">
+                        Kamu bikin hidup aku jauh lebih berwarna. Makasih ya udah hadir di hidup aku. ❤️
+                    </p>
+                </div>
+                
+                <!-- Slide 5 -->
+                <div class="story-slide" data-slide="4">
+                    <p class="story-chapter">Us Against The World</p>
+                    <p class="story-text">
+                        Walau baru jalan sebentar, kita udah sejauh ini. Kita udah saling sayang, udah saling perhatian, dan rasanya... hati aku udah sepenuhnya jadi milik kamu.
+                    </p>
+                    <p class="story-text">
+                        Setiap panggil "Sayang", itu bukan cuma kata-kata buat aku. Itu janji.
+                    </p>
+                </div>
+                
+                <!-- Slide 6 - 8: Poem parts (condensed for mobile) -->
+                <div class="story-slide" data-slide="5">
+                    <p class="story-chapter">Logic Went Out The Window</p>
+                    <p class="story-text">
+                        "It almost sounds crazy to say this out loud, considering we have only known each other for a few days. But from the very first moment, logic went out the window."
+                    </p>
+                    <p class="story-text" style="color: var(--color-text-muted); margin-top: var(--space-4);">
+                        Rasanya mungkin agak gila kalau diomongin sekarang, mengingat kita baru kenal beberapa hari. Tapi sejak momen pertama, logika itu kayak ilang gitu aja.
+                    </p>
+                </div>
+                
+                <div class="story-slide" data-slide="6">
+                    <p class="story-chapter">The Script Has Flipped</p>
+                    <p class="story-text">
+                        "For the longest time, I was used to being the one who loved harder. But with you, the script has flipped."
+                    </p>
+                    <p class="story-text" style="color: var(--color-text-muted); margin-top: var(--space-4);">
+                        Selama ini, aku terbiasa jadi orang yang mencintai lebih keras. Tapi sama kamu, skripnya kebalik total.
+                    </p>
+                </div>
+                
+                <div class="story-slide" data-slide="7">
+                    <p class="story-chapter">Genuine Care</p>
+                    <p class="story-text">
+                        "You have shown me what it actually feels like to be on the receiving end of genuine care. You make me feel safe, worthy, and deeply appreciated."
+                    </p>
+                    <p class="story-text" style="color: var(--color-text-muted); margin-top: var(--space-4);">
+                        Kamu ngasih liat aku gimana rasanya jadi pihak yang dipeduliin dengan tulus. Kamu bikin aku ngerasa aman, ngerasa pantes, dan sangat dihargai.
+                    </p>
                 </div>
             </div>
-
-            <div id="final-proposal" class="final-proposal hidden">
-                <div class="heart-beat">❤️</div>
-                <h2 class="proposal-heading">Silvia...</h2>
-                <p class="proposal-sub">Would you be my girlfriend?</p>
-                <div class="proposal-actions">
-                    <button id="yes-btn" class="action-btn yes">Yes, I will!</button>
-                    <button id="no-btn" class="action-btn no">No...</button>
-                </div>
-            </div>
-
-            <div id="success-message" class="success-message hidden">
-                <h1>I Knew It! (≧◡≦) ♡</h1>
-                <p>You just made me the happiest person in the world!</p>
-                <p class="love-note">I love you so much, Silvia.</p>
-                <button id="enter-world-btn" class="action-btn enter">Enter Our World</button>
+            
+            <div class="proposal-nav">
+                <button id="next-story-btn" class="proposal-btn">Continue ❤️</button>
             </div>
         </div>
-
+        
+        <div id="final-proposal" class="proposal-stage hidden">
+            <div class="final-question">
+                <div class="heart-animation">❤️</div>
+                <h2 class="question-title">Silvia...</h2>
+                <p class="question-subtitle">Would you be my girlfriend?</p>
+                <div class="answer-buttons">
+                    <button id="yes-btn" class="btn-yes">Yes, I will! 💍</button>
+                    <button id="no-btn" class="btn-no">No...</button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="success-message" class="proposal-stage hidden">
+            <div class="success-message">
+                <div class="heart-animation">💖</div>
+                <h2 class="success-title">I Knew It! (≧◡≦) ♡</h2>
+                <p class="success-text">You just made me the happiest person!</p>
+                <p class="success-note">I love you so much, Silvia.</p>
+                <button id="enter-world-btn" class="btn-yes" style="margin-top: var(--space-6);">Enter Our World ✨</button>
+            </div>
+        </div>
+        
         <!-- Floating hearts container -->
-        <div id="hearts-container" class="hearts-container"></div>
+        <div id="hearts-container" class="floating-hearts"></div>
     </div>
 
+    <!-- Scripts -->
     <script src="moments-data.js"></script>
-    <script src="valentine-logic.js?v=1.2"></script>
-    <script src="script.js?v=1.2"></script>
+    <script src="script.js"></script>
+    
+    <!-- Inline countdown fallback -->
+    <script>
+        (function() {
+            const startDate = new Date('2026-01-03T19:00:00').getTime();
+            
+            function updateTimer() {
+                const dayEl = document.getElementById('days');
+                const hoursEl = document.getElementById('hours');
+                const minsEl = document.getElementById('minutes');
+                const secsEl = document.getElementById('seconds');
+                
+                if (!dayEl || !hoursEl || !minsEl || !secsEl) return;
+                
+                const now = new Date().getTime();
+                const diff = now - startDate;
+                
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                
+                dayEl.textContent = String(Math.max(0, days)).padStart(2, '0');
+                hoursEl.textContent = String(Math.max(0, hours)).padStart(2, '0');
+                minsEl.textContent = String(Math.max(0, minutes)).padStart(2, '0');
+                secsEl.textContent = String(Math.max(0, seconds)).padStart(2, '0');
+            }
+            
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', function() {
+                    updateTimer();
+                    setInterval(updateTimer, 1000);
+                });
+            } else {
+                updateTimer();
+                setInterval(updateTimer, 1000);
+            }
+        })();
+    </script>
 </body>
-
 </html>

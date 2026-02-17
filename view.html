@@ -1,55 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reading Letter | S ♡ N</title>
-    <!-- Google Fonts -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Reading Letter - S ♡ N</title>
+    <meta name="theme-color" content="#0a0a0c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@300;500;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="https://fav.farm/❤️">
+    
+    <style>
+        .letter-page {
+            min-height: 100dvh;
+            padding: calc(var(--space-6) + var(--safe-area-top)) var(--space-4) calc(var(--space-20) + var(--safe-area-bottom));
+        }
+        
+        .letter-nav {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-6);
+        }
+        
+        .letter-nav__back {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: var(--text-sm);
+            font-weight: 500;
+            transition: color var(--transition-fast);
+        }
+        
+        .letter-nav__back:active {
+            color: var(--color-accent);
+        }
+        
+        .letter-nav__back svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+        
+        .letter-paper {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            padding: var(--space-8) var(--space-6);
+            position: relative;
+        }
+        
+        .letter-paper::before {
+            content: '';
+            position: absolute;
+            top: var(--space-6);
+            left: var(--space-6);
+            right: var(--space-6);
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-accent), var(--color-secondary));
+            border-radius: var(--radius-full);
+            opacity: 0.5;
+        }
+        
+        .letter-header {
+            text-align: center;
+            margin-bottom: var(--space-8);
+            padding-top: var(--space-4);
+        }
+        
+        .letter-date {
+            display: block;
+            font-size: var(--text-sm);
+            color: var(--color-text-muted);
+            margin-bottom: var(--space-2);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .letter-title {
+            font-family: var(--font-serif);
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            font-style: italic;
+            background: linear-gradient(135deg, #fff 0%, #aaa 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .letter-body {
+            font-size: var(--text-base);
+            line-height: 1.9;
+            color: var(--color-text-secondary);
+            white-space: pre-line;
+            margin-bottom: var(--space-8);
+        }
+        
+        .letter-body::first-letter {
+            font-family: var(--font-serif);
+            font-size: 3em;
+            float: left;
+            line-height: 1;
+            padding-right: var(--space-2);
+            color: var(--color-accent);
+        }
+        
+        .letter-footer {
+            text-align: right;
+            font-size: var(--text-base);
+            color: var(--color-text-secondary);
+            padding-top: var(--space-6);
+            border-top: 1px solid var(--glass-border);
+        }
+        
+        .letter-signature {
+            display: block;
+            font-family: var(--font-serif);
+            font-size: var(--text-xl);
+            font-style: italic;
+            color: var(--color-accent);
+            margin-top: var(--space-2);
+        }
+        
+        .letter-actions {
+            display: flex;
+            gap: var(--space-3);
+            margin-top: var(--space-6);
+        }
+        
+        .letter-actions .btn {
+            flex: 1;
+        }
+    </style>
 </head>
-
-<body class="view-letter-body">
-    <div class="glow-container">
-        <div class="glow-orb orb-1"></div>
-        <div class="glow-orb orb-2"></div>
+<body>
+    <!-- Ambient Background -->
+    <div class="ambient-bg">
+        <div class="ambient-orb ambient-orb--1"></div>
+        <div class="ambient-orb ambient-orb--2"></div>
     </div>
 
-    <!-- Navigation -->
-    <nav class="top-nav">
-        <a href="letters.html" class="back-link">
-            <svg viewBox="0 0 24 24">
-                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" />
-            </svg>
-            Back to Letters
-        </a>
+    <div class="app-container">
+        <main class="letter-page">
+            <!-- Navigation -->
+            <nav class="letter-nav">
+                <a href="index.html" class="letter-nav__back">
+                    <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+                    Back to Home
+                </a>
+            </nav>
+
+            <!-- Letter Content -->
+            <article class="letter-paper">
+                <header class="letter-header">
+                    <span id="view-date" class="letter-date">...</span>
+                    <h1 id="view-title" class="letter-title">Loading...</h1>
+                </header>
+                
+                <div id="view-text" class="letter-body">Please wait...</div>
+                
+                <footer class="letter-footer">
+                    With all my love,
+                    <span id="view-signature" class="letter-signature">...</span>
+                </footer>
+            </article>
+
+            <!-- Actions -->
+            <div class="letter-actions">
+                <a href="letters.html" class="btn btn--secondary">
+                    <svg class="btn-icon" viewBox="0 0 24 24">
+                        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                    </svg>
+                    Back
+                </a>
+                <button class="btn btn--primary" onclick="window.print()">
+                    <svg class="btn-icon" viewBox="0 0 24 24">
+                        <path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/>
+                    </svg>
+                    Save
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <div class="bottom-nav__items" style="justify-content: space-evenly;">
+            <a href="index.html" class="bottom-nav__item">
+                <svg class="bottom-nav__icon" viewBox="0 0 24 24">
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                </svg>
+                <span class="bottom-nav__label">Home</span>
+            </a>
+            <a href="moments.html" class="bottom-nav__item">
+                <svg class="bottom-nav__icon" viewBox="0 0 24 24">
+                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5.04-6.71l-2.75 3.54-1.96-2.36L6.5 17h11l-3.54-4.71z"/>
+                </svg>
+                <span class="bottom-nav__label">Moments</span>
+            </a>
+        </div>
     </nav>
 
-    <main class="letter-viewer">
-        <div class="letter-paper full-view">
-            <div class="letter-header">
-                <span id="view-date" class="letter-date">...</span>
-                <h1 id="view-title">Loading...</h1>
-            </div>
-            <div class="letter-body">
-                <p id="view-text">Please wait...</p>
-            </div>
-            <div class="letter-footer">
-                With all my love,<br>
-                <span id="view-signature" class="signature">...</span>
-            </div>
-        </div>
-    </main>
-
     <script src="script.js"></script>
-    <script src="letters-loader.js"></script>
-    <script src="view-letter.js"></script>
 </body>
-
 </html>

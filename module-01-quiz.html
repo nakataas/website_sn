@@ -680,13 +680,13 @@
         // ⚠️ Pilih salah satu opsi:
         
         // OPSI 1: Proxy Server (Recommended - API Key aman)
-        const PROXY_API_URL = 'https://website-sn-eight.vercel.app/api/analyze-quiz';
-        const USE_PROXY = true; // Ganti ke true setelah setup Vercel
+        // const PROXY_API_URL = 'https://website-sn-eight.vercel.app/api/analyze-quiz';
+        const USE_PROXY = false; // Ganti ke true setelah setup Vercel
         
         // OPSI 2: Direct API (Tidak direkomendasikan untuk production)
         // API Key di-obfuscate - tidak 100% aman tapi lebih sulit dibaca
-        // const KIMI_API_KEY = atob('MTljNmZkYWUtYjNiMi04MTViLTgwMDAtMDAwMGJkODMwZWMy');
-        // const KIMI_API_URL = 'https://api.moonshot.cn/v1/chat/completions';
+        const KIMI_API_KEY = atob('MTljNmZkYWUtYjNiMi04MTViLTgwMDAtMDAwMGJkODMwZWMy');
+        const KIMI_API_URL = 'https://api.moonshot.cn/v1/chat/completions';
         
         // Fungsi untuk menganalisis jawaban
         async function analyzeWithKimi(answers, questions, typeResults, primaryType, secondaryType, scores) {

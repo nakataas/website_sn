@@ -993,6 +993,19 @@
             }
 
             try {
+                // Build detailed answers array
+                const detailedAnswers = answers.map((answer, index) => {
+                    const question = questions[index];
+                    const selectedOption = question.options[answer.optionIndex];
+                    return {
+                        question_id: question.id,
+                        question_text: question.text,
+                        selected_option_letter: selectedOption.letter,
+                        selected_option_text: selectedOption.text,
+                        selected_type: answer.type
+                    };
+                });
+
                 const { data, error } = await quizSupabase
                     .from('quiz_results')
                     .insert([
@@ -1003,6 +1016,7 @@
                             anchor_score: resultData.scores.anchor,
                             island_score: resultData.scores.island,
                             wave_score: resultData.scores.wave,
+                            answers: detailedAnswers,
                             created_at: new Date().toISOString()
                         }
                     ]);

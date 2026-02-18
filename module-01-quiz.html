@@ -17,6 +17,9 @@
     <!-- Styles -->
     <link rel="stylesheet" href="style.css">
     
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    
     <link rel="icon" href="https://fav.farm/❓">
     <link rel="apple-touch-icon" href="https://fav.farm/❓">
 
@@ -402,8 +405,121 @@
             flex-shrink: 0;
         }
 
+        /* User Selection */
+        .user-selection {
+            padding: var(--space-4);
+            text-align: center;
+        }
+
+        .user-radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .user-radio-label {
+            display: block;
+            cursor: pointer;
+        }
+
+        .user-radio {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .user-radio-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: var(--glass-bg);
+            border: 2px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 20px;
+            transition: all 0.2s;
+        }
+
+        .user-radio-card:hover {
+            border-color: var(--color-accent);
+        }
+
+        .user-radio:checked + .user-radio-card {
+            border-color: var(--color-accent);
+            background: rgba(255, 77, 109, 0.1);
+        }
+
+        .user-radio-check {
+            width: 28px;
+            height: 28px;
+            border: 2px solid var(--glass-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: transparent;
+            font-size: 14px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .user-radio:checked + .user-radio-card .user-radio-check {
+            background: var(--color-accent);
+            border-color: var(--color-accent);
+            color: white;
+        }
+
+        .user-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-secondary) 100%);
+            flex-shrink: 0;
+        }
+
+        .user-name {
+            font-family: var(--font-display);
+            font-size: 20px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .save-status {
+            font-size: var(--text-xs);
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-full);
+            margin-top: var(--space-4);
+            display: inline-block;
+        }
+
+        .save-status.success {
+            background: rgba(80, 200, 120, 0.2);
+            color: #50c878;
+        }
+
+        .save-status.error {
+            background: rgba(255, 77, 109, 0.2);
+            color: #ff4d6d;
+        }
+
+        .save-status.saving {
+            background: rgba(77, 158, 255, 0.2);
+            color: #4d9eff;
+        }
+
         .hidden {
             display: none !important;
+        }
+
+        /* Ensure app container is above background */
+        .app-container {
+            position: relative;
+            z-index: 10;
         }
     </style>
 </head>
@@ -431,11 +547,46 @@
             <p class="quiz-subtitle">Temukan tipe attachment style-mu dalam 15 pertanyaan komprehensif</p>
         </header>
 
+        <!-- User Selection Screen -->
+        <div id="user-selection-screen" class="user-selection">
+            <div class="start-card">
+                <h3>👋 Halo! Siapa kamu?</h3>
+                <p>Pilih siapa yang akan mengisi quiz ini:</p>
+            </div>
+
+            <div class="user-radio-group">
+                <div class="user-radio-label" onclick="selectUser('Nakata')">
+                    <input type="radio" name="user" value="Nakata" class="user-radio" id="radio-nakata">
+                    <span class="user-radio-card">
+                        <span class="user-radio-check">✓</span>
+                        <span class="user-avatar">👨</span>
+                        <span class="user-name">Nakata</span>
+                    </span>
+                </div>
+
+                <div class="user-radio-label" onclick="selectUser('Silvia')">
+                    <input type="radio" name="user" value="Silvia" class="user-radio" id="radio-silvia">
+                    <span class="user-radio-card">
+                        <span class="user-radio-check">✓</span>
+                        <span class="user-avatar">👩</span>
+                        <span class="user-name">Silvia</span>
+                    </span>
+                </div>
+            </div>
+
+            <button type="button" class="quiz-btn quiz-btn--primary" id="confirm-user-btn" onclick="confirmUser()" disabled style="width: 100%; margin-top: 16px; opacity: 0.5; cursor: not-allowed;">
+                Lanjutkan
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+                </svg>
+            </button>
+        </div>
+
         <!-- Start Screen -->
-        <div id="start-screen" class="start-screen">
+        <div id="start-screen" class="start-screen hidden">
             <div class="start-card">
                 <h3>🧠 Attachment Style Quiz</h3>
-                <p>Quiz ini berdasarkan framework Dr. Stan Tatkin (Wired for Dating). Jujur pada dirimu sendiri — ini untuk pemahaman, bukan penilaian.</p>
+                <p>Halo <strong id="selected-user-name"></strong>! Quiz ini berdasarkan framework Dr. Stan Tatkin (Wired for Dating). Jujur pada dirimu sendiri — ini untuk pemahaman, bukan penilaian.</p>
                 
                 <ul class="start-features">
                     <li>15 pertanyaan pilihan ganda</li>
@@ -449,7 +600,7 @@
                 </p>
             </div>
 
-            <button class="quiz-btn quiz-btn--primary" onclick="startQuiz()" style="width: 100%;">
+            <button class="quiz-btn quiz-btn--primary" id="start-quiz-btn" onclick="startQuiz()" style="width: 100%;">
                 Mulai Quiz
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
@@ -504,7 +655,28 @@
     </nav>
 
     <script>
-        // Quiz Data - 15 Comprehensive Questions
+        // ============================================
+        // SUPABASE CONFIGURATION
+        // ============================================
+        // Ganti dengan URL dan API Key dari project Supabase kamu
+        const SUPABASE_URL = 'https://dobydotilbqkbmrfhulz.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_C7j8zttMLAFGlUfNSKY-AQ_6DILu6vD';
+        
+        // Initialize Supabase client
+        var quizSupabase = null;
+        try {
+            if (typeof createClient !== 'undefined') {
+                quizSupabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            } else if (window.supabase && window.supabase.createClient) {
+                quizSupabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            }
+        } catch (e) {
+            console.warn('Supabase not initialized:', e);
+        }
+
+        // ============================================
+        // QUIZ DATA
+        // ============================================
         const questions = [
             {
                 id: 1,
@@ -643,10 +815,6 @@
             }
         ];
 
-        // Quiz State
-        let currentQuestion = 0;
-        let answers = [];
-
         // Type Results Data
         const typeResults = {
             anchor: {
@@ -678,6 +846,39 @@
             }
         };
 
+        // ============================================
+        // QUIZ STATE
+        // ============================================
+        let currentUser = null;
+        let currentQuestion = 0;
+        let answers = [];
+        let quizResult = null;
+
+        // ============================================
+        // USER SELECTION
+        // ============================================
+        function selectUser(user) {
+            currentUser = user;
+            // Check the radio button
+            document.getElementById('radio-' + user.toLowerCase()).checked = true;
+            // Enable confirm button - remove disabled attribute and fix styles
+            var btn = document.getElementById('confirm-user-btn');
+            btn.removeAttribute('disabled');
+            btn.style.opacity = '1';
+            btn.style.cursor = 'pointer';
+        }
+
+        function confirmUser() {
+            if (!currentUser) return;
+            
+            document.getElementById('user-selection-screen').classList.add('hidden');
+            document.getElementById('start-screen').classList.remove('hidden');
+            document.getElementById('selected-user-name').textContent = currentUser;
+        }
+
+        // ============================================
+        // QUIZ FUNCTIONS
+        // ============================================
         function startQuiz() {
             document.getElementById('start-screen').classList.add('hidden');
             document.getElementById('quiz-progress').classList.remove('hidden');
@@ -782,7 +983,42 @@
             }
         }
 
-        function showResults() {
+        // ============================================
+        // SUPABASE FUNCTIONS
+        // ============================================
+        async function saveToSupabase(resultData) {
+            if (!quizSupabase) {
+                console.warn('Supabase not initialized');
+                return { success: false, error: 'Supabase not initialized' };
+            }
+
+            try {
+                const { data, error } = await quizSupabase
+                    .from('quiz_results')
+                    .insert([
+                        {
+                            user_name: currentUser,
+                            primary_type: resultData.primary,
+                            secondary_type: resultData.secondary,
+                            anchor_score: resultData.scores.anchor,
+                            island_score: resultData.scores.island,
+                            wave_score: resultData.scores.wave,
+                            created_at: new Date().toISOString()
+                        }
+                    ]);
+
+                if (error) throw error;
+                return { success: true, data };
+            } catch (error) {
+                console.error('Error saving to Supabase:', error);
+                return { success: false, error: error.message };
+            }
+        }
+
+        // ============================================
+        // RESULTS
+        // ============================================
+        async function showResults() {
             // Calculate scores
             const scores = { anchor: 0, island: 0, wave: 0 };
             answers.forEach(answer => {
@@ -800,6 +1036,23 @@
             const isMixed = primaryScore === secondaryScore;
             const result = typeResults[primaryType];
             
+            // Store result
+            quizResult = {
+                primary: primaryType,
+                secondary: isMixed ? secondaryType : null,
+                scores: scores,
+                date: new Date().toISOString()
+            };
+            
+            // Save to localStorage
+            localStorage.setItem(`attachmentType_${currentUser}`, JSON.stringify(quizResult));
+            
+            // Save to Supabase
+            let saveStatus = { success: false, error: null };
+            if (quizSupabase) {
+                saveStatus = await saveToSupabase(quizResult);
+            }
+            
             // Hide quiz elements
             document.getElementById('quiz-progress').classList.add('hidden');
             document.getElementById('question-container').classList.add('hidden');
@@ -814,6 +1067,18 @@
             if (isMixed) {
                 typeTitle = `${typeResults[primaryType].name}-${typeResults[secondaryType].name} Mix`;
                 typeDescription = `Kamu memiliki karakteristik kuat dari dua tipe: ${typeResults[primaryType].name} dan ${typeResults[secondaryType].name}. Kamu bisa menunjukkan sifat-sifat dari kedua tipe ini tergantung situasi.`;
+            }
+            
+            // Save status message
+            let saveStatusHtml = '';
+            if (quizSupabase) {
+                if (saveStatus.success) {
+                    saveStatusHtml = '<div class="save-status success">✅ Hasil tersimpan ke database</div>';
+                } else {
+                    saveStatusHtml = `<div class="save-status error">⚠️ Gagal menyimpan: ${saveStatus.error}</div>`;
+                }
+            } else {
+                saveStatusHtml = '<div class="save-status saving">💾 Tersimpan di perangkat (Supabase belum terhubung)</div>';
             }
             
             container.innerHTML = `
@@ -834,6 +1099,13 @@
                         <div class="breakdown-value" style="color: #ff4d6d;">${scores.wave}</div>
                         <div class="breakdown-label">Wave</div>
                     </div>
+                </div>
+                
+                ${saveStatusHtml}
+                
+                <div class="result-card">
+                    <h4>👤 Hasil untuk</h4>
+                    <p style="font-size: var(--text-lg); color: var(--color-accent);"><strong>${currentUser}</strong></p>
                 </div>
                 
                 <div class="result-card">
@@ -869,30 +1141,63 @@
                     </a>
                 </div>
             `;
-            
-            // Save result to localStorage
-            localStorage.setItem('attachmentType', JSON.stringify({
-                primary: primaryType,
-                secondary: isMixed ? secondaryType : null,
-                scores: scores,
-                date: new Date().toISOString()
-            }));
         }
 
         function retakeQuiz() {
             currentQuestion = 0;
             answers = [];
+            quizResult = null;
             document.getElementById('result-container').classList.add('hidden');
             document.getElementById('quiz-progress').classList.remove('hidden');
             document.getElementById('question-container').classList.remove('hidden');
             showQuestion();
         }
 
-        // Check if there's a saved result
-        const savedResult = localStorage.getItem('attachmentType');
-        if (savedResult) {
-            console.log('Previous result found:', JSON.parse(savedResult));
-        }
+        // Initialize button events after DOM loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Attach click events to user cards
+            const nakataCard = document.querySelector('[onclick="selectUser(\'Nakata\')"]');
+            const silviaCard = document.querySelector('[onclick="selectUser(\'Silvia\')"]');
+            const confirmBtn = document.getElementById('confirm-user-btn');
+            const startBtn = document.getElementById('start-quiz-btn');
+            
+            if (nakataCard) {
+                nakataCard.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    selectUser('Nakata');
+                    document.getElementById('radio-nakata').checked = true;
+                });
+            }
+            
+            if (silviaCard) {
+                silviaCard.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    selectUser('Silvia');
+                    document.getElementById('radio-silvia').checked = true;
+                });
+            }
+            
+            if (confirmBtn) {
+                confirmBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    confirmUser();
+                });
+            }
+            
+            if (startBtn) {
+                startBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    startQuiz();
+                });
+            }
+            
+            console.log('Quiz initialized');
+        });
+
     </script>
 </body>
 </html>

@@ -1345,26 +1345,7 @@ Gunakan bahasa Indonesia yang profesional namun hangat. Hindari jargon medis yan
                     <p>Jika pasanganmu berbeda tipe, ingat: konflik bukan "dia vs aku", tapi "kita vs perbedaan wiring kita". Komunikasikan tipe kalian dan saling mendukung untuk tumbuh menuju secure functioning.</p>
                 </div>
                 
-                ${kimiAnalysis && kimiAnalysis.success ? `
-                <div class="result-card" style="border-color: var(--color-accent); background: linear-gradient(135deg, rgba(255, 77, 109, 0.05) 0%, rgba(167, 139, 250, 0.05) 100%);">
-                    <div style="display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-4);">
-                        <div style="font-size: 32px;">🧠</div>
-                        <div>
-                            <h4 style="margin: 0; color: var(--color-accent);">Analisis Profesional oleh Psikolog Klinis AI</h4>
-                            <p style="margin: 0; font-size: var(--text-xs); color: var(--color-text-muted);">Powered by KIMI 2.5 Thinking</p>
-                        </div>
-                    </div>
-                    <div class="ai-analysis-content" style="font-size: var(--text-sm); line-height: 1.8; color: var(--color-text-secondary);">
-                        ${formatAIAnalysis(kimiAnalysis.analysis)}
-                    </div>
-                </div>
-                ` : kimiAnalysis ? `
-                <div class="result-card" style="border-color: #ff9800;">
-                    <h4>⚠️ Analisis AI Sementara Tidak Tersedia</h4>
-                    <p style="font-size: var(--text-sm);">Maaf, analisis mendalam oleh Psikolog Klinis AI sedang mengalami gangguan. Hasil attachment type standar tetap valid. Silakan coba muat ulang halaman nanti untuk analisis lengkap.</p>
-                </div>
-                ` : ''}
-                
+
                 <div class="quiz-nav" style="margin-top: var(--space-6);">
                     <button class="quiz-btn quiz-btn--secondary" onclick="retakeQuiz()">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">

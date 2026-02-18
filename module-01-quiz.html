@@ -675,6 +675,185 @@
         }
 
         // ============================================
+        // KIMI API CONFIGURATION
+        // ============================================
+        // ⚠️ Pilih salah satu opsi:
+        
+        // OPSI 1: Proxy Server (Recommended - API Key aman)
+        const PROXY_API_URL = 'https://website-sn-eight.vercel.app/api/analyze-quiz';
+        const USE_PROXY = true; // Ganti ke true setelah setup Vercel
+        
+        // OPSI 2: Direct API (Tidak direkomendasikan untuk production)
+        // API Key di-obfuscate - tidak 100% aman tapi lebih sulit dibaca
+        // const KIMI_API_KEY = atob('MTljNmZkYWUtYjNiMi04MTViLTgwMDAtMDAwMGJkODMwZWMy');
+        // const KIMI_API_URL = 'https://api.moonshot.cn/v1/chat/completions';
+        
+        // Fungsi untuk menganalisis jawaban
+        async function analyzeWithKimi(answers, questions, typeResults, primaryType, secondaryType, scores) {
+            if (USE_PROXY) {
+                // Gunakan Proxy Server (API Key aman di server)
+                try {
+                    const response = await fetch(PROXY_API_URL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            answers,
+                            questions,
+                            typeResults,
+                            primaryType,
+                            secondaryType,
+                            scores
+                        })
+                    });
+                    
+                    if (!response.ok) {
+                        throw new Error(`Proxy Error: ${response.status}`);
+                    }
+                    
+                    const data = await response.json();
+                    return data;
+                } catch (error) {
+                    console.error('Proxy API Error:', error);
+                    return {
+                        success: false,
+                        error: error.message
+                    };
+                }
+            } else {
+                // Direct API call (tidak direkomendasikan untuk production)
+                return await analyzeWithKimiDirect(answers, questions, typeResults, primaryType, secondaryType, scores);
+            }
+        }
+        
+        // Direct API call (fallback)
+        async function analyzeWithKimiDirect(answers, questions, typeResults, primaryType, secondaryType, scores) {
+            const qaList = answers.map((answer, index) => {
+                const question = questions[index];
+                const selectedOption = question.options[answer.optionIndex];
+                return {
+                    nomor: index + 1,
+                    pertanyaan: question.text,
+                    jawaban: selectedOption.text,
+                    tipe: answer.type
+                };
+            });
+            
+            const resultInfo = typeResults[primaryType];
+            const secondaryInfo = secondaryType ? typeResults[secondaryType] : null;
+            
+            const prompt = `Kamu adalah Psikolog Klinis berlisensi dengan pengalaman 15+ tahun dalam psikologi hubungan dan attachment theory. Analisis jawaban kuesioner berikut secara mendalam dan profesional.
+
+**PROFIL RESPONDEN:**
+- Attachment Type Utama: ${resultInfo.name} (${scores[primaryType]} poin)
+${secondaryType ? `- Attachment Type Sekunder: ${secondaryInfo.name} (${scores[secondaryType]} poin)` : ''}
+- Skor Anchor: ${scores.anchor} | Island: ${scores.island} | Wave: ${scores.wave}
+
+**DAFTAR PERTANYAAN DAN JAWABAN:**
+${qaList.map(qa => `
+${qa.nomor}. ${qa.pertanyaan}
+   Jawaban: ${qa.jawaban}
+   Tipe: ${qa.tipe.toUpperCase()}
+`).join('')}
+
+**INSTRUKSI ANALISIS:**
+Berikan analisis komprehensif dalam format berikut:
+
+1. **Pola Attachment Dominan** (2-3 paragraf)
+   - Identifikasi bagaimana pola attachment ini terbentuk dari respons masa kecil
+   - Jelaskan bagaimana pola ini memengaruhi cara berhubungan dewasa
+
+2. **Insight Klinis per Tipe** 
+   - Anchor: ${scores.anchor} jawaban → ${getAttachmentInsight('anchor', scores.anchor)}
+   - Island: ${scores.island} jawaban → ${getAttachmentInsight('island', scores.island)}
+   - Wave: ${scores.wave} jawaban → ${getAttachmentInsight('wave', scores.wave)}
+
+3. **Strengths (Kekuatan)**
+   - List 3-4 kekuatan psikologis berdasarkan jawaban
+
+4. **Growth Areas (Area Pengembangan)**
+   - List 3-4 area yang bisa dikembangkan
+
+5. **Rekomendasi Praktis**
+   - 5 tips konkret untuk hubungan yang lebih sehat
+
+Gunakan bahasa Indonesia yang profesional namun hangat. Hindari jargon medis yang terlalu teknis, tapi tetap akurat secara klinis.`;
+
+            try {
+                const response = await fetch(KIMI_API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${KIMI_API_KEY}`
+                    },
+                    body: JSON.stringify({
+                        model: 'kimi-k2.5-thinking',
+                        messages: [
+                            {
+                                role: 'system',
+                                content: 'Kamu adalah Psikolog Klinis spesialis attachment theory dan relationship psychology. Berikan analisis yang empati, profesional, dan berbasis evidence-based practice.'
+                            },
+                            {
+                                role: 'user',
+                                content: prompt
+                            }
+                        ],
+                        temperature: 0.7,
+                        max_tokens: 4000
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                return {
+                    success: true,
+                    analysis: data.choices[0].message.content
+                };
+            } catch (error) {
+                console.error('Kimi API Error:', error);
+                return {
+                    success: false,
+                    error: error.message
+                };
+            }
+        }
+        
+        // Helper function untuk insight attachment
+        function getAttachmentInsight(type, score) {
+            const insights = {
+                anchor: score >= 5 ? 'Secure functioning yang baik' : score >= 3 ? 'Cukup secure dengan area pengembangan' : 'Perlu membangun secure base',
+                island: score >= 5 ? 'Self-reliance tinggi, potensi avoidant' : score >= 3 ? 'Independen dengan kebutuhan koneksi' : 'Komunikasi dan intimacy perlu dikembangkan',
+                wave: score >= 5 ? 'Kecenderungan anxious attachment' : score >= 3 ? 'Emosional dengan kebutuhan validasi' : 'Self-soothing dan boundaries perlu dikuatkan'
+            };
+            return insights[type];
+        }
+        
+        // Format analisis AI ke HTML yang rapi
+        function formatAIAnalysis(analysis) {
+            if (!analysis) return '';
+            
+            // Convert markdown-style formatting to HTML
+            let formatted = analysis
+                // Headers
+                .replace(/\*\*(.+?)\*\*/g, '<strong style="color: var(--color-accent);">$1</strong>')
+                // Numbered lists
+                .replace(/^\d+\.\s+(.+)$/gm, '<div style="margin: var(--space-2) 0; padding-left: var(--space-4); border-left: 2px solid var(--color-accent); font-weight: 600;">$1</div>')
+                // Bullet points
+                .replace(/^-\s+(.+)$/gm, '<li style="margin: var(--space-1) 0; padding-left: var(--space-2);">$1</li>')
+                // Paragraphs
+                .replace(/\n\n/g, '</p><p style="margin: var(--space-3) 0;">')
+                // Line breaks
+                .replace(/\n/g, '<br>');
+            
+            // Wrap in container
+            return `<div style="text-align: left;"><p style="margin: var(--space-3) 0;">${formatted}</p></div>`;
+        }
+
+        // ============================================
         // QUIZ DATA
         // ============================================
         const questions = [
@@ -1033,6 +1212,28 @@
         // RESULTS
         // ============================================
         async function showResults() {
+            // Show loading state first
+            document.getElementById('quiz-progress').classList.add('hidden');
+            document.getElementById('question-container').classList.add('hidden');
+            document.getElementById('result-container').classList.remove('hidden');
+            
+            document.getElementById('result-container').innerHTML = `
+                <div style="padding: var(--space-8); text-align: center;">
+                    <div style="font-size: 60px; margin-bottom: var(--space-4); animation: pulse 1.5s ease-in-out infinite;">🧠</div>
+                    <h2 class="result-title" style="font-size: var(--text-xl); margin-bottom: var(--space-3);">Menganalisis Profil Attachment...</h2>
+                    <p style="color: var(--color-text-muted); margin-bottom: var(--space-4);">Psikolog Klinis AI sedang menganalisis jawabanmu secara mendalam</p>
+                    <div style="width: 200px; height: 4px; background: rgba(255,255,255,0.1); border-radius: var(--radius-full); margin: 0 auto; overflow: hidden;">
+                        <div style="width: 100%; height: 100%; background: linear-gradient(90deg, var(--color-accent), var(--color-secondary)); border-radius: var(--radius-full); animation: loadingBar 2s ease-in-out infinite;"></div>
+                    </div>
+                    <style>
+                        @keyframes loadingBar {
+                            0%, 100% { transform: translateX(-100%); }
+                            50% { transform: translateX(100%); }
+                        }
+                    </style>
+                </div>
+            `;
+            
             // Calculate scores
             const scores = { anchor: 0, island: 0, wave: 0 };
             answers.forEach(answer => {
@@ -1067,10 +1268,14 @@
                 saveStatus = await saveToSupabase(quizResult);
             }
             
-            // Hide quiz elements
-            document.getElementById('quiz-progress').classList.add('hidden');
-            document.getElementById('question-container').classList.add('hidden');
-            document.getElementById('result-container').classList.remove('hidden');
+            // Analyze with KIMI AI
+            let kimiAnalysis = null;
+            try {
+                kimiAnalysis = await analyzeWithKimi(answers, questions, typeResults, primaryType, isMixed ? secondaryType : null, scores);
+            } catch (e) {
+                console.error('Kimi analysis failed:', e);
+                kimiAnalysis = { success: false, error: e.message };
+            }
             
             // Build result HTML
             const container = document.getElementById('result-container');
@@ -1139,6 +1344,26 @@
                     <h4>💕 Tips dengan Pasangan</h4>
                     <p>Jika pasanganmu berbeda tipe, ingat: konflik bukan "dia vs aku", tapi "kita vs perbedaan wiring kita". Komunikasikan tipe kalian dan saling mendukung untuk tumbuh menuju secure functioning.</p>
                 </div>
+                
+                ${kimiAnalysis && kimiAnalysis.success ? `
+                <div class="result-card" style="border-color: var(--color-accent); background: linear-gradient(135deg, rgba(255, 77, 109, 0.05) 0%, rgba(167, 139, 250, 0.05) 100%);">
+                    <div style="display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-4);">
+                        <div style="font-size: 32px;">🧠</div>
+                        <div>
+                            <h4 style="margin: 0; color: var(--color-accent);">Analisis Profesional oleh Psikolog Klinis AI</h4>
+                            <p style="margin: 0; font-size: var(--text-xs); color: var(--color-text-muted);">Powered by KIMI 2.5 Thinking</p>
+                        </div>
+                    </div>
+                    <div class="ai-analysis-content" style="font-size: var(--text-sm); line-height: 1.8; color: var(--color-text-secondary);">
+                        ${formatAIAnalysis(kimiAnalysis.analysis)}
+                    </div>
+                </div>
+                ` : kimiAnalysis ? `
+                <div class="result-card" style="border-color: #ff9800;">
+                    <h4>⚠️ Analisis AI Sementara Tidak Tersedia</h4>
+                    <p style="font-size: var(--text-sm);">Maaf, analisis mendalam oleh Psikolog Klinis AI sedang mengalami gangguan. Hasil attachment type standar tetap valid. Silakan coba muat ulang halaman nanti untuk analisis lengkap.</p>
+                </div>
+                ` : ''}
                 
                 <div class="quiz-nav" style="margin-top: var(--space-6);">
                     <button class="quiz-btn quiz-btn--secondary" onclick="retakeQuiz()">

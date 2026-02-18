@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Module 01: Wave, Anchor, Island | S ♡ N</title>
+    <meta name="description" content="Memahami gaya koneksi kita berdasarkan framework Wave, Anchor, Island.">
+    <meta name="theme-color" content="#0a0a0c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="icon" href="https://fav.farm/⚡">
+    <link rel="apple-touch-icon" href="https://fav.farm/⚡">
+
+    <style>
+        /* Module Page Styles */
+        .module-header-section {
+            padding: calc(var(--space-6) + var(--safe-area-top)) var(--space-4) var(--space-4);
+            text-align: center;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            color: var(--color-text-muted);
+            text-decoration: none;
+            font-size: var(--text-sm);
+            margin-bottom: var(--space-4);
+            transition: color var(--transition-fast);
+        }
+
+        .back-link:hover {
+            color: var(--color-accent);
+        }
+
+        .module-number-badge {
+            display: inline-block;
+            font-family: var(--font-display);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            margin-bottom: var(--space-2);
+        }
+
+        .module-page-title {
+            font-family: var(--font-display);
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            margin-bottom: var(--space-3);
+            background: linear-gradient(135deg, #fff 0%, #aaa 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .module-page-subtitle {
+            font-size: var(--text-base);
+            color: var(--color-text-muted);
+            max-width: 320px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Quote Box */
+        .insight-box {
+            background: linear-gradient(135deg, rgba(255, 77, 109, 0.1) 0%, rgba(77, 158, 255, 0.1) 100%);
+            border: 1px solid rgba(255, 77, 109, 0.2);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+            margin: var(--space-4);
+        }
+
+        .insight-box p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: var(--text-sm);
+            color: var(--color-text);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .insight-box--highlight {
+            background: linear-gradient(135deg, rgba(80, 200, 120, 0.1) 0%, rgba(125, 217, 160, 0.1) 100%);
+            border-color: rgba(80, 200, 120, 0.3);
+        }
+
+        /* Type Cards */
+        .type-section {
+            padding: var(--space-4);
+        }
+
+        .type-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            padding: var(--space-5);
+            margin-bottom: var(--space-4);
+        }
+
+        .type-card--anchor {
+            border-left: 4px solid #50c878;
+        }
+
+        .type-card--island {
+            border-left: 4px solid #4d9eff;
+        }
+
+        .type-card--wave {
+            border-left: 4px solid #ff4d6d;
+        }
+
+        .type-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-4);
+        }
+
+        .type-emoji {
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-lg);
+        }
+
+        .type-title-group {
+            flex: 1;
+        }
+
+        .type-name {
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            font-weight: 700;
+            margin-bottom: var(--space-1);
+        }
+
+        .type-name--anchor { color: #50c878; }
+        .type-name--island { color: #4d9eff; }
+        .type-name--wave { color: #ff4d6d; }
+
+        .type-tagline {
+            font-size: var(--text-sm);
+            color: var(--color-text-muted);
+            font-style: italic;
+        }
+
+        .type-traits {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-2);
+            margin: var(--space-3) 0;
+        }
+
+        .type-trait {
+            font-size: var(--text-xs);
+            padding: var(--space-1) var(--space-3);
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-full);
+            color: var(--color-text-secondary);
+        }
+
+        .type-content h4 {
+            font-family: var(--font-display);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--color-text);
+            margin: var(--space-4) 0 var(--space-2);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .type-content p {
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            margin-bottom: var(--space-3);
+        }
+
+        .type-content strong {
+            color: var(--color-text);
+            font-weight: 600;
+        }
+
+        .type-content em {
+            color: var(--color-accent-light);
+        }
+
+        /* Warning/Success Boxes */
+        .info-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: var(--space-4);
+            margin: var(--space-3) 0;
+        }
+
+        .info-box--warning {
+            border-color: rgba(255, 193, 7, 0.3);
+            background: rgba(255, 193, 7, 0.05);
+        }
+
+        .info-box-title {
+            font-size: var(--text-xs);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: var(--space-2);
+        }
+
+        .info-box--warning .info-box-title {
+            color: #ffc107;
+        }
+
+        .info-box ul {
+            margin: 0;
+            padding-left: var(--space-4);
+        }
+
+        .info-box li {
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            margin-bottom: var(--space-1);
+        }
+
+        /* Comparison Table */
+        .comparison-section {
+            padding: var(--space-4);
+        }
+
+        .comparison-title {
+            font-family: var(--font-display);
+            font-size: var(--text-lg);
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: var(--space-4);
+        }
+
+        .comparison-table-wrapper {
+            overflow-x: auto;
+            margin: 0 calc(-1 * var(--space-4));
+            padding: 0 var(--space-4);
+        }
+
+        .comparison-table {
+            width: 100%;
+            min-width: 400px;
+            border-collapse: collapse;
+            font-size: var(--text-xs);
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: var(--space-3);
+            text-align: left;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .comparison-table th {
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .comparison-table th:first-child {
+            border-radius: var(--radius-md) 0 0 0;
+        }
+
+        .comparison-table th:last-child {
+            border-radius: 0 var(--radius-md) 0 0;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table td {
+            color: var(--color-text-secondary);
+            vertical-align: top;
+        }
+
+        .col-anchor { color: #50c878; }
+        .col-island { color: #4d9eff; }
+        .col-wave { color: #ff4d6d; }
+
+        /* How to Approach Section */
+        .approach-section {
+            padding: var(--space-4);
+        }
+
+        .approach-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            padding: var(--space-5);
+            margin-bottom: var(--space-4);
+        }
+
+        .approach-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-3);
+        }
+
+        .approach-emoji {
+            font-size: 24px;
+        }
+
+        .approach-title {
+            font-family: var(--font-display);
+            font-size: var(--text-base);
+            font-weight: 600;
+        }
+
+        .approach-card p {
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Navigation */
+        .module-nav {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--space-4);
+            margin-top: var(--space-4);
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-5);
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-full);
+            color: var(--color-text);
+            text-decoration: none;
+            font-family: var(--font-display);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            transition: all var(--transition-fast);
+        }
+
+        .nav-btn:hover {
+            background: var(--glass-bg-hover);
+            border-color: var(--color-accent);
+        }
+
+        .nav-btn--primary {
+            background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+            border-color: transparent;
+            color: white;
+        }
+
+        .nav-btn--primary:hover {
+            box-shadow: 0 4px 16px var(--color-accent-glow);
+        }
+
+        /* Progress Indicator */
+        .progress-dots {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-2);
+            padding: var(--space-4);
+        }
+
+        .progress-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: var(--radius-full);
+            background: var(--glass-border-strong);
+        }
+
+        .progress-dot.active {
+            background: var(--color-accent);
+            width: 24px;
+        }
+
+        /* Floating Action Button for mobile */
+        .fab-complete {
+            position: fixed;
+            bottom: calc(80px + var(--safe-area-bottom));
+            left: 50%;
+            transform: translateX(-50%);
+            padding: var(--space-4) var(--space-8);
+            background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+            border: none;
+            border-radius: var(--radius-full);
+            color: white;
+            font-family: var(--font-display);
+            font-size: var(--text-base);
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 8px 24px var(--color-accent-glow);
+            transition: all var(--transition-fast);
+            z-index: 50;
+        }
+
+        .fab-complete:active {
+            transform: translateX(-50%) scale(0.95);
+        }
+
+        .fab-complete.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Ambient Background -->
+    <div class="ambient-bg">
+        <div class="ambient-orb ambient-orb--1"></div>
+        <div class="ambient-orb ambient-orb--2"></div>
+        <div class="ambient-orb ambient-orb--3"></div>
+    </div>
+
+    <!-- Main App Container -->
+    <div class="app-container">
+        
+        <!-- Header -->
+        <header class="module-header-section">
+            <a href="love-maps.html" class="back-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                </svg>
+                Back to Love Maps
+            </a>
+            <div class="module-number-badge">Module 01</div>
+            <h1 class="module-page-title">Wave, Anchor, Island</h1>
+            <p class="module-page-subtitle">Memahami gaya koneksi kita berdasarkan framework Dr. Stan Tatkin</p>
+        </header>
+
+        <!-- Main Quote -->
+        <div class="insight-box">
+            <p>"Kunci hubungan yang sukses bukanlah menemukan pasangan sempurna, tapi memahami <strong>bagaimana</strong> kalian berdua terhubung. Ketika kamu mengenali gaya koneksimu dan pasanganmu, konflik bukan lagi personal — itu hanya perbedaan wiring."</p>
+        </div>
+
+        <!-- Introduction -->
+        <section class="section" style="padding-top: 0;">
+            <div class="moment-card" style="margin: 0 var(--space-4);">
+                <h3 class="moment-title" style="margin-bottom: var(--space-3);">Attachment Theory</h3>
+                <p class="moment-description">
+                    Teori koneksi (attachment theory) pertama kali dikembangkan oleh psikolog <strong>John Bowlby</strong> pada tahun 1960-an. Bowlby mempelajari bagaimana bayi bereaksi saat dipisahkan dari caregiver-nya dan menemukan bahwa cara caregiver merespons kebutuhan bayi akan membentuk "template" hubungan untuk seumur hidup.
+                </p>
+                <p class="moment-description">
+                    <strong>Dr. Stan Tatkin</strong>, dalam bukunya <em>Wired for Dating</em>, menyederhanakan tiga dekade penelitian attachment menjadi tiga tipe yang mudah dipahami: <strong style="color: #50c878;">Anchor</strong> (Jangkar), <strong style="color: #4d9eff;">Island</strong> (Pulau), dan <strong style="color: #ff4d6d;">Wave</strong> (Gelombang).
+                </p>
+            </div>
+        </section>
+
+        <!-- Type: Anchor -->
+        <section class="type-section">
+            <div class="type-card type-card--anchor">
+                <div class="type-header">
+                    <div class="type-emoji">⚓</div>
+                    <div class="type-title-group">
+                        <h2 class="type-name type-name--anchor">Anchor</h2>
+                        <p class="type-tagline">"Dua lebih baik dari satu"</p>
+                    </div>
+                </div>
+                
+                <div class="type-traits">
+                    <span class="type-trait">Secure</span>
+                    <span class="type-trait">Willing to commit</span>
+                    <span class="type-trait">Fully share</span>
+                    <span class="type-trait">Adaptable</span>
+                    <span class="type-trait">Collaborative</span>
+                    <span class="type-trait">Affectionate</span>
+                </div>
+
+                <div class="type-content">
+                    <h4>📋 Karakteristik</h4>
+                    <p>Anchor adalah tipe yang paling <strong>secure</strong> dalam hubungan. Mereka tumbuh dengan caregiver yang responsif, sehingga internalize bahwa dunia adalah tempat yang aman dan orang lain bisa diandalkan.</p>
+                    <p>Mereka merasa aman sebagai individu dan dalam hubungan, tidak takut komitmen, bisa berbagi secara penuh dengan pasangan, dan cenderung bahagia secara umum.</p>
+
+                    <h4>👶 Masa Kecil</h4>
+                    <p>Anchor berasal dari lingkungan keluarga yang:</p>
+                    <div class="info-box">
+                        <ul>
+                            <li>Menempatkan <strong>hubungan di atas segalanya</strong></li>
+                            <li>Setidaknya satu caregiver yang <strong>fully present</strong> dan tersedia</li>
+                            <li>Caregiver <strong>affectionate</strong> — suka memeluk, mencium</li>
+                            <li>Menghabiskan waktu <strong>face-to-face, eye-to-eye, skin-to-skin</strong></li>
+                            <li>Saat anak marah/sedih, caregiver <strong>menenangkan dengan efektif</strong></li>
+                        </ul>
+                    </div>
+
+                    <h4>💪 Dalam Konflik</h4>
+                    <p>Mencari solusi win-win, tidak defensive secara berlebihan, tetap terhubung meski sedang marah, dan bisa mengatakan "aku memilihmu" tanpa ragu.</p>
+
+                    <div class="info-box info-box--warning">
+                        <div class="info-box-title">⚠️ Tapi Anchor Juga Bisa...</div>
+                        <ul>
+                            <li>Membuat lelucon yang tidak lucu</li>
+                            <li>Terlambat ke janji</li>
+                            <li>Lupa mematikan lampu</li>
+                            <li>Menyebalkan dalam hal-hal kecil</li>
+                        </ul>
+                    </div>
+                    <p>Tapi mereka <strong>resilient</strong> — punya sumber daya internal yang kuat karena merasa <em>tethered</em> (terikat) pada seseorang.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Type: Island -->
+        <section class="type-section">
+            <div class="type-card type-card--island">
+                <div class="type-header">
+                    <div class="type-emoji">🏝️</div>
+                    <div class="type-title-group">
+                        <h2 class="type-name type-name--island">Island</h2>
+                        <p class="type-tagline">"Aku bisa melakukannya sendiri"</p>
+                    </div>
+                </div>
+
+                <div class="type-traits">
+                    <span class="type-trait">Independent</span>
+                    <span class="type-trait">Detail-oriented</span>
+                    <span class="type-trait">Logical</span>
+                    <span class="type-trait">Performance-focused</span>
+                    <span class="type-trait">Self-soothing</span>
+                </div>
+
+                <div class="type-content">
+                    <h4>🎭 Paradoks Island</h4>
+                    <p>Di permukaan, Island tampak mandiri, tidak butuh siapa-siapa, dan <em>low maintenance</em>. Tapi <strong>paradoksnya</strong>: Island seringkali adalah tipe yang <strong>paling membutuhkan</strong> pasangan, hanya saja mereka <em>tidak tahu</em> cara menerima kebutuhan itu.</p>
+
+                    <h4>👶 Masa Kecil</h4>
+                    <p>Island tumbuh dalam keluarga yang:</p>
+                    <div class="info-box">
+                        <ul>
+                            <li>Menekankan <strong>performa, kecerdasan, bakat, penampilan</strong></li>
+                            <li><strong>Menghambat dependency</strong> — anggap kebutuhan itu aib</li>
+                            <li>Caregiver bisa <strong>dingin, meremehkan, atau dismissive</strong></li>
+                            <li>Saat anak sedih, caregiver memberi <strong>uang/mainan</strong> alih-alih perhatian</li>
+                            <li>Saat anak kesakitan, caregiver <strong>mengabaikan atau mengkritik</strong></li>
+                        </ul>
+                    </div>
+
+                    <h4>😰 Kenapa Island Menjauh?</h4>
+                    <p>Saat stres, Island masuk ke <strong>distancing group</strong> — menjauh dari orang lain. Ini karena:</p>
+                    <div class="info-box info-box--warning">
+                        <ul>
+                            <li><strong>Hubungan dekat = Stres:</strong> Hubungan intim membawa terlalu banyak ancaman yang kabur</li>
+                            <li><strong>Self-soothing otomatis:</strong> Refleks mereka adalah menenangkan diri sendiri, bukan mencari pasangan</li>
+                            <li><strong>Takut kehilangan otonomi:</strong> Island sangat sensitif terhadap perasaan terjebak</li>
+                        </ul>
+                    </div>
+
+                    <h4>⚠️ Warning Signs dalam Hubungan</h4>
+                    <div class="info-box">
+                        <ul>
+                            <li>Sering lupa janji atau "lupa" memberi tahu kemana perginya</li>
+                            <li>Saat ada masalah, menghilang atau merenung sendiri</li>
+                            <li>Sulit bertransisi dari aktivitas solo ke interaksi dengan pasangan</li>
+                            <li>Saat dipeluk terlalu lama, mulai gelisah</li>
+                            <li>Saat ditanya "Kamu kenapa?", jawabannya "Tidak apa-apa"</li>
+                        </ul>
+                    </div>
+
+                    <h4>✅ Strengths</h4>
+                    <p>Sangat bisa diandalkan dalam krisis, tidak membuat drama yang tidak perlu, menghargai waktu sendiri pasangan, dan produktif.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Type: Wave -->
+        <section class="type-section">
+            <div class="type-card type-card--wave">
+                <div class="type-header">
+                    <div class="type-emoji">🌊</div>
+                    <div class="type-title-group">
+                        <h2 class="type-name type-name--wave">Wave</h2>
+                        <p class="type-tagline">"Aku tidak bisa tanpamu"</p>
+                    </div>
+                </div>
+
+                <div class="type-traits">
+                    <span class="type-trait">Generous</span>
+                    <span class="type-trait">Emotionally sensitive</span>
+                    <span class="type-trait">People-oriented</span>
+                    <span class="type-trait">Clinging</span>
+                    <span class="type-trait">Ambivalent</span>
+                </div>
+
+                <div class="type-content">
+                    <h4>📋 Karakteristik</h4>
+                    <p>Wave adalah tipe yang paling <strong>emotional</strong> dan <strong>relational</strong>. Mereka hidup untuk koneksi, tapi seringkali takut akan kehilangannya. Takut <strong>abandonment</strong> (ditinggal) secara intens.</p>
+
+                    <h4>🎭 Paradoks Wave: Mendekat tapi Mendorong</h4>
+                    <p>Wave punya pola yang membingungkan:</p>
+                    <div class="info-box">
+                        <ul>
+                            <li><strong>Cling</strong> — mendekat, ingin perhatian, manja</li>
+                            <li><strong>Push away</strong> — tiba-tiba marah, menyindir, atau mengancam pergi</li>
+                            <li><strong>Test</strong> — "Kalau aku pergi, apakah dia mengejar?"</li>
+                            <li><strong>Want pursuit</strong> — sebenarnya ingin pasangan mengejar dan membuktikan cinta</li>
+                        </ul>
+                    </div>
+
+                    <h4>💡 Mengapa Wave Melakukan Ini?</h4>
+                    <p>Ini adalah <strong>test of love</strong>. Wave belajar dari pengalaman masa kecil bahwa cinta itu:</p>
+                    <div class="info-box info-box--warning">
+                        <ul>
+                            <li>Tidak konsisten</li>
+                            <li>Harus diperjuangkan</li>
+                            <li>Bisa hilang kapan saja</li>
+                        </ul>
+                    </div>
+                    <p>Jadi mereka menciptakan situasi untuk membuktikan bahwa "Dia benar-benar peduli" dengan membuat pasangan <strong>mengejar</strong> mereka.</p>
+
+                    <h4>👶 Masa Kecil</h4>
+                    <p>Wave tumbuh dalam keluarga yang:</p>
+                    <div class="info-box">
+                        <ul>
+                            <li>Caregiver <strong>membutuhkan perhatian anak</strong> untuk merasa lebih baik (role reversal)</li>
+                            <li>Caregiver <strong>kadang sangat perhatian, kadang tidak tersedia</strong> (inconsistent)</li>
+                            <li>Saat anak sedih, caregiver <strong>memfokuskan pada emosi sendiri</strong></li>
+                            <li>Caregiver <strong>mudah tersinggung, sering kewalahan, atau menghukum</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison Table -->
+        <section class="comparison-section">
+            <h3 class="comparison-title">📊 Quick Reference</h3>
+            <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Aspek</th>
+                            <th class="col-anchor">⚓ Anchor</th>
+                            <th class="col-island">🏝️ Island</th>
+                            <th class="col-wave">🌊 Wave</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Saat Stres</strong></td>
+                            <td>Cari solusi bersama</td>
+                            <td>Menjauh, butuh ruang</td>
+                            <td>Mengejar, emosional</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ketakutan Terbesar</strong></td>
+                            <td>Kehilangan koneksi</td>
+                            <td>Terjebak, kehilangan otonomi</td>
+                            <td>Ditinggal, tidak dicintai</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Recharge Energy</strong></td>
+                            <td>Sendiri/bareng sama aja</td>
+                            <td>Wajib me-time sendiri</td>
+                            <td>Butuh bareng pasangan</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cara Minta Sayang</strong></td>
+                            <td>Langsung & jelas</td>
+                            <td>Tidak minta — "aku fine"</td>
+                            <td>Kadang nge-test dulu</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dalam Konflik</strong></td>
+                            <td>Kolaboratif, repair cepat</td>
+                            <td>Menghindar atau menyerang</td>
+                            <td>Emosional, kadang ancam putus</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kontak Fisik</strong></td>
+                            <td>Natural, nyaman</td>
+                            <td>Canggung, terukur</td>
+                            <td>Banyak, memerlukan</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- How to Approach -->
+        <section class="approach-section">
+            <h3 class="section-title" style="text-align: center; margin-bottom: var(--space-4);">💡 Cara Menghadapi Masing-Masing Tipe</h3>
+            
+            <div class="approach-card">
+                <div class="approach-header">
+                    <span class="approach-emoji">⚓</span>
+                    <h4 class="approach-title" style="color: #50c878;">Jika Pasanganmu Anchor</h4>
+                </div>
+                <p>Bagus! Dia paling mudah diajak kerja sama. Tetap lakukan maintenance — jangan anggap remeh. Gunakan sebagai "secure base" untuk tumbuh bersama.</p>
+            </div>
+
+            <div class="approach-card">
+                <div class="approach-header">
+                    <span class="approach-emoji">🏝️</span>
+                    <h4 class="approach-title" style="color: #4d9eff;">Jika Pasanganmu Island</h4>
+                </div>
+                <p>Jangan <em>crowd</em> (terlalu mendesak) — beri ruang. Jangan ambil penarikan diri secara personal. Beri reassurance: "Aku akan selalu di sini". Ajak bicara saat dia <em>sudah</em> recharge, bukan saat dia menarik diri. Hindari kesan "needy" atau "controlling".</p>
+            </div>
+
+            <div class="approach-card">
+                <div class="approach-header">
+                    <span class="approach-emoji">🌊</span>
+                    <h4 class="approach-title" style="color: #ff4d6d;">Jika Pasanganmu Wave</h4>
+                </div>
+                <p>Jangan biarkan dia merasa ditinggal. Beri banyak reassurance verbal dan fisik. Saat dia marah/withdraw, <strong>kejar dengan lembut</strong> (gentle pursuit). Validasi perasaannya sebelum memberi solusi. Jangan bilang "tenang" atau "jangan terlalu sensitif".</p>
+            </div>
+        </section>
+
+        <!-- Quiz CTA -->
+        <section class="section" style="padding-top: 0;">
+            <a href="module-01-quiz.html" class="moment-card" style="display: block; text-decoration: none; color: inherit; border-color: var(--color-accent); box-shadow: 0 0 30px rgba(255, 77, 109, 0.15);">
+                <div style="display: flex; align-items: center; gap: var(--space-4);">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-secondary) 100%); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; font-size: 30px; flex-shrink: 0;">
+                        ❓
+                    </div>
+                    <div style="flex: 1;">
+                        <h3 class="moment-title" style="margin-bottom: var(--space-1); color: var(--color-accent);">Quiz: What's Your Type?</h3>
+                        <p class="moment-description" style="margin-bottom: 0;">
+                            Temukan tipe attachment style-mu dalam 8 pertanyaan. Apakah kamu Anchor, Island, atau Wave?
+                        </p>
+                    </div>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="color: var(--color-accent); flex-shrink: 0;">
+                        <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+                    </svg>
+                </div>
+            </a>
+        </section>
+
+        <!-- Quiz CTA -->
+        <section class="section" style="padding-top: 0;">
+            <a href="module-01-quiz.html" class="moment-card" style="display: block; text-decoration: none; color: inherit; border-color: var(--color-accent); box-shadow: 0 0 30px rgba(255, 77, 109, 0.15);">
+                <div style="display: flex; align-items: center; gap: var(--space-4);">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-secondary) 100%); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; font-size: 30px; flex-shrink: 0;">
+                        ❓
+                    </div>
+                    <div style="flex: 1;">
+                        <h3 class="moment-title" style="margin-bottom: var(--space-1); color: var(--color-accent);">Quiz: What's Your Type?</h3>
+                        <p class="moment-description" style="margin-bottom: 0;">
+                            Temukan tipe attachment style-mu dalam 8 pertanyaan. Apakah kamu Anchor, Island, atau Wave?
+                        </p>
+                    </div>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="color: var(--color-accent); flex-shrink: 0;">
+                        <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+                    </svg>
+                </div>
+            </a>
+        </section>
+
+        <!-- Key Takeaway -->
+        <div class="insight-box insight-box--highlight">
+            <p>"Tidak peduli tipe aslimu apa, <strong>setiap orang</strong> bisa bergerak menuju <em>secure functioning</em>. Ini bukan tentang mengubah dirimu jadi orang lain, tapi tentang <strong>kesadaran</strong> akan wiring-mu, <strong>kesediaan</strong> untuk bertanggung jawab atas reaksi-mu, dan <strong>kesepakatan</strong> dengan pasangan untuk saling mendukung."</p>
+        </div>
+
+        <!-- Progress Dots -->
+        <div class="progress-dots">
+            <div class="progress-dot active"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="module-nav">
+            <a href="love-maps.html" class="nav-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                </svg>
+                Back
+            </a>
+            <a href="module-02-brain.html" class="nav-btn nav-btn--primary">
+                Next Module
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+                </svg>
+            </a>
+        </div>
+
+        <!-- Footer Spacing -->
+        <div style="height: 120px;"></div>
+    </div>
+
+    <!-- Floating Complete Button -->
+    <button class="fab-complete" onclick="completeModule()">
+        ✅ Mark as Complete
+    </button>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <div class="bottom-nav__items" style="justify-content: space-evenly;">
+            <a href="index.html" class="bottom-nav__item">
+                <svg class="bottom-nav__icon" viewBox="0 0 24 24">
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                </svg>
+                <span class="bottom-nav__label">Home</span>
+            </a>
+            <a href="moments.html" class="bottom-nav__item">
+                <svg class="bottom-nav__icon" viewBox="0 0 24 24">
+                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5.04-6.71l-2.75 3.54-1.96-2.36L6.5 17h11l-3.54-4.71z"/>
+                </svg>
+                <span class="bottom-nav__label">Moments</span>
+            </a>
+            <a href="love-maps.html" class="bottom-nav__item bottom-nav__item--active">
+                <svg class="bottom-nav__icon" viewBox="0 0 24 24">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+                <span class="bottom-nav__label">Love Maps</span>
+            </a>
+        </div>
+    </nav>
+
+    <script>
+        // Scroll handler for FAB
+        let lastScroll = 0;
+        const fab = document.querySelector('.fab-complete');
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            
+            // Show FAB only when near bottom
+            if (currentScroll + windowHeight > documentHeight - 200) {
+                fab.classList.remove('hidden');
+            } else {
+                fab.classList.add('hidden');
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Complete module handler
+        function completeModule() {
+            // Save progress to localStorage
+            const progress = JSON.parse(localStorage.getItem('loveMapsProgress') || '{}');
+            progress.module01 = true;
+            localStorage.setItem('loveMapsProgress', JSON.stringify(progress));
+            
+            // Show feedback
+            fab.innerHTML = '🎉 Completed!';
+            fab.style.background = 'linear-gradient(135deg, #50c878 0%, #7dd9a0 100%)';
+            
+            setTimeout(() => {
+                window.location.href = 'love-maps.html';
+            }, 1000);
+        }
+
+        // Check if already completed
+        const progress = JSON.parse(localStorage.getItem('loveMapsProgress') || '{}');
+        if (progress.module01) {
+            fab.innerHTML = '✅ Completed';
+            fab.style.background = 'linear-gradient(135deg, #50c878 0%, #7dd9a0 100%)';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,606 @@
+\chapter{Upaya Perbaikan (Repair Attempts): Menghentikan Spiral Negatif}
+
+\begin{insightbox}
+\textit{``Pasangan bahagia juga bertengkar. Bedanya, mereka mahir dalam \textbf{repair attempts} --- sinyal-sinyal halus (maupun jelas) yang menghentikan konflik sebelum melukai. Tanpa kemampuan ini, pernikahan bagaikan mobil tanpa rem: cepat atau lambat akan celaka.''}
+\end{insightbox}
+
+\section{Apa itu Repair Attempt?}
+
+\keyterm{Repair attempt} adalah \textbf{segala pernyataan atau tindakan} yang bertujuan menghentikan eskalasi negativitas selama konflik. Ini adalah ``rem darurat'' dalam hubungan --- cara untuk mengatakan \textit{``Stop, kita perlu mengurangi kecepatan sebelum terlambat.''}
+
+\begin{praktikbox}[Definisi Repair Attempt]
+Menurut penelitian Dr. John Gottman:
+\begin{itemize}
+    \item \textbf{Fungsi utama:} Mencegah negativitas meluap dari kontrol
+    \item \textbf{Waktu:} Bisa dilakukan kapan saja selama konflik
+    \item \textbf{Bentuk:} Bisa verbal, non-verbal, humor, atau fisik
+    \item \textbf{Kunci:} Suksesnya bergantung pada \textbf{kekuatan persahabatan} di baliknya
+\end{itemize}
+\end{praktikbox}
+
+\subsection{Analogi: Repair Attempt sebagai Rem Mobil}
+
+Bayangkan mengemudi di jalan berliku:
+\begin{itemize}
+    \item \textbf{Tanpa rem:} Mobil akan terus melaju meski ada tikungan tajam --- celaka hanya masalah waktu
+    \item \textbf{Rem tidak berfungsi:} Kamu tekan rem, tapi tidak terjadi apa-apa
+    \item \textbf{Rem berfungsi baik:} Sekali tekan, mobil melambat dengan aman
+\end{itemize}
+
+Dalam hubungan:
+\begin{itemize}
+    \item \textbf{Tidak ada repair habit:} Konflik kecil jadi besar, besar jadi monster
+    \item \textbf{Repair gagal:} Kamu mencoba memperbaiki, tapi pasangan tidak ``mendengar''
+    \item \textbf{Repair sukses:} Konflik dihentikan, koneksi dipulihkan, solusi ditemukan
+\end{itemize}
+
+\section{Ilmu di Balik Repair Attempts}
+
+\subsection{Prediktor Kekuatan Pernikahan}
+
+Penelitian Gottman menemukan fakta mengejutkan:
+
+\begin{warningbox}[Data Penelitian]
+\begin{itemize}
+    \item Keberhasilan \textbf{repair attempts} adalah salah satu \textbf{faktor utama} yang membedakan pernikahan yang berkembang vs yang gagal
+    \item Kehadiran Empat Kuda Jelajah (Four Horsemen) memprediksi perceraian dengan akurasi 82\%
+    \item \textbf{Tetapi} ketika ditambahkan \textbf{kegagalan repair attempts}, akurasi prediksi naik ke 90\%+
+    \item Artinya: Pasangan bisa punya konflik intens, tapi jika repair attempts mereka berhasil, pernikahan tetap stabil
+\end{itemize}
+\end{warningbox}
+
+\subsection{Feedback Loop: Konflik dan Repair}
+
+\begin{center}
+\begin{tikzpicture}[
+    node distance=1.8cm,
+    box/.style={draw=#1, rounded corners=10pt, fill=#1!10, 
+                minimum width=4cm, minimum height=1.5cm, align=center},
+    arrow/.style={->, line width=2pt}
+]
+    % Nodes
+    \node[box=accent] (konflik) {Konflik};
+    \node[box=warmgray, right=of konflik] (repair) {Repair\\Attempt};
+    \node[box=sagegreen, right=of repair] (sukses) {Repair\\Diterima};
+    \node[box=softpink, below=of konflik] (negatif) {Negativitas\\Menumpuk};
+    \node[box=accent, right=of negatif] (gagal) {Repair\\Ditolak};
+    \node[box=warmgray, right=of gagal] (4h) {Empat Kuda\\Mengamuk};
+    
+    % Arrows - Success path
+    \draw[arrow, sagegreen] (konflik) -- (repair);
+    \draw[arrow, sagegreen] (repair) -- (sukses);
+    \draw[arrow, sagegreen, bend right=30] (sukses.south) to node[below, font=\small] {De-escalation} (konflik.south);
+    
+    % Arrows - Failure path
+    \draw[arrow, accent] (konflik) -- (negatif);
+    \draw[arrow, accent] (negatif) -- (gagal);
+    \draw[arrow, accent] (gagal) -- (4h);
+    \draw[arrow, accent, bend left=30] (4h.north) to node[above, font=\small] {Loop negatif} (repair.north);
+\end{tikzpicture}
+\end{center}
+
+\begin{insightbox}
+\textbf{Paradoks Repair Attempts:}
+
+Pasangan dalam pernikahan bermasalah \textbf{justru lebih sering} mencoba repair attempts daripada pasangan bahagia. Tapi karena setiap repair gagal, mereka harus mencoba lagi dan lagi --- penuh kepanikan dan keputusasaan.
+
+Bedanya: Dalam pernikahan bahagia, \textbf{satu} repair attempt sederhana cukup. Dalam pernikahan bermasalah, bahkan repair yang paling elegan pun ditolak.
+\end{insightbox}
+
+\section{Tipe-tipe Repair Attempts}
+
+\subsection{1. Repair Verbal: Kata-kata yang Menyembuhkan}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabular}{|>{\raggedright}p{3.5cm}|>{\raggedright}p{5cm}|>{\raggedright\arraybackslash}p{6cm}|}
+\hline
+\rowcolor{primary!20}
+\textbf{Kategori} & \textbf{Contoh Kalimat} & \textbf{Kapan Digunakan} \\
+\hline
+\textbf{Minta Maaf} & ``Maaf aku defensive tadi'' & Saat sadar reaksi berlebihan \\
+\hline
+\textbf{Minta Waktu} & ``Bisa kita pause 10 menit? Aku butuh menenangkan diri'' & Saat merasa flooding \\
+\hline
+\textbf{Validasi} & ``Aku mengerti kenapa kamu marah'' & Saat pasangan merasa tidak didengar \\
+\hline
+\textbf{Ambil Tanggung Jawab} & ``Ini salahku juga, aku ikut andil'' & Saat diskusi terasa menyalahkan \\
+\hline
+\textbf{Minta Ulang} & ``Bisa kita mulai ulang? Aku tidak mau bertengkar'' & Saat start-up terlalu keras \\
+\hline
+\textbf{Ingatkan Ikatan} & ``Kita tim, ingat? Aku cinta kamu'' & Saat konflik terasa personal \\
+\hline
+\textbf{Konteks Eksternal} & ``Ini bukan tentangmu, aku stres kerja'' & Saat emosi berasal dari faktor luar \\
+\hline
+\textbf{Tanya Perasaan} & ``Kamu merasa gimana sekarang?'' & Saat butuh mengalihkan ke empati \\
+\hline
+\textbf{Akui Usaha} & ``Aku tahu kamu cuma mau yang terbaik'' & Saat pasangan defensive \\
+\hline
+\textbf{Humor Ringan} & ``Kita kayak tetangga yang berantem lagi'' & Saat tensi masih bisa dijokeskan \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{tipbox}[20+ Frasa Repair Verbal]
+\textbf{I FEEL (Mengekspresikan Emosi):}
+\begin{enumerate}[itemsep=0.1cm]
+    \item ``Aku merasa sedih...''
+    \item ``Aku merasa tersakiti...''
+    \item ``Aku merasa marah...''
+    \item ``Aku merasa takut...''
+    \item ``Aku merasa malu...''
+    \item ``Aku merasa tidak dihargai...''
+\end{enumerate}
+
+\textbf{SORRY (Meminta Maaf):}
+\begin{enumerate}[itemsep=0.1cm]
+    \item ``Maaf, aku defensive tadi...''
+    \item ``Maaf, aku tidak dengar dengan baik...''
+    \item ``Maaf, aku melebih-lebihkan...''
+    \item ``Maaf, aku membuat ini jadi personal...''
+    \item ``Maaf, aku lebay tadi...''
+\end{enumerate}
+
+\textbf{NEED (Mengungkapkan Kebutuhan):}
+\begin{enumerate}[itemsep=0.1cm]
+    \item ``Aku butuh kamu mendengar dulu...''
+    \item ``Aku butuh istirahat sebentar...''
+    \item ``Aku butuh kamu percaya padaku...''
+    \item ``Aku butuh pelukan...''
+    \item ``Aku butuh waktu untuk berpikir...''
+\end{enumerate}
+\end{tipbox}
+
+\subsection{2. Repair Non-Verbal: Bahasa Tanpa Kata}
+
+Terkadang, kata-kata terlalu berisik. Non-verbal repairs adalah sinyal tubuh yang menyatakan: \textit{``Aku masih di sini. Aku masih peduli.''}
+
+\begin{praktikbox}[Repair Non-Verbal yang Efektif]
+\textbf{Gestur:}
+\begin{itemize}
+    \item \textbf{Menyentuh:} Pegang tangan di tengah argumen, elus punggung, tempelkan kaki
+    \item \textbf{Kontak mata lembut:} Tidak menatap tajam, tapi memohon dengan mata
+    \item \textbf{Mengangguk:} Menunjukkan ``aku mendengar'' meski tidak setuju
+    \item \textbf{Ekspresi wajah melembut:} Relaxing otot wajah, senyum tipis
+    \item \textbf{Buka tangan:} Menunjukkan tidak defensif, tidak menyerang
+\end{itemize}
+
+\textbf{Fisik:}
+\begin{itemize}
+    \item \textbf{Peluk:} Bahkan peluk singkat bisa meredakan amarah
+    \item \textbf{Dekatkan tubuh:} Geser lebih dekat meski sedang berbeda pendapat
+    \item \textbf{Buat minuman:} Buatkan teh/kopi sebagai peace offering
+    \item \textbf{Tepuk tangan:} Bentuk solidarity, ``kita di tim yang sama''
+\end{itemize}
+\end{praktikbox}
+
+\subsection{3. Repair Berbasis Humor: Tawa Menyelamatkan}
+
+Humor adalah \textbf{senjata ampuh} untuk de-escalation --- tapi hanya jika digunakan dengan benar.
+
+\begin{warningbox}[Aturan Humor sebagai Repair]
+\textbf{\textcolor{sagegreen}{Boleh:}}
+\begin{itemize}
+    \item Self-deprecating humor (mengejek diri sendiri)
+    \item Mengingat momen lucu bersama
+    \item Ekspresi wajah kocak (muka monyet, menjulurkan lidah)
+    \item Referensi internal (``Kita kayak adegan di film itu'')
+\end{itemize}
+
+\textbf{\textcolor{accent}{Jangan:}}
+\begin{itemize}
+    \item Sarcasm yang menyakitkan
+    \item Mengejek pasangan
+    \item Humor yang meminimalkan perasaan pasangan
+    \item ``Candaan'' yang sebenarnya serangan terselubung
+\end{itemize}
+\end{warningbox}
+
+\begin{exercisebox}[Contoh Humor Repair]
+\textbf{Skenario:} Pasangan bertengkar tentang siapa yang lupa mematikan kompor.
+
+\textbf{Repair yang efektif:}
+\begin{itemize}
+    \item Suami meniru suara alarm kebakaran dengan muka lucu
+    \item Istri: ``Kalau rumah terbakar, minimal kita hangus bersama'' (sambil tersenyum)
+    \item Salah satu menjulurkan lidah dan bilang ``My bad!''
+\end{itemize}
+
+\textbf{Hasil:} Tawa pecah, tensi turun, kompor bisa didiskusikan dengan rasional.
+\end{exercisebox}
+
+\subsection{4. Repair Berbasis Afeksi: Kasih Sayang di Tengah Badai}
+
+Ini adalah repair paling kuat karena melibatkan \textbf{oxytocin} --- hormon bonding.
+
+\begin{tipbox}[Affection-Based Repairs]
+\textbf{Ringan:}
+\begin{itemize}
+    \item ``Meski kita bertengkar, aku cinta kamu''
+    \item ``Aku kesal, tapi aku tidak akan pergi''
+    \item Menyentuh lengan sambil berbicara
+\end{itemize}
+
+\textbf{Intens:}
+\begin{itemize}
+    \item ``Pause sebentar, bisa aku peluk dulu?''
+    \item Pelukan penuh di tengah argumen
+    \item Ciuman dahi sebagai tanda ``kita aman''
+    \item ``Kamu masih mau jadi partnerku kan?''
+\end{itemize}
+\end{tipbox}
+
+\section{Mengapa Repair Attempts Gagal?}
+
+\subsection{Empat Kuda Jelajah: Penghalang Repair}
+
+Empat perilaku destruktif ini membuat repair attempts tidak terdengar:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|>{\raggedright}p{3cm}|>{\raggedright}p{6cm}|>{\raggedright\arraybackslash}p{6cm}|}
+\hline
+\rowcolor{accent!20}
+\textbf{Kuda Jelajah} & \textbf{Efek pada Repair} & \textbf{Contoh} \\
+\hline
+\textbf{Criticism} & Pasangan mendengar kritik personal, bukan request perbaikan & ``Kamu selalu... Kamu tidak pernah...'' \\
+\hline
+\textbf{Contempt} & Rasa superioritas membuat pasangan tidak mau menerima repair & Eyeroll, sarcasm, ``Dasar lelaki...'' \\
+\hline
+\textbf{Defensiveness} & Setiap repair diterjemahkan sebagai serangan baru & ``Tapi kamu juga...'' ``Itu bukan salahku...'' \\
+\hline
+\textbf{Stonewalling} & Tidak ada yang bisa masuk --- termasuk repair attempts & Diam total, pergi, atau shutdown \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{warningbox}[The Flooding Effect]
+Ketika seseorang dalam keadaan \textbf{flooded} (jantung berdebar >100 bpm, tubuh penuh adrenalin):
+\begin{itemize}
+    \item Sistem saraf simpatik aktif --- mode fight/flight/freeze
+    \item \textbf{Otak rasional (prefrontal cortex) offline}
+    \item Tidak bisa memproses informasi kompleks
+    \item \textbf{Semua repair attempts terdengar seperti noise}
+\end{itemize}
+
+\textbf{Solusi:} \textit{Timeout} --- berhenti sampai fisiologi kembali normal (20 menit minimal).
+\end{warningbox}
+
+\section{Self-Assessment: Apakah Kamu Mengenali Repair Attempts?}
+
+\begin{exercisebox}[Quiz: Deteksi Repair Attempts]
+\textbf{Petunjuk:} Baca skenario berikut. Apakah ini \textbf{repair attempt} atau bukan?
+
+\textbf{Skenario 1:}
+Pasanganmu berkata dengan nada kesal: ``Bisa kita stop sebentar? Aku pusing.''
+
+\textit{Jawaban:} \textbf{YA, ini repair!} Meski nadanya kesal, intinya adalah permintaan untuk de-escalation.
+
+\textbf{Skenario 2:}
+Pasanganmu: ``Dasar kamu memang begitu, gak pernah bisa berubah!''
+
+\textit{Jawaban:} \textbf{BUKAN, ini criticism + contempt.} Tidak ada niat perbaikan, hanya serangan.
+
+\textbf{Skenario 3:}
+Di tengah argumen, pasanganmu tiba-tiba meniru suara bebek.
+
+\textit{Jawaban:} \textbf{YA, ini repair!} Humor adalah repair attempt yang valid.
+
+\textbf{Skenario 4:}
+Pasanganmu: ``Maaf ya aku defensive, coba lanjutkan.''
+
+\textit{Jawaban:} \textbf{YA, ini repair!} Pengakuan dan tanggung jawab adalah repair kuat.
+
+\textbf{Skenario 5:}
+Pasanganmu berbalik dan pergi ke kamar tanpa kata.
+
+\textit{Jawaban:} \textbf{BUKAN, ini stonewalling.} Meski mungkin dia butuh break, cara ini tidak komunikatif dan merusak.
+\end{exercisebox}
+
+\section{Cara Membuat Repair Attempts}
+
+\subsection{Langkah-langkah Praktis}
+
+\begin{praktikbox}[Panduan Step-by-Step]
+\textbf{Step 1: Deteksi Tanda Bahaya}
+\begin{itemize}
+    \item Sadari saat detak jantung meningkat
+    \item Perhatikan nada suara memanas
+    \item Ingat: Lebih baik repair \textbf{terlalu dini} daripada \textbf{terlambat}
+\end{itemize}
+
+\textbf{Step 2: Pilih Repair yang Tepat}
+\begin{itemize}
+    \item Jika masih tenang: Verbal langsung
+    \item Jika tensi naik: Non-verbal atau humor
+    \item Jika flooding: Minta timeout
+\end{itemize}
+
+\textbf{Step 3: Sampaikan dengan Jelas}
+\begin{itemize}
+    \item Gunakan \textbf{formal repair phrase} jika perlu
+    \item Katakan: ``Ini adalah repair attempt'' untuk memperjelas
+\end{itemize}
+
+\textbf{Step 4: Tunggu Respon}
+\begin{itemize}
+    \item Beri pasangan waktu untuk menerima
+    \item Jika repair ditolak, coba sekali lagi dengan cara berbeda
+    \item Jika tetap ditolak: Ambil timeout
+\end{itemize}
+\end{praktikbox}
+
+\section{Cara Menerima Repair Attempts}
+
+\subsection{Mindset Penerimaan}
+
+\begin{insightbox}
+\textbf{Golden Rule of Receiving Repairs:}
+
+\textit{``Terima usaha, bukan eloquence.''}
+
+Sebuah repair attempt yang canggung tapi tulus jauh lebih berharga daripada kata-kata indah tanpa niat baik.
+\end{insightbox}
+
+\begin{tipbox}[Cara Menerima Repair]
+\textbf{DO:}
+\begin{itemize}
+    \item \textbf{Berhenti berbicara} --- bahkan di tengah kalimat
+    \item \textbf{Akui repair:} ``Terima kasih sudah ingatkan''
+    \item \textbf{Resiprositas:} Tawarkan repair balik jika perlu
+    \item \textbf{Gunakan non-verbal:} Angguk, senyum, dekati tubuh
+\end{itemize}
+
+\textbf{DON'T:}
+\begin{itemize}
+    \item Abaikan dan lanjutkan argumen
+    \item Kritik cara repair (``Itu bukan cara minta maaf yang benar'')
+    \item Gunakan repair sebagai kesempatan untuk menyerang (``Ya, memang kamu yang salah!'')
+    \item Anggap repair sebagai tanda kelemahan
+\end{itemize}
+\end{tipbox}
+
+\section{Repair Scripts untuk Situasi Umum}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{|>{\raggedright}p{4cm}|>{\raggedright\arraybackslash}p{11cm}|}
+\hline
+\rowcolor{sagegreen!20}
+\textbf{Situasi} & \textbf{Script Repair} \\
+\hline
+\textbf{Harsh Start-up} & ``Bisa kita mulai ulang? Aku tidak mau kita bertengkar.'' \\
+\hline
+\textbf{Defensiveness} & ``Kamu benar, aku defensive. Coba katakan lagi, aku akan dengar dengan lebih baik.'' \\
+\hline
+\textbf{Flooding} & ``Aku butuh break 20 menit. Aku janji kita akan lanjutkan ini.'' \\
+\hline
+\textbf{Menyalahkan} & ``Ini bukan hanya salahmu. Aku juga berkontribusi.'' \\
+\hline
+\textbf{Contempt terdeteksi} & ``Aku rasa aku terdengar menghina tadi. Maaf, itu tidak fair.'' \\
+\hline
+\textbf{Stonewalling} & ``Aku diam karena aku overwhelmed, bukan karena aku tidak peduli.'' \\
+\hline
+\textbf{Topik melebar} & ``Sepertinya kita melebar dari topik. Bisa kita fokus ke [spesifik]?'' \\
+\hline
+\textbf{Membawa masa lalu} & ``Sebaiknya kita fokus pada masalah sekarang, bukan yang sudah lewat.'' \\
+\hline
+\textbf{Membawa orang ketiga} & ``Ini tentang kita, bukan tentang [nama orang]. Mari fokus.'' \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Repair Attempts berdasarkan Attachment Style}
+
+\begin{praktikbox}[Repair untuk Island (Pulau)]
+\textbf{Apa yang Bekerja:}
+\begin{itemize}
+    \item \textbf{Spesifik dan Logis:} ``Aku butuh break 30 menit untuk proses ini''
+    \item \textbf{Tanpa Tekanan Emosi:} Jangan paksa mereka ``berbicara perasaan'' saat repair
+    \item \textbf{Ritual Khusus:} Sebuah gesture spesifik (seperti mengirim emoji tertentu)
+\end{itemize}
+
+\textbf{Script Contoh:}
+\begin{itemize}
+    \item ``Aku butuh istirahat, tapi aku akan kembali dalam 20 menit.''
+    \item ``Bisakah kita coba solusi X? Menurutku itu paling masuk akal.''
+    \item ``Aku tidak marah, aku cuma perlu waktu sendiri sebentar.''
+\end{itemize}
+
+\textbf{Cara Menerima Repair dari Island:}
+\begin{itemize}
+    \item Jangan tuntut kata-kata manis --- terima gesture kecil mereka
+    \item Anggap inisiatif mereka untuk bicara sebagai repair besar
+    \item Beri ruang tanpa membuat mereka merasa bersalah
+\end{itemize}
+\end{praktikbox}
+
+\begin{praktikbox}[Repair untuk Wave (Gelombang)]
+\textbf{Apa yang Bekerja:}
+\begin{itemize}
+    \item \textbf{Reassurance Emosional:} ``Aku masih cinta kamu meski kita bertengkar''
+    \item \textbf{Fisik:} Sentuhan --- peluk, pegang tangan --- sangat efektif
+    \item \textbf{Validasi:} ``Aku mengerti kenapa kamu merasa begitu''
+\end{itemize}
+
+\textbf{Script Contoh:}
+\begin{itemize}
+    \item ``Aku tahu ini menyakitkan. Aku di sini.''
+    \item ``Kita akan lewati ini bersama. Aku tidak akan pergi.''
+    \item ``Kamu penting bagiku. Mari kita cari solusi.''
+    \item ``Aku minta maaf sudah membuatmu merasa tidak dihargai.''
+\end{itemize}
+
+\textbf{Cara Menerima Repair dari Wave:}
+\begin{itemize}
+    \item Terima emosi mereka sebagai bagian dari repair
+    \item Jangan minta mereka ``tenang'' --- ini invalidasi
+    \item Respon dengan afeksi --- mereka butuh bukti cinta
+\end{itemize}
+\end{praktikbox}
+
+\begin{tipbox}[Repair untuk Anchor (Jangkar)]
+Anchor paling fleksibel menerima berbagai jenis repair. Tapi tetap:
+\begin{itemize}
+    \item Apresiasi konsistensi mereka
+    \item Jangan anggap remeh repair sederhana mereka
+    \item Balas dengan repair --- mereka menghargai reciprocity
+\end{itemize}
+\end{tipbox}
+
+\section{Timeout sebagai Repair: Cara yang Benar}
+
+\subsection{Aturan Timeout}
+
+\begin{warningbox}[Timeout yang Efektif vs Merusak]
+\textbf{\textcolor{accent}{SALAH (Destructive):}}
+\begin{itemize}
+    \item ``Aku sudah muak!'' (meledak lalu pergi)
+    \item Menghilang tanpa kata
+    \item Mengancam: ``Kita putus aja!''
+    \item Menghindari topik selamanya
+\end{itemize}
+
+\textbf{\textcolor{sagegreen}{BENAR (Constructive):}}
+\begin{itemize}
+    \item ``Aku butuh break 20 menit. Aku akan kembali dan kita lanjutkan.''
+    \item Memberitahu durasi dan komitmen untuk kembali
+    \item Menggunakan waktu untuk menenangkan diri, bukan menyalahkan
+    \item Kembali sesuai janji
+\end{itemize}
+\end{warningbox}
+
+\begin{praktikbox}[Formula Timeout]
+\begin{enumerate}
+    \item \textbf{Signal:} ``Aku perlu timeout''
+    \item \textbf{Explain:} ``Aku flooding dan tidak bisa berpikir jernih''
+    \item \textbf{Duration:} ``Aku butuh [X] menit''
+    \item \textbf{Commit:} ``Aku akan kembali dan kita selesaikan ini''
+    \item \textbf{Action:} Lakukan aktivitas menenangkan (jalan, baca, meditasi)
+    \item \textbf{Return:} Kembali sesuai janji
+\end{enumerate}
+\end{praktikbox}
+
+\section{Ketika Repair Attempts Tidak Berhasil}
+
+\subsection{Apa yang Harus Dilakukan}
+
+\begin{insightbox}
+Jika repair attempts terus gagal, ini tanda bahwa:
+\begin{enumerate}
+    \item \textbf{Fundamental friendship terlalu lemah} --- kembali ke Prinsip 1-3
+    \item \textbf{Reservoir negativitas terlalu dalam} --- butuh intervensi profesional
+    \item \textbf{Satu atau kedua pasangan dalam trauma/flooding kronis} --- butuh terapi individual
+\end{enumerate}
+\end{insightbox}
+
+\begin{warningbox}[Tanda Butuh Bantuan Profesional]
+\begin{itemize}
+    \item Repair attempts konsisten ditolak selama 3+ bulan
+    \item Setiap percakapan berakhir dengan Four Horsemen
+    \item Tidak ada afeksi positif sama sekali
+    \item Salah satu pasangan sudah ``menyerah'' secara emosional
+    \item Ada trauma berat atau betrayal yang belum diproses
+\end{itemize}
+\end{warningbox}
+
+\section{Daily Repair Habits: Perbaikan Kecil di Luar Konflik}
+
+Repair attempts bukan hanya untuk saat konflik. \textbf{Perbaikan harian} membangun fondness dan memperkuat fondasi.
+
+\begin{tipbox}[Repair Harian]
+\textbf{Morning Repair:}
+\begin{itemize}
+    \item Ciuman sebelum berpisah
+    \item ``Semoga harimu menyenangkan''
+    \item Note kecil di tas/lunch box
+\end{itemize}
+
+\textbf{Throughout the Day:}
+\begin{itemize}
+    \item Chat singkat: ``Aku ingat kamu''
+    \item Membalas chat dengan positif, meski singkat
+    \item Beri tahu rencana/keterlambatan sebelumnya
+\end{itemize}
+
+\textbf{Evening Repair:}
+\begin{itemize}
+    \item Sapaan hangat saat bertemu lagi
+    \item ``Hari ini gimana?'' dengan perhatian penuh
+    \item Pelukan selamat datang
+\end{itemize}
+
+\textbf{Night Repair:}
+\begin{itemize}
+    \item ``Maaf ya kalau tadi...''
+    \item ``Terima kasih untuk hari ini''
+    \item Ciuman goodnight
+\end{itemize}
+\end{tipbox}
+
+\section{Latihan Praktis}
+
+\begin{exercisebox}[Latihan 1: Build Your Repair Vocabulary]
+\textbf{Tujuan:} Membangun kosakata repair pribadi
+
+\textbf{Instruksi:}
+\begin{enumerate}
+    \item Dari daftar repair phrases di bab ini, pilih \textbf{5 yang paling natural} untukmu
+    \item Tulis di kartu/note hp
+    \item Praktikkan di depan cermin --- sampai terdengar natural
+    \item Gunakan minimal satu dalam seminggu, meski tidak ada konflik (untuk latihan)
+\end{enumerate}
+\end{exercisebox}
+
+\begin{exercisebox}[Latihan 2: Repair Role-Play]
+\textbf{Tujuan:} Melatih membuat dan menerima repair
+
+\textbf{Setup:}
+\begin{enumerate}
+    \item Pilih topik konflik \textbf{ringan} (misal: film apa yang ditonton)
+    \item Mulai diskusi, lalu \textbf{sengaja} eskalasi sedikit
+    \item Salah satu panggil: ``REPAIR!'' dan gunakan salah satu frasa
+    \item Yang lain \textbf{harus menerima} dan mengakui
+    \item Diskusikan: Bagaimana rasanya membuat repair? Menerima repair?
+\end{enumerate}
+\end{exercisebox}
+
+\begin{exercisebox}[Latihan 3: Timeout Practice]
+\textbf{Tujuan:} Membiasakan timeout yang efektif
+
+\textbf{Instruksi:}
+\begin{enumerate}
+    \item Sepakati signal timeout bersama (bisa kata atau gesture)
+    \item Latihan: Salah satu panggil timeout \textbf{meski tidak ada konflik}
+    \item Praktikkan 4 langkah: Signal → Explain → Duration → Commit
+    \item Yang memanggil timeout melakukan aktivitas menenangkan selama 20 menit
+    \item Kembali dan beri tahu: ``Aku kembali sesuai janji''
+\end{enumerate}
+\end{exercisebox}
+
+\begin{exercisebox}[Weekly Check-in: Repair Reflection]
+Setiap minggu, diskusikan bersama pasangan:
+\begin{enumerate}
+    \item \textbf{Proud moment:} Kapan kita berhasil repair minggu ini?
+    \item \textbf{Learning moment:} Kapan repair kita gagal? Apa yang bisa dilakukan berbeda?
+    \item \textbf{Appreciation:} Apa repair attempt pasangan yang kuhargai?
+    \item \textbf{Goal:} Satu hal yang akan kita coba minggu depan
+\end{enumerate}
+\end{exercisebox}
+
+\section{Ringkasan: Kunci Keberhasilan Repair}
+
+\begin{praktikbox}[Takeaways Chapter 8]
+\begin{enumerate}
+    \item \textbf{Repair adalah skill, bukan bakat} --- bisa dipelajari dan diasah
+    \item \textbf{Keberhasilan repair bergantung pada friendship} --- fondness yang kuat membuat repair sederhana berhasil
+    \item \textbf{Repair bisa verbal atau non-verbal} --- pilih yang natural untukmu
+    \item \textbf{Terima repair attempt} --- bahkan yang canggung atau teriak-teriak
+    \item \textbf{Timeout adalah repair valid} --- gunakan dengan benar
+    \item \textbf{Latihan membuat sempurna} --- gunakan repair bahkan saat tidak ada konflik
+\end{enumerate}
+\end{praktikbox}
+
+\begin{insightbox}
+\textit{``Pernikahan yang sukses bukan tentang tidak pernah bertengkar. Itu tentang bertengkar dengan cara yang membangun, bukan merusak. Dan repair attempts adalah alat paling kuat yang kamu miliki untuk memastikan setiap konflik --- besar maupun kecil --- memperkuat ikatan kalian, bukan melemahkannya.''}
+\end{insightbox}

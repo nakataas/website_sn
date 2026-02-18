@@ -1,0 +1,235 @@
+\documentclass[12pt,a4paper]{book}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{tikz}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+\usepackage{setspace}
+\usepackage{parskip}
+\usepackage{mdframed}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{makecell}
+\usepackage{amssymb}
+
+% Color Definitions
+\definecolor{primary}{RGB}{139, 69, 19}      % Warm brown
+\definecolor{secondary}{RGB}{210, 105, 30}   % Chocolate
+\definecolor{accent}{RGB}{255, 140, 0}       % Dark orange
+\definecolor{lightbg}{RGB}{255, 248, 240}    % Floral white
+\definecolor{darktext}{RGB}{60, 40, 20}      % Dark brown
+\definecolor{softpink}{RGB}{255, 182, 193}   % Light pink
+\definecolor{sagegreen}{RGB}{138, 154, 91}   % Sage green
+\definecolor{warmgray}{RGB}{128, 128, 105}   % Warm gray
+
+% TikZ Libraries
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, calc, shadows}
+
+% tcolorbox Setup
+\tcbuselibrary{skins,breakable}
+
+% Custom Box Styles - FIXED with proper margins
+\newtcolorbox{praktikbox}[1][]{
+    enhanced,
+    colback=lightbg,
+    colframe=primary,
+    fonttitle=\bfseries\large,
+    title=#1,
+    boxrule=2pt,
+    arc=8pt,
+    shadow={2pt}{-2pt}{0pt}{black!20},
+    left=10pt, right=10pt, top=8pt, bottom=8pt,
+    before skip=12pt, after skip=12pt,
+    breakable
+}
+
+\newtcolorbox{tipbox}[1][Tips Praktis]{
+    enhanced,
+    colback=sagegreen!10,
+    colframe=sagegreen!80!black,
+    fonttitle=\bfseries,
+    title=#1,
+    boxrule=1.5pt,
+    arc=5pt,
+    left=10pt, right=10pt, top=8pt, bottom=8pt,
+    before skip=10pt, after skip=10pt,
+    breakable
+}
+
+\newtcolorbox{warningbox}[1][Peringatan]{
+    enhanced,
+    colback=accent!10,
+    colframe=accent,
+    fonttitle=\bfseries,
+    title=#1,
+    boxrule=1.5pt,
+    arc=5pt,
+    left=10pt, right=10pt, top=8pt, bottom=8pt,
+    before skip=10pt, after skip=10pt,
+    breakable
+}
+
+\newtcolorbox{exercisebox}[1][Latihan]{
+    enhanced,
+    colback=softpink!20,
+    colframe=softpink!80!black,
+    fonttitle=\bfseries,
+    title=#1,
+    boxrule=2pt,
+    arc=8pt,
+    left=10pt, right=10pt, top=8pt, bottom=8pt,
+    before skip=10pt, after skip=10pt,
+    breakable
+}
+
+\newtcolorbox{insightbox}{
+    enhanced,
+    colback=warmgray!10,
+    colframe=warmgray,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt, right=10pt, top=8pt, bottom=8pt,
+    before skip=10pt, after skip=10pt,
+    breakable
+}
+
+% Chapter Styling
+\titleformat{\chapter}[display]
+    {\normalfont\Huge\bfseries\color{primary}}
+    {\tikz[remember picture,overlay] {
+        \fill[primary] (0,0) rectangle (\paperwidth,3cm);
+        \node[white,font=\Huge\bfseries] at (0.5\paperwidth,1.5cm) {\thechapter};
+    }} 
+    {1cm}
+    {\Huge}
+    [\vspace{0.5cm}]
+
+\titleformat{\section}
+    {\normalfont\Large\bfseries\color{secondary}}
+    {\thesection}
+    {1em}
+    {}
+
+\titleformat{\subsection}
+    {\normalfont\large\bfseries\color{darktext}}
+    {\thesubsection}
+    {1em}
+    {}
+
+% Header and Footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{warmgray}Panduan Membangun Hubungan Sehat}
+\fancyhead[R]{\small\color{warmgray}\thepage}
+\fancyfoot[C]{\small\color{warmgray}Berdasarkan The Seven Principles for Making Marriage Work \& Wired for Dating}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.3pt}
+
+% Custom Commands
+\newcommand{\highlight}[1]{\textcolor{accent}{\textbf{#1}}}
+\newcommand{\keyterm}[1]{\textcolor{primary}{\textbf{#1}}}
+\newcommand{\emoji}[1]{\textcolor{accent}{$\bullet$}}
+
+% Document Info
+\title{
+    \vspace{-2cm}
+    {\Huge\bfseries\color{primary} PANDUAN PRAKTIS}\\[0.5cm]
+    {\Huge\bfseries\color{secondary} Membangun Hubungan Sehat}\\[1cm]
+    \begin{tikzpicture}
+        \draw[primary, line width=3pt] (0,0) -- (10,0);
+    \end{tikzpicture}\\[0.5cm]
+    {\Large\color{warmgray} Framework \& Tools Berdasarkan Sains}\\[0.3cm]
+    {\large\color{warmgray} (The Seven Principles \& Wired for Dating)}
+}
+
+\author{
+    \textbf{Rangkuman untuk Pasangan Modern}\\[0.3cm]
+    {\small Edisi Bahasa Indonesia}
+}
+
+\date{\today}
+
+\begin{document}
+
+% Cover Page
+\begin{titlepage}
+\begin{tikzpicture}[remember picture, overlay]
+    % Background gradient
+    \fill[top color=lightbg, bottom color=softpink!30] 
+        (current page.south west) rectangle (current page.north east);
+    
+    % Decorative elements
+    \foreach \i in {1,...,20} {
+        \fill[primary, opacity=0.1] 
+            ($(current page.south west) + (rand*21cm, rand*29.7cm)$) 
+            circle (0.3cm);
+    }
+    
+    % Top bar
+    \fill[primary] (current page.north west) rectangle ([yshift=-4cm]current page.north east);
+    
+    % Bottom bar
+    \fill[secondary] (current page.south west) rectangle ([yshift=3cm]current page.south east);
+\end{tikzpicture}
+
+\vspace*{3cm}
+
+\begin{center}
+    {\fontsize{40}{48}\selectfont\bfseries\color{primary} PANDUAN}\\[0.3cm]
+    {\fontsize{40}{48}\selectfont\bfseries\color{secondary} PRAKTIS}\\[1.5cm]
+    
+    \begin{tikzpicture}
+        \node[draw=primary, line width=2pt, rounded corners=15pt, 
+              inner sep=20pt, fill=white, fill opacity=0.9] {
+            \begin{minipage}{0.7\textwidth}
+                \centering
+                {\Huge\bfseries\color{darktext} Membangun\\[0.3cm]
+                Hubungan Sehat}\\[0.5cm]
+                {\Large\color{warmgray} Framework \& Tools\\
+                untuk Pasangan Modern}
+            \end{minipage}
+        };
+    \end{tikzpicture}
+    
+    \vspace{2cm}
+    
+    {\Large\color{primary}\faHeart\ \faBrain\ \faHandsHelping}\\[0.5cm]
+    {\large\color{warmgray} Berdasarkan:\\[0.2cm]
+    \textit{The Seven Principles for Making Marriage Work}\\
+    \& \textit{Wired for Dating}}
+    
+    \vfill
+    
+    {\large\color{white} Edisi Bahasa Indonesia}
+\end{center}
+\end{titlepage}
+
+% Table of Contents
+\tableofcontents
+\newpage
+
+% Include Chapters
+\input{chapter1}
+\input{chapter2}
+\input{chapter3}
+\input{chapter4}
+\input{chapter5}
+\input{chapter6}
+\input{chapter7}
+\input{chapter8}
+\input{chapter9}
+\input{chapter10}
+\input{chapter11}
+\input{chapter12}
+
+\end{document}

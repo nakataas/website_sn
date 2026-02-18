@@ -1,0 +1,386 @@
+\chapter{The Four Horsemen: Penjaga dari Neraka}
+
+\begin{insightbox}
+\textit{``Ada empat perilaku yang bisa memprediksi perceraian dengan akurasi 91\%. Mereka adalah Four Horsemen of the Apocalypse untuk pernikahan: Criticism, Contempt, Defensiveness, dan Stonewalling.''}
+\end{insightbox}
+
+\section{Pengantar: Prediktor Perceraian}
+
+Dr. John Gottman menemukan bahwa \textbf{ Four Horsemen} (Empat Jahanam) adalah penanda terkuat kehancuran hubungan. Keempatnya adalah:
+
+\begin{center}
+\begin{tikzpicture}[
+    horse/.style={draw=#1, line width=3pt, rounded corners=15pt,
+                  fill=#1!15, minimum width=12cm, minimum height=2.5cm,
+                  align=left, text width=11cm}
+]
+    \node[horse=accent] (critic) at (0,6) {
+        \textbf{\large 1. CRITICISM (Kritik)}\\[0.2cm]
+        Menyerang \textbf{karakter/pribadi} pasangan, bukan perilaku spesifik
+    };
+    
+    \node[horse=secondary] (contempt) at (0,3) {
+        \textbf{\large 2. CONTEMPT (Penghinaan)}\\[0.2cm]
+        Perasaan \textbf{superior} disertai sarkasme, ejekan, mata melotot
+    };
+    
+    \node[horse=warmgray] (defens) at (0,0) {
+        \textbf{\large 3. DEFENSIVENESS (Bela Diri)}\\[0.2cm]
+        Membela diri, membalikkan tuduhan, memainkan peran korban
+    };
+    
+    \node[horse=primary] (stone) at (0,-3) {
+        \textbf{\large 4. STONEWALLING (Membisu)}\\[0.2cm]
+        Menarik diri, tidak merespons, membangun ``tembok batu''
+    };
+    
+    % Arrows showing progression
+    \draw[->, line width=2pt, accent!50] (critic.south) -- (contempt.north);
+    \draw[->, line width=2pt, secondary!50] (contempt.south) -- (defens.north);
+    \draw[->, line width=2pt, warmgray!50] (defens.south) -- (stone.north);
+    
+    % Label
+    \node[right=0.5cm of critic, font=\small, accent] {Awal};
+    \node[right=0.5cm of stone, font=\small, primary] {Akhir};
+\end{tikzpicture}
+\end{center}
+
+\section{Horseman 1: Criticism (Kritik)}
+
+\subsection{Bedakan: Complaint vs Criticism}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|>{\raggedright}p{6cm}|>{\raggedright\arraybackslash}p{9cm}|}
+\hline
+\rowcolor{sagegreen!20}
+\textbf{COMPLAINT (Benar)} & \textbf{CRITICISM (Salah)} \\
+\hline
+\textit{``Aku marah kamu nggak sapu dapur. Kita sepakat gantian. Bisa tolong sekarang?''} & \textit{``Kenapa kamu selalu lupa? Aku benci harus selalu sapu. Kamu nggak peduli.''} \\
+\hline
+Fokus pada \textbf{perilaku spesifik} & Menyerang \textbf{karakter} (``selalu'', ``kamu nggak peduli'') \\
+\hline
+Ada 3 komponen: Perasaan + Situasi + Request & Global, menyeluruh, menghakimi \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Formula Complaint yang Benar}
+
+\begin{praktikbox}[Struktur Complaint Sehat]
+\textbf{``Aku [perasaan] ketika [situasi spesifik]. Aku butuh [request].''}
+
+\textbf{Contoh:}
+\begin{itemize}
+    \item ``Aku \textbf{marah} ketika \textbf{kamu nggak sapu dapur semalam}. Aku butuh \textbf{kamu sapu sekarang}.''
+    \item ``Aku \textbf{kecewa} ketika \textbf{kamu nggabarin aku kalo telat}. Aku butuh \textbf{kabarin minimal 30 menit sebelumnya}.''
+    \item ``Aku \textbf{merasa diabaikan} ketika \textbf{kamu main HP saat aku bicara}. Aku butuh \textbf{kamu taruh HP dan dengarkan dulu 10 menit}.''
+\end{itemize}
+\end{praktikbox}
+
+\subsection{Kata-kata Pembunuh}
+
+Hindari kata-kata ini dalam konflik:
+\begin{itemize}
+    \item ``Kamu \textbf{selalu}...''
+    \item ``Kamu \textbf{tidak pernah}...''
+    \item ``Kamu \textbf{terlalu}...''
+    \item ``\textbf{Kenapa} kamu...'' (terdengar seperti kritik)
+    \item ``Apa yang \textbf{salah} denganmu?''
+\end{itemize}
+
+\section{Horseman 2: Contempt (Penghinaan)}
+
+\subsection{Ini adalah yang Paling Berbahaya}
+
+\begin{warningbox}[Contempt = Poison]
+Contempt adalah \textbf{prediktor tunggal terkuat} perceraian. Ketika ada contempt, hubungan dalam bahaya serius.
+
+\textbf{Tanda-tanda Contempt:}
+\begin{itemize}
+    \item Sarkasme, ejekan, name-calling
+    \item Mata melotot, sneering (menyeringai menghina)
+    \item Body language meremehkan (menyilang tangan, mata ke langit)
+    \item Menyindir cara pasangan bicara/berpakaian/berperilaku
+    \item Merasa ``aku lebih baik darimu''
+\end{itemize}
+\end{warningbox}
+
+\subsection{Contoh Perilaku Contempt}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|>{\raggedright}p{6cm}|>{\raggedright\arraybackslash}p{9cm}|}
+\hline
+\rowcolor{accent!20}
+\textbf{Konteks} & \textbf{Contempt dalam Aksi} \\
+\hline
+Uang & ``Kamu itu \textbf{manja} dan \textbf{tidak tahu bersyukur}. Aku berasal dari keluarga yang \textbf{tahu nilai uang}, beda sama kamu.'' \\
+\hline
+Kerja rumah & ``Ah, \textbf{gitu aja nggak bisa}. Dasar \textbf{bodoh} kamu ini.'' \\
+\hline
+Pekerjaan & ``\textbf{Ngabisin waktu} aja kerjaanmu itu. \textbf{Siapa sih yang peduli}.'' \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Antidot: Fondness and Admiration}
+
+Satu-satunya antidot untuk contempt adalah \keyterm{Fondness and Admiration System}:
+
+\begin{tipbox}[Cara Membangun Fondness]
+\begin{enumerate}
+    \item \textbf{Scan for positives:} Sengaja cari hal positif tentang pasangan
+    \item \textbf{Express gratitude:} Ucapkan terima kasih setiap hari
+    \item \textbf{Reminisce:} Ingat kenangan indah masa lalu
+    \item \textbf{Pride:} Ungkapkan kebanggaan pada pasangan
+    \item \textbf{Affection:} Tunjukkan kasih sayang secara teratur
+\end{enumerate}
+\end{tipbox}
+
+\section{Horseman 3: Defensiveness (Bela Diri)}
+
+\subsection{Bentuk-bentuk Defensiveness}
+
+\begin{enumerate}
+    \item \textbf{Innocent Victim:} ``Kenapa kamu selalu nyalahin aku?''
+    \item \textbf{Reverse Blame:} ``Iya, tapi kamu juga...''
+    \item \textbf{Excuse:} ``Aku nggak bisa karena...''
+    \item \textbf{Whining:} ``Apa pun yang kulakukan nggak pernah cukup!''
+\end{enumerate}
+
+\subsection{Contoh Defensiveness}
+
+\begin{praktikbox}[Dialog Defensiveness]
+\textbf{Pasangan:} ``Kamu telat lagi hari ini.''
+
+\textbf{Defensiveness:}
+\begin{itemize}
+    \item ``Ya iyalah, macet! Bukan salahku!'' (excuse)
+    \item ``Kamu aja kemarin telat, kok nggak bilang?'' (reverse blame)
+    \item ``Kenapa sih kamu selalu komplain mulu?!'' (innocent victim)
+\end{itemize}
+
+\textbf{Non-Defensiveness (Benar):}
+\begin{itemize}
+    \item ``Iya, maaf. Ada kecelakaan di tol. Aku harusnya kabarin.''
+    \item ``Kamu kecewa ya? Maaf bikin kamu khawatir.''
+\end{itemize}
+\end{praktikbox}
+
+\section{Horseman 4: Stonewalling (Membisu)}
+
+\subsection{Apa itu Stonewalling?}
+
+\keyterm{Stonewalling} adalah ketika seseorang menarik diri dari interaksi, tidak merespons, dan membangun ``tembok batu''.
+
+\begin{warningbox}[Tanda-tanda Stonewalling]
+\begin{itemize}
+    \item Tidak ada kontak mata
+    \item Tidak ada respons verbal (``uh-huh'', ``hmm'')
+    \item Body language tertutup (memalingkan tubuh)
+    \item Ekspresi wajah datar (``poker face'')
+    \item Fisik meninggalkan ruangan
+\end{itemize}
+\end{warningbox}
+
+\subsection{Kenapa Orang Stonewall?}
+
+\begin{praktikbox}[Penyebab Stonewalling]
+\textbf{85\% stonewaller adalah pria} --- bukan karena pria ``jelek'', tapi karena:
+\begin{enumerate}
+    \item \textbf{Fisiologis:} Pria lebih mudah ``flooded'' (sistem kardiovaskular lebih reaktif)
+    \item \textbf{Recovery:} Pria butuh waktu lebih lama untuk pulih dari konflik
+    \item \textbf{Protection:} Stonewalling adalah self-protection dari flooding
+    \item \textbf{Learned behavior:} Dipetik dari pola orang tua
+\end{enumerate}
+\end{praktikbox}
+
+\section{Flooding: Akar dari Stonewalling}
+
+\subsection{Apa itu Flooding?}
+
+\keyterm{Flooding} adalah kondisi fisiologis di mana tubuh dalam mode ``fight or flight'':
+
+\begin{center}
+\begin{tikzpicture}[
+    symptom/.style={draw=accent, rounded corners=8pt, fill=accent!10,
+                    minimum width=4cm, minimum height=1.5cm, align=center}
+]
+    \node[font=\Large\bfseries, accent] at (0,4) {TANDA-TANDA FLOODING};
+    
+    \node[symptom] at (-4,2) {Jantung berdebar\\$>$100 bpm};
+    \node[symptom] at (0,2) {Keringat dingin};
+    \node[symptom] at (4,2) {Napas cepat/dangkal};
+    \node[symptom] at (-4,0) {Otot tegang};
+    \node[symptom] at (0,0) {Sulit berpikir};
+    \node[symptom] at (4,0) {Ingin lari/menyerang};
+    \node[symptom] at (-2,-2) {Telinga panas};
+    \node[symptom] at (2,-2) {Pandangan sempit};
+\end{tikzpicture}
+\end{center}
+
+\section{SAFE WORD/EMOJI SYSTEM (Prioritas Tinggi)}
+
+\begin{insightbox}
+\textbf{Ini adalah tools paling penting dalam bab ini.} Safe word/emoji memungkinkan kalian berkomunikasi saat kata-kata sudah tidak bisa digunakan.
+\end{insightbox}
+
+\subsection{Konsep Safe Word}
+
+\begin{praktikbox}[Apa itu Safe Word?]
+\textbf{Safe word} adalah kata atau sinyal yang disepakati untuk:
+\begin{enumerate}
+    \item Menyampaikan ``Aku flooded dan butuh break'' tanpa menjelaskan panjang lebar
+    \item Menghentikan spiral negatif \textbf{sebelum} terlalu parah
+    \item Memberi ruang untuk self-soothe
+    \item Menjaga respect dan safety dalam konflik
+\end{enumerate}
+\end{praktikbox}
+
+\subsection{Jenis-jenis Safe Signal}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|>{\raggedright}p{3cm}|>{\raggedright}p{5cm}|>{\raggedright\arraybackslash}p{7cm}|}
+\hline
+\rowcolor{primary!20}
+\textbf{Tipe} & \textbf{Contoh} & \textbf{Kapan Digunakan} \\
+\hline
+\textbf{Safe Word} & ``Pineapple'', ``Kuning'', ``Time-out'' & Saat mulai merasa flooded \\
+\hline
+\textbf{Safe Emoji} & \emoji{\faPause}, \emoji{\faHandPaper}, \emoji{\faLifeRing} & Saat chatting/texting \\
+\hline
+\textbf{Safe Gesture} & Mengangkat tangan, membuat ``T'' & Saat sudah terlalu emosional untuk bicara \\
+\hline
+\textbf{Safe Object} & Benda kecil khusus yang diletakkan & Signal ``Aku butuh waktu'' \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Contoh Safe Word/Emoji System}
+
+\begin{exercisebox}[Membuat Safe System Bersama]
+\textbf{Langkah 1: Pilih Safe Word}
+\begin{itemize}
+    \item Pilih kata yang \textbf{tidak biasa} dalam percakapan kalian
+    \item Hindari kata yang mungkin muncul di tengah konflik
+    \item Contoh baik: ``Pineapple'', ``Blue moon'', ``Kode merah''
+    \item Contoh buruk: ``Stop'', ``Cukup'', ``Sebentar''
+\end{itemize}
+
+\textbf{Langkah 2: Pilih Safe Emoji}
+\begin{itemize}
+    \item Saat chatting, gunakan emoji spesifik
+    \item Contoh: \emoji{\faPause} = ``Aku overwhelmed, pause dulu''
+    \item Contoh: \emoji{\faLifeRing} = ``Aku flooded butuh break''
+    \item Contoh: \emoji{\faClock} = ``Aku butuh 20 menit, nanti balik''
+\end{itemize}
+
+\textbf{Langkah 3: Tetapkan Protokol}
+\begin{itemize}
+    \item Ketika safe word digunakan, \textbf{konflik langsung stop}
+    \item Tidak ada ``tambahan kalimat terakhir''
+    \item Kedua pihak pergi ke ruang terpisah
+    \item Setelah 20-30 menit, kembali dan coba lagi
+\end{itemize}
+\end{exercisebox}
+
+\subsection{Protokol Safe Word}
+
+\begin{tipbox}[Cara Menggunakan Safe Word dengan Benar]
+\textbf{Ketika kamu menggunakan safe word:}
+\begin{enumerate}
+    \item Katakan dengan jelas (``Aku pakai safe word: Pineapple'')
+    \item Jelaskan secara singkat kenapa (opsional tapi bagus): ``Aku flooded, jantungku berdebar''
+    \item Katakan kapan kamu akan kembali: ``Aku butuh 20 menit''
+    \item Pergi ke ruang lain
+    \item Lakukan self-soothing
+    \item Kembali tepat waktu yang dijanjikan
+\end{enumerate}
+
+\textbf{Ketika pasangan menggunakan safe word:}
+\begin{enumerate}
+    \item \textbf{Respek segera} --- stop bicara meski kamu ``hampir selesai''
+    \item Jangan kejar (don't pursue)
+    \item Jangan anggap personal (``Dia nggak peduli pendapatku'')
+    \item Manfaatkan waktu untuk self-soothe juga
+    \item Siap mendengar saat dia kembali
+\end{enumerate}
+\end{tipbox}
+
+\subsection{Self-Soothing saat Break}
+
+\begin{praktikbox}[Aktivitas Self-Soothing yang Efektif]
+\textbf{Fisiologis:}
+\begin{itemize}
+    \item Deep breathing (4-7-8)
+    \item Progressive muscle relaxation
+    \item Mandi air hangat
+    \item Jalan-jalan ringan
+    \item Minum air hangat
+\end{itemize}
+
+\textbf{Mental:}
+\begin{itemize}
+    \item Meditasi atau mindfulness
+    \item Baca buku ringan
+    \item Dengarkan musik menenangkan
+    \item Tulis jurnal perasaan
+\end{itemize}
+
+\textbf{Yang TIDAK boleh dilakukan:}
+\begin{itemize}
+    \item Ruminate (muter-muter pikiran negatif)
+    \item Stalking sosial media pasangan
+    \item Hubungi teman untuk ``curhat'' (ini malah memperkuat negativity)
+    \item Alkohol atau zat
+\end{itemize}
+\end{praktikbox}
+
+\section{Antidot Lengkap untuk Four Horsemen}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|>{\raggedright}p{3cm}|>{\raggedright}p{4.5cm}|>{\raggedright\arraybackslash}p{7.5cm}|}
+\hline
+\rowcolor{primary!20}
+\textbf{Horseman} & \textbf{Antidot} & \textbf{Contoh Praktis} \\
+\hline
+\textbf{Criticism} & \textbf{Gentle Start-up} & ``Aku marah karena...'' (bukan ``Kamu selalu...'') \\
+\hline
+\textbf{Contempt} & \textbf{Fondness \& Admiration} & Sebutkan 3 hal yang kamu hargai tentang pasangan setiap hari \\
+\hline
+\textbf{Defensiveness} & \textbf{Take Responsibility} & ``Sebagian ini salahku...'' \\
+\hline
+\textbf{Stonewalling} & \textbf{Safe Word + Self-Soothe} & ``Aku pakai safe word. Aku butuh 20 menit.'' \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Action Steps}
+
+\begin{exercisebox}[To-Do: Setup Safe System]
+\textbf{Hari ini:} Diskusikan dengan pasangan
+\begin{enumerate}
+    \item ``Apakah kita pernah mengalami flooding? Kapan?''
+    \item ``Bagaimana biasanya kita bereaksi saat flooded?''
+    \item ``Apakah ada Four Horsemen yang sering muncul dalam konflik kita?''
+\end{enumerate}
+
+\textbf{Buat kesepakatan:}
+\begin{enumerate}
+    \item Pilih safe word bersama
+    \item Pilih safe emoji untuk chat
+    \item Tulis protokol dan tempel di kulkas
+    \item Latihan: Role-play menggunakan safe word
+\end{enumerate}
+
+\textbf{Protokol yang ditulis:}
+\begin{itemize}
+    \item Safe word kami: \rule{5cm}{0.4pt}
+    \item Safe emoji: \rule{3cm}{0.4pt}
+    \item Waktu break: \rule{3cm}{0.4pt} menit
+    \item Aktivitas self-soothe: \rule{8cm}{0.4pt}
+\end{itemize}
+\end{exercisebox}

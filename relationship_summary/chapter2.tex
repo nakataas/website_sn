@@ -1,0 +1,466 @@
+\chapter{Kenali ``Panggung'' Otakmu: Primitives vs Ambassadors}
+
+\begin{insightbox}
+\textit{``Cinta memang buta --- dan ada alasan ilmiahnya. Saat kamu jatuh cinta, otakmu dibanjiri kimia yang membuatmu tidak bisa berpikir jernih. Tapi dengan memahami ini, kamu bisa mengambil kembali kendali.''}
+\end{insightbox}
+
+\section{Dua Sistem dalam Otakmu}
+
+Dr. Stan Tatkin membagi fungsi otak menjadi dua sistem utama yang selalu bekerja --- kadang harmonis, kadang konflik.
+
+\begin{center}
+\begin{tikzpicture}[
+    box/.style={draw=#1, rounded corners=15pt, fill=#1!10, 
+                minimum width=6cm, minimum height=4cm, align=center,
+                line width=3pt},
+    arrow/.style={<->, line width=3pt, primary}
+]
+    % Primitives Box
+    \node[box=accent] (prim) at (0,0) {};
+    \node[font=\Large\bfseries, accent] at (0,1.5) {PRIMITIVES};
+    \node[font=\large, accent!80!black] at (0,0.8) {Sistem Primitif};
+    \node[align=left, text width=5cm, font=\small] at (0,-0.5) {
+        \begin{itemize}[leftmargin=*, itemsep=0.1cm]
+            \item Orientasi: Kelangsungan hidup
+            \item Kecepatan: Kilat (otomatis)
+            \item Mode: Refleks \& memori
+            \item Fokus: Bahaya \& ancaman
+            \item Respon: Fight, Flight, Freeze
+        \end{itemize}
+    };
+    \node[font=\small\color{accent}] at (0,-2.3) {Cepat | Otomatis | Tanpa sadar};
+    
+    % Ambassadors Box
+    \node[box=sagegreen] (amb) at (9,0) {};
+    \node[font=\Large\bfseries, sagegreen] at (9,1.5) {AMBASSADORS};
+    \node[font=\large, sagegreen!80!black] at (9,0.8) {Sistem Evolusi};
+    \node[align=left, text width=5cm, font=\small] at (9,-0.5) {
+        \begin{itemize}[leftmargin=*, itemsep=0.1cm]
+            \item Orientasi: Sosial \& kompleks
+            \item Kecepatan: Lambat (berpikir)
+            \item Mode: Analisis \& empati
+            \item Fokus: Hubungan \& makna
+            \item Respon: Diplomasi \& solusi
+        \end{itemize}
+    };
+    \node[font=\small\color{sagegreen}] at (9,-2.3) {Lambat | Rasional | Sadar};
+    
+    % Arrows
+    \draw[arrow] (prim.east) -- (amb.west) node[midway, above, font=\small] {Saling mempengaruhi};
+    \draw[arrow, bend left=30] (prim.north east) to node[above, font=\small] {Primitives bisa} node[below, font=\small] {override Ambassadors} (amb.north west);
+    \draw[arrow, bend right=30] (amb.south west) to node[below, font=\small] {Ambassadors bisa} node[above, font=\small] {regulate Primitives} (prim.south east);
+\end{tikzpicture}
+\end{center}
+
+\section{Deep Dive: Primitives (Sistem Primitif)}
+
+\subsection{Apa itu Primitives?}
+
+\keyterm{Primitives} adalah bagian otak yang paling tua secara evolusi. Mereka ada untuk satu tujuan: \textbf{membuatmu tetap hidup}.
+
+\begin{praktikbox}[Fungsi Primitives]
+\begin{itemize}
+    \item \textbf{Survival-focused:} Selalu mencari ancaman
+    \item \textbf{Automatic:} Bereaksi tanpa pikir panjang
+    \item \textbf{Memory-based:} Menggunakan memori lama untuk menilai situasi sekarang
+    \item \textbf{Reflex-driven:} Refleks adalah bosnya
+    \item \textbf{Danger-detection:} Selalu waspada
+\end{itemize}
+\end{praktikbox}
+
+\subsection{Komponen Kunci Primitives}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|>{\raggedright}p{3.5cm}|>{\raggedright}p{5cm}|>{\raggedright\arraybackslash}p{6.5cm}|}
+\hline
+\rowcolor{accent!20}
+\textbf{Struktur} & \textbf{Fungsi} & \textbf{Dalam Hubungan} \\
+\hline
+\textbf{Amygdala} & Alarm bahaya & Mendeteksi ancaman dalam suara, wajah, atau gerakan pasangan \\
+\hline
+\textbf{Brain Stem} & Fungsi dasar (napas, detak jantung) & Saat stres, mengontrol respons fisiologis seperti jantung berdebar \\
+\hline
+\textbf{Cerebellum} & Koordinasi motorik & Gerakan tiba-tiba saat marah atau ketakutan \\
+\hline
+\textbf{Basal Ganglia} & Kebiasaan dan reward & Membuatmu ``kecanduan'' pasangan melalui dopamine \\
+\hline
+\textbf{Hippocampus} (bagian) & Memori emosional & Mengingat pengalaman traumatis masa lalu \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Bagaimana Primitives Bekerja dalam Dating?}
+
+Saat kamu melihat seseorang yang menarik:
+
+\begin{enumerate}
+    \item \textbf{Far Visual System} (bagian dari primitives) mendeteksi gerakan, bentuk, sinyal atraksi
+    \item \textbf{Amygdala} memutuskan: ``Aman atau berbahaya?''
+    \item Jika ``aman'', \textbf{Basal Ganglia} rilis dopamine --- sensasi ``suka''
+    \item Jika ada red flag tapi \textbf{familiar}, primitives mungkin bilang ``Aman!'' karena familiar = aman untuk otak primitif
+\end{enumerate}
+
+\begin{warningbox}[Bahaya Primitives dalam Hubungan]
+\begin{itemize}
+    \item \textbf{False alarm:} Amygdala bisa melihat ``ancaman'' padahal pasanganmu hanya capek
+    \item \textbf{Familiar trap:} Kamu tertarik pada orang yang seperti orang tua yang menyakitimu (karena familiar)
+    \item \textbf{Overreaction:} Respon fight/flight yang berlebihan saat konflik kecil
+\end{itemize}
+\end{warningbox}
+
+\section{Deep Dive: Ambassadors (Sistem Evolusi)}
+
+\subsection{Apa itu Ambassadors?}
+
+\keyterm{Ambassadors} adalah bagian otak yang lebih baru secara evolusi. Mereka adalah ``diplomat'' yang bisa:
+
+\begin{praktikbox}[Fungsi Ambassadors]
+\begin{itemize}
+    \item \textbf{Nuanced judgment:} Menilai situasi secara kompleks, tidak hitam-putih
+    \item \textbf{Empathy:} Merasakan apa yang dirasakan orang lain
+    \item \textbf{Delayed gratification:} Menunda kesenangan untuk tujuan jangka panjang
+    \item \textbf{Planning:} Merencanakan dan memprediksi
+    \item \textbf{Social regulation:} Mengontrol ekspresi sosial agar sesuai norma
+\end{itemize}
+\end{praktikbox}
+
+\subsection{Komponen Kunci Ambassadors}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|>{\raggedright}p{3.5cm}|>{\raggedright}p{5cm}|>{\raggedright\arraybackslash}p{6.5cm}|}
+\hline
+\rowcolor{sagegreen!20}
+\textbf{Struktur} & \textbf{Fungsi} & \textbf{Dalam Hubungan} \\
+\hline
+\textbf{Prefrontal Cortex} & Pengambilan keputusan, kontrol impuls & Menahan diri tidak menyakiti pasangan saat marah \\
+\hline
+\textbf{Anterior Cingulate} & Deteksi error, empati & Menyadari ``Aku salah'' dan memahami perasaan pasangan \\
+\hline
+\textbf{Orbital Frontal Cortex} & Penilaian sosial, kontrol emosi & Membaca ekspresi wajah pasangan dengan akurat \\
+\hline
+\textbf{Hippocampus} (utama) & Memori eksplisit, konteks & Mengingat detail tentang pasangan (Love Maps) \\
+\hline
+\textbf{Insula} & Kesadaran tubuh, intuisi & ``Merasakan'' bahwa sesuatu salah dalam hubungan \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Konflik Antara Primitives dan Ambassadors}
+
+\subsection{Skenario: Lihat Mantan di Media Sosial}
+
+\begin{center}
+\begin{tikzpicture}[
+    scenario/.style={draw=warmgray, rounded corners=10pt, fill=warmgray!10,
+                     minimum width=4cm, minimum height=2.5cm, align=center},
+    response/.style={draw=#1, rounded corners=5pt, fill=#1!10,
+                     minimum width=4cm, minimum height=1.5cm, align=center}
+]
+    % Trigger
+    \node[scenario] (trigger) at (0,0) {\textbf{Trigger}\\\small Melihat foto\\mantan dengan\\pasangan baru};
+    
+    % Primitives Response
+    \node[response=accent] (prim) at (-5,-4) {\textbf{Primitives}\\\small ``Ancaman!''\\Jantung berdebar\\Merasa sakit hati\\Ingin stalking};
+    
+    % Ambassadors Response
+    \node[response=sagegreen] (amb) at (5,-4) {\textbf{Ambassadors}\\\small ``Ini normal''\\Dia bukan ancaman\\Aku punya hidupku\\Tutup aplikasi};
+    
+    % Final Action
+    \node[response=primary] (action) at (0,-7) {\textbf{Action}\\\small Tergantung mana yang menang};
+    
+    % Arrows
+    \draw[->, line width=2pt, accent] (trigger) -- (prim);
+    \draw[->, line width=2pt, sagegreen] (trigger) -- (amb);
+    \draw[->, line width=2pt] (prim) -- (action);
+    \draw[->, line width=2pt] (amb) -- (action);
+\end{tikzpicture}
+\end{center}
+
+\subsection{Kapan Ambassadors Offline?}
+
+Ambassadors \textbf{tidak berfungsi} saat:
+\begin{enumerate}
+    \item \textbf{Flooding:} Jantung berdebar $>$100 bpm, darah naik
+    \item \textbf{Sleep deprivation:} Kurang tidur
+    \item \textbf{Drunk/High:} Terpengaruh zat
+    \item \textbf{Extreme hunger:} Sangat lapar
+    \item \textbf{Fog of infatuation:} Dopamine tinggi
+\end{enumerate}
+
+\begin{tipbox}[Cara Membangunkan Ambassadors]
+Saat kamu merasa ``dikuasai'' primitives:
+\begin{enumerate}
+    \item \textbf{Grounding:} Rasakan kontak kaki dengan lantai
+    \item \textbf{Labeling:} Ucapkan ``Ini hanya amydala-ku yang bereaksi''
+    \item \textbf{Breathing:} Napas dalam 4-7-8 (tarik 4, tahan 7, hembus 8)
+    \item \textbf{Cooling:} Kompres air dingin di wajah (mengaktifkan dive reflex)
+    \item \textbf{Time-out:} Beri diri waktu 20 menit untuk turun adrenalin
+\end{enumerate}
+\end{tipbox}
+
+\section{Fog of Infatuation: Kabut Kegilaan Cinta}
+
+\subsection{Neurochemical Cocktail}
+
+Saat jatuh cinta, otakmu dipenuhi koktail kimia:
+
+\begin{center}
+\begin{tikzpicture}[
+    chem/.style={draw=#1, line width=2pt, rounded corners=10pt, 
+                 fill=#1!10, minimum width=4cm, minimum height=2.5cm, align=center},
+    arrow/.style={->, line width=1.5pt}
+]
+    % Top row
+    \node[chem=secondary] (dop) at (0,0) {\textbf{Dopamine}\\\small Pleasure/Reward\\\faArrowUp \ Euforia};
+    \node[chem=accent] (nora) at (5,0) {\textbf{Norepinephrine}\\\small Excitement/Focus\\\faArrowUp \ Jantung berdebar};
+    \node[chem=warmgray] (sero) at (10,0) {\textbf{Serotonin}\\\small Mood regulation\\\faArrowDown \ Obsesi};
+    
+    % Bottom row
+    \node[chem=softpink] (test) at (2.5,-3.5) {\textbf{Testosterone}\\\small Libido\\Turun (pria), Naik (wanita)};
+    \node[chem=sagegreen] (oxy) at (7.5,-3.5) {\textbf{Oxytocin}\\\small Bonding\\\faArrowUp \ Keterikatan};
+    
+    % Effects
+    \node[draw=primary, rounded corners=10pt, fill=primary!10, 
+          minimum width=12cm, minimum height=2cm, align=center] (effect) at (5,-6.5) {
+        \textbf{Efek Gabungan:} Kurang tidur, kurang makan, obsesi berpikir tentang dia,\\
+        mengabaikan red flags, merasa ``ini yang terbaik!''
+    };
+    
+    % Arrows
+    \draw[arrow, secondary] (dop) -- (test);
+    \draw[arrow, accent] (nora) -- (oxy);
+    \draw[arrow, warmgray] (sero) -- (oxy);
+    \draw[arrow, softpink] (test) -- (effect);
+    \draw[arrow, sagegreen] (oxy) -- (effect);
+\end{tikzpicture}
+\end{center}
+
+\subsection{Fakta Mengejutkan tentang Serotonin}
+
+\begin{warningbox}[The Serotonin Drop]
+\begin{itemize}
+    \item Saat jatuh cinta, \textbf{serotonin turun 40\%}
+    \item Level yang sama dengan penderita \textbf{OCD} (Obsessive Compulsive Disorder)
+    \item Ini sebabnya kamu \textbf{tidak bisa berhenti memikirkan} dia
+    \item Ini juga sebabnya kamu \textbf{obsesif} --- cek hp terus, stalking media sosial
+\end{itemize}
+
+\textit{``Crazy in love'' bukan hanya metafora --- ini kondisi neurokimia yang nyata!}
+\end{warningbox}
+
+\subsection{Durasi Fog of Infatuation}
+
+Kabut ini \textbf{tidak abadi}:
+\begin{itemize}
+    \item \textbf{3-6 bulan:} Puncak euforia
+    \item \textbf{6-12 bulan:} Mulai turun
+    \item \textbf{12-24 bulan:} Kembali ke normal
+    \item \textbf{Setelah itu:} Attachment (oxytocin/vasopressin) mengambil alih
+\end{itemize}
+
+\begin{insightbox}
+\textbf{Implikasi:} Jangan ambil keputusan besar (menikah, pindah bareng, investasi besar) dalam 12-18 bulan pertama hubungan. Tunggu sampai fog hilang untuk melihat realitas dengan jelas.
+\end{insightbox}
+
+\section{Visual System: Far vs Near}
+
+Otak punya dua jalur visual yang berbeda:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabular}{|>{\raggedright}p{3cm}|>{\raggedright}p{5.5cm}|>{\raggedright\arraybackslash}p{5.5cm}|}
+\hline
+\rowcolor{primary!20}
+\textbf{Aspek} & \textbf{Far Visual System} & \textbf{Near Visual System} \\
+\hline
+\textbf{Alias} & Dorsal stream (``where/how'') & Ventral stream (``what'') \\
+\hline
+\textbf{Fungsi utama} & Deteksi gerakan, lokasi, arah & Detail wajah, ekspresi, identifikasi \\
+\hline
+\textbf{Resolusi} & Rendah (blur) & Tinggi (tajam) \\
+\hline
+\textbf{Hubungan dengan} & \textbf{Primitives} & \textbf{Ambassadors} \\
+\hline
+\textbf{Jarak optimal} & $>$ 1 meter & $<$ 1 meter \\
+\hline
+\textbf{Deteksi} & Bahaya, atraksi kasar & Emosi, niat, kebohongan \\
+\hline
+\textbf{Dalam dating} & ``Orang itu hot!'' (dari kejauhan) & ``Dia bohong'' (dari dekat) \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Mengapa ``Cinta Pada Pandangan Pertama'' Menipu}
+
+Far Visual System:
+\begin{itemize}
+    \item Melihat gerakan pinggul, cara berjalan, siluet
+    \item \textbf{Mengaktifkan Primitives}
+    \item Memberi sinyal ``Ini orang yang menarik''
+    \item Tapi \textbf{tidak bisa menilai} karakter, kejujuran, kompatibilitas
+\end{itemize}
+
+\begin{tipbox}[Gunakan Near Visual System dengan Benar]
+Untuk benar-benar mengenal seseorang:
+\begin{itemize}
+    \item Duduk \textbf{berhadapan} dalam jarak $<$ 1 meter
+    \item Pastikan \textbf{PENCAYAAN CUKUP} (jangan tempat gelap)
+    \item Lihat ke \textbf{mata} --- pupil, micro-expression
+    \item Perhatikan \textbf{asimetri wajah} --- alkohol/membuat wajah terlihat lebih simetris/simetris = menarik
+    \item Lakukan ini \textbf{berulang kali} dalam berbagai situasi
+\end{itemize}
+\end{tipbox}
+
+\section{Sistem Saraf dalam Relasi: Polyvagal Theory}
+
+Stephen Porges mengembangkan teori tentang tiga mode respons saraf kita dalam interaksi sosial.
+
+\begin{center}
+\begin{tikzpicture}[
+    mode/.style={draw=#1, line width=3pt, rounded corners=15pt,
+                 fill=#1!10, minimum width=13cm, minimum height=2cm,
+                 align=left, text width=12cm}
+]
+    \node[mode=sagegreen] (safe) at (0,4) {
+        \textbf{\large \textcolor{sagegreen}{SAFETY MODE (Mode Aman / Ventral Vagal)}}\\[0.2cm]
+        \begin{itemize}[leftmargin=*, itemsep=0.05cm]
+            \item Kontrol napas normal, kontak mata mudah, suara modulasi
+            \item Sosial engagement aktif: bisa mendengarkan, berempati, berpikir jernih
+            \item \textit{Otak berfungsi optimal}
+        \end{itemize}
+    };
+    
+    \node[mode=accent] (danger) at (0,1) {
+        \textbf{\large \textcolor{accent}{DANGER MODE (Mode Bahaya / Sympathetic)}}\\[0.2cm]
+        \begin{itemize}[leftmargin=*, itemsep=0.05cm]
+            \item Fight or Flight: mulut kering, tangan dingin/berkeringat, jantung berdebar
+            \item Suara cepat/tinggi, gerakan tajam, blushing
+            \item \textit{Fungsi sosial terganggu, sulit berpikir jernih}
+        \end{itemize}
+    };
+    
+    \node[mode=warmgray] (threat) at (0,-2) {
+        \textbf{\large \textcolor{warmgray}{LIFE THREAT (Ancaman Hidup / Dorsal Vagal)}}\\[0.2cm]
+        \begin{itemize}[leftmargin=*, itemsep=0.05cm]
+            \item Freeze/Collapse: pusing, mual, lemas, suara sangat pelan
+            \item ``Blank out'', dissociation, tidak bisa berbicara
+            \item \textit{Shutdown total --- sistem ``pura-pura mati''}
+        \end{itemize}
+    };
+    
+    \draw[->, line width=4pt, sagegreen] (-6.5,6) -- (safe.west);
+    \draw[->, line width=2pt] (safe.south) -- (danger.north) node[midway, right, font=\small] {Stres berlanjut};
+    \draw[->, line width=2pt] (danger.south) -- (threat.north) node[midway, right, font=\small] {Stres ekstrem};
+\end{tikzpicture}
+\end{center}
+
+\subsection{Co-Regulation: Menenangkan Satu Sama Lain}
+
+\begin{insightbox}
+Manusia adalah satu-satunya mamalia yang \textbf{tidak bisa} menenangkan diri sendiri dengan efektif. Kita butuh \keyterm{co-regulation} --- saling menenangkan dengan interaksi sosial.
+\end{insightbox}
+
+\textbf{Tanda-tanda butuh co-regulation:}
+\begin{itemize}
+    \item Jantung berdebar
+    \item Napas pendek/cepat
+    \item Otot tegang
+    \item Pikiran berkecamuk
+    \item Ingin menjauh atau menyerang
+\end{itemize}
+
+\textbf{Cara co-regulate dengan pasangan:}
+\begin{enumerate}
+    \item \textbf{Kontak fisik:} Pegang tangan, peluk (jika nyaman)
+    \item \textbf{Kontak mata lembut:} Soft eye contact
+    \item \textbf{Suara rendah dan lambat:} ``Aku di sini'', ``Kita aman''
+    \item \textbf{Breathing together:} Napas bersamaan
+    \item \textbf{Validation:} ``Aku mengerti kamu stres''
+\end{enumerate}
+
+\section{Familiarity Effect: Jebakan yang Dikenal}
+
+Otak tertarik pada yang \textbf{familiar} --- tapi familiar $\neq$ sehat.
+
+\subsection{Mere Exposure Effect}
+
+Semakin sering kamu melihat sesuatu, semakin kamu menyukainya.
+
+\begin{praktikbox}[Efek Familiar dalam Hubungan]
+\textbf{Familiar yang Sehat:}
+\begin{itemize}
+    \item Orang yang menghargai hubungan dan terbuka
+    \item Pola komunikasi jujur dan langsung
+    \item Rasa aman tanpa drama
+    \item Konflik yang diselesaikan dengan baik
+\end{itemize}
+
+\textbf{Familiar yang Tidak Sehat:}
+\begin{itemize}
+    \item Orang seperti orang tua yang tidak stabil
+    \item Drama, chaos, roller-coaster emosi
+    \item Sikap dingin/menghindar (jika kamu Island)
+    \item Sikap clingy/cemas (jika kamu Wave)
+\end{itemize}
+\end{praktikbox}
+
+\begin{warningbox}[Trauma Bonding]
+Jika kamu dibesarkan dalam lingkungan yang tidak stabil, kamu mungkin merasa ``nyaman'' dengan pasangan yang juga tidak stabil. Ini disebut \textbf{trauma bonding} --- hubungan berbasis trauma yang sama.
+
+\textbf{Tanda-tanda:}
+\begin{itemize}
+    \item Merasa ``hidup'' hanya saat ada drama
+    \item Pasangan yang baik-baik saja terasa membosankan
+    \item Selalu tertarik pada orang yang ``perlu diselamatkan''
+    \item Pola hubungan berulang yang tidak memuaskan
+\end{itemize}
+\end{warningbox}
+
+\section{Action Steps: Praktik Mingguan}
+
+\begin{exercisebox}[Program 7 Hari: Mengenali Wiring-mu]
+
+\textbf{Hari 1-2: Mindful Breathing (5 menit)}
+\begin{itemize}
+    \item Duduk nyaman, punggung lurus
+    \item Tarik napas 4 detik $\rightarrow$ Tahan 4 detik $\rightarrow$ Hembusk 6 detik
+    \item Fokus hanya pada napas
+    \item Jika pikiran melayang, kembalikan tanpa menghakimi
+\end{itemize}
+
+\textbf{Hari 3-4: Body Scan saat Dating/Berpasangan}
+\begin{itemize}
+    \item Sebelum bertemu pasangan, tutup mata
+    \item Scan dari kepala ke kaki: di mana ketegangan?
+    \item Catat di jurnal: ``Saat akan bertemu dia, aku merasa...''
+\end{itemize}
+
+\textbf{Hari 5-6: Deteksi Fog}
+\begin{itemize}
+    \item Apakah jantungku berdebar kencang memikirkan dia?
+    \item Apakah aku sulit tidur/makan karena memikirkannya?
+    \item Apakah aku mengabaikan kekurangan yang jelas?
+    \item Jika ya, tulis: ``Ini hanya kimia. Aku perlu waktu untuk melihat dengan jelas.''
+\end{itemize}
+
+\textbf{Hari 7: Reflection}
+\begin{itemize}
+    \item Review jurnal minggu ini
+    \item Identifikasi: Kapan Primitives-mu bereaksi berlebihan?
+    \item Kapan Ambassadors-mu berhasil mengontrol?
+    \item Apa strategi yang paling efektif untukmu?
+\end{itemize}
+\end{exercisebox}
+
+\begin{tipbox}[Quick Reference Card]
+\textbf{Saat kamu merasa ``dikuasai'' emosi:}
+\begin{enumerate}
+    \item \textbf{STOP} --- jangan reaksi dulu
+    \item \textbf{BREATHE} --- 3 napas dalam
+    \item \textbf{LABEL} --- ``Ini amydala-ku''
+    \item \textbf{GROUND} --- Rasakan kaki di lantai
+    \item \textbf{WAIT} --- 20 menit sebelum merespons
+\end{enumerate}
+\end{tipbox}

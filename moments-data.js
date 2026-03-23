@@ -1,12 +1,76 @@
 const momentsData = [
     {
+        id: 7,
+        date: '2026-03-17',
+        title: 'Kiara Artha Park & Quick Dentist Trip',
+        description: 'Makan masakkan doi (Udang saus padang dan ayam suwir daun jeruk) di mobil di Kiara Artha Park. Lalu tiba-tiba ke dokter gigi karena gigi Silvia sakit, di sana periksa lanjut pulangnya ke Richeese makan lagi. 🍤🍗🦷🍗',
+        photos: 'https://photos.app.goo.gl/HhVnL5kCNFJpkT2M8',
+        type: 'past',
+        isLatest: true
+    },
+    {
+        id: 8,
+        date: '2026-03-15',
+        title: 'Movie Night & McDonald\'s',
+        description: 'Ke PVJ buat nonton Hoppers. Beres nonton mau makan tapi PVJ rame banget gak kebagian tempat, akhirnya kita langsung cabut dan makan di McDonald\'s aja. 🎬🍔🍟',
+        photos: 'https://photos.app.goo.gl/ARhp8kRoRGvySWhq9',
+        type: 'past'
+    },
+    {
+        id: 9,
+        date: '2026-03-13',
+        title: 'Haircut & Late Night McD',
+        description: 'Senangnya ditemenin Silvia potong rambut di TRICH! Beres potong kita mampir ke McDonald\'s Summarecon, tapi karena udah kemalaman akhirnya kita mutusin buat takeaway aja. 💈🍔🏠',
+        photos: 'https://photos.app.goo.gl/hwmBvtNCSCMVYcu26',
+        type: 'past'
+    },
+    {
+        id: 10,
+        date: '2026-03-11',
+        title: '23 Paskal & Saparua Snacks',
+        description: 'Makan di People\'s Cafe 23 Paskal. Tadinya mau potong rambut juga tapi nunggunya lama banget jadi gak jadi deh. Akhirnya kita lanjut jajan-jajan santai di Saparua. 🍜☕🥨',
+        photos: 'https://photos.app.goo.gl/w3scKN19QRPvg8YK8',
+        type: 'past'
+    },
+    {
+        id: 11,
+        date: '2026-03-10',
+        title: 'Hampers Visit & Cheering You Up',
+        description: 'Mampir ke rumah buat ngasih hampers Lebaran. Sekalian misi penting: bujuk Silvia yang lagi ngambek sejak siang! Akhirnya baikan lagi deh. 🎁❤️😊',
+        photos: 'https://photos.app.goo.gl/XfQ2HayHyiX4v2cw6',
+        type: 'past'
+    },
+    {
+        id: 12,
+        date: '2026-03-08',
+        title: 'Fashion Show & Shopping Spree',
+        description: 'Nemenin Silvia lomba fashion show di Istana Plaza. Beres lomba kita makan Richeese di 23 Paskal, terus lanjut nemenin aku belanja parfum dan DJI. Capek tapi happy! 💃🍗🛸🧴',
+        photos: 'https://photos.app.goo.gl/YdVRxUstLEwivoX97',
+        type: 'past'
+    },
+    {
+        id: 13,
+        date: '2026-03-05',
+        title: 'Sushi Date & Special Gift',
+        description: 'Baru pulang dari Jakarta langsung gas ke Saparua buat makan sushi. Silvia padahal sempat gak mau karena takut aku capek, tapi akhirnya kita berangkat. Di mobil kita juga unboxing gift manis dari Silvia! 🍣🎁❤️',
+        photos: 'https://photos.app.goo.gl/igpiLK2v6mgi2h5R8',
+        type: 'past'
+    },
+    {
+        id: 14,
+        date: '2026-03-01',
+        title: 'Cooking Date & AEON Shopping',
+        description: 'Belanja bahan masak bareng di AEON PVJ. Seru banget akhirnya kita masak sendiri di apart sambil nunggu waktu buka puasa. Dinner hasil masakan sendiri emang beda rasanya! 🛒🥘🌙',
+        photos: 'https://photos.app.goo.gl/nfQmXkk7KCkm8hDT9',
+        type: 'past'
+    },
+    {
         id: 6,
         date: '2026-01-08',
         title: 'Travel Drop-off at BTC',
         description: 'Escorting you to Lintas Travel in BTC before your Singapore trip tomorrow. Pick up at 23:00. Safe travels! ✈️🇸🇬',
         photos: '', // No photos yet
-        type: 'past',
-        isLatest: true
+        type: 'past'
     },
     {
         id: 5,

@@ -1,5 +1,14 @@
 const momentsData = [
     {
+        id: 27,
+        date: '2026-04-25',
+        title: 'Pangandaran Trip 3D2N 🌊',
+        description: 'Liburan pertama kita ke Pangandaran! 3 hari 2 malam menikmati pantai, sunset, seafood, dan quality time berdua jauh dari kota. 🏖️🦐🌅',
+        photos: '',
+        type: 'upcoming',
+        pageUrl: 'pangandaran-trip.html'
+    },
+    {
         id: 15,
         date: '2026-03-25',
         title: 'PVJ Date & Pepper Lunch',

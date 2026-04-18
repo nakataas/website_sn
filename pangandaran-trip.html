@@ -405,6 +405,105 @@
         .spots-category-title:first-child {
             margin-top: 0;
         }
+
+        .outfit-hint {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            background: rgba(255, 182, 193, 0.08);
+            border: 1px solid rgba(255, 182, 193, 0.2);
+            border-radius: var(--radius-full);
+            padding: var(--space-2) var(--space-4);
+            font-size: var(--text-xs);
+            color: #ffb6c1;
+            font-weight: 500;
+            margin-bottom: var(--space-5);
+        }
+
+        /* Outfit cards */
+        .outfit-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4) var(--space-5);
+            margin-bottom: var(--space-4);
+        }
+
+        .outfit-day-label {
+            font-family: var(--font-display);
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--color-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: var(--space-1);
+        }
+
+        .outfit-day-title {
+            font-family: var(--font-display);
+            font-size: var(--text-base);
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: var(--space-3);
+        }
+
+        .outfit-theme {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            background: rgba(77, 158, 255, 0.08);
+            border: 1px solid rgba(77, 158, 255, 0.2);
+            border-radius: var(--radius-full);
+            padding: var(--space-1) var(--space-3);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            color: var(--color-secondary);
+            margin-bottom: var(--space-3);
+        }
+
+        .outfit-persons {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+            border-top: 1px solid var(--glass-border);
+            padding-top: var(--space-3);
+        }
+
+        .outfit-person-row {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-3);
+        }
+
+        .outfit-person-icon {
+            font-size: 1.2rem;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .outfit-person-info {
+            flex: 1;
+        }
+
+        .outfit-person-name {
+            font-size: var(--text-xs);
+            font-weight: 600;
+            color: var(--color-text-muted);
+            margin-bottom: 2px;
+        }
+
+        .outfit-person-desc {
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+            line-height: 1.4;
+        }
+
+        .outfit-note {
+            margin-top: var(--space-2);
+            font-size: var(--text-xs);
+            color: var(--color-text-muted);
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
@@ -425,7 +524,7 @@
         <div class="trip-hero">
             <span class="trip-hero-emoji">🌊</span>
             <h1 class="trip-hero-title">Pangandaran Trip</h1>
-            <p class="trip-hero-meta">25 – 27 April 2026 • Menara Laut Hotel</p>
+            <p class="trip-hero-meta">25 – 27 April 2026 • Horison Palma Hotel</p>
             <span class="trip-hero-badge">⏱ <span id="hero-countdown">Loading...</span></span>
         </div>
 
@@ -447,6 +546,10 @@
                         <span class="countdown-banner-number" id="cd-mins">--</span>
                         <span class="countdown-banner-sublabel">Mins</span>
                     </div>
+                    <div class="countdown-banner-unit">
+                        <span class="countdown-banner-number" id="cd-secs">--</span>
+                        <span class="countdown-banner-sublabel">Secs</span>
+                    </div>
                 </div>
             </div>
 
@@ -456,7 +559,7 @@
                 <button class="day-tab" data-tab="day2">Day 2</button>
                 <button class="day-tab" data-tab="day3">Day 3</button>
                 <button class="day-tab" data-tab="spots">Spots 📍</button>
-                <button class="day-tab" data-tab="bring">Bawa Apa?</button>
+<button class="day-tab" data-tab="bring">Bawa Apa?</button>
                 <button class="day-tab" data-tab="info">Info</button>
             </div>
 
@@ -466,9 +569,10 @@
                     <div class="day-number">1</div>
                     <div class="day-header-info">
                         <p class="day-header-label">Sabtu, 25 April</p>
-                        <p class="day-header-date">Perjalanan, Seafood Shopping & Check-in</p>
+                        <p class="day-header-date">Perjalanan · Seafood · Cagar Alam · Pasir Putih</p>
                     </div>
                 </div>
+                <div class="outfit-hint">👗 Di jalan: Kaos couple &nbsp;·&nbsp; Setelah check-in: Atasan putih + bawahan putih</div>
                 <div class="timeline">
                     <div class="timeline-item">
                         <div class="timeline-time">05:30</div>
@@ -491,7 +595,7 @@
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
                             <p class="timeline-event-title">Tiba di Pangandaran 🏖️</p>
-                            <p class="timeline-event-desc">Titip koper dulu di Menara Laut Hotel (check-in jam 14:00).</p>
+                            <p class="timeline-event-desc">Titip koper dulu di Horison Palma Hotel (check-in jam 14:00). Hotel langsung di tepi Pantai Barat!</p>
                         </div>
                     </div>
                     <div class="timeline-item">
@@ -499,39 +603,63 @@
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
                             <p class="timeline-event-title">Beli Seafood — Pasar Ikan Pantai Timur 🦐</p>
-                            <p class="timeline-event-desc">Beli seafood segar langsung dari nelayan. Harga Rp15.000–40.000/kg. Pilih ikan, udang, atau cumi buat dimakan siang ini di hotel.</p>
+                            <p class="timeline-event-desc">Beli seafood segar langsung dari nelayan. Harga Rp15.000–40.000/kg. Pilih ikan, udang, atau cumi buat makan siang.</p>
                         </div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-time">12:30</div>
+                        <div class="timeline-time">12:00</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <p class="timeline-event-title">Makan Siang Seafood 🍤</p>
+                            <p class="timeline-event-desc">Makan hasil belanja di warung sekitar pasar atau bawa ke spot santai. Kenyang dulu sebelum explore!</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">13:30</div>
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
                             <p class="timeline-event-title">Ngopi Santai Nunggu Check-in ☕</p>
-                            <p class="timeline-event-desc">Duduk santai di cafe sekitar atau jalan tipis ke pantai. Jangan kecapekan dulu!</p>
+                            <p class="timeline-event-desc">Duduk santai di cafe sekitar sambil nunggu jam check-in. Jangan kecapekan dulu!</p>
                         </div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-time">14:00</div>
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
-                            <p class="timeline-event-title">Check-in Menara Laut Hotel 🏨</p>
-                            <p class="timeline-event-desc">Beres-beres, mandi, dan refresh total setelah perjalanan panjang. ✨</p>
+                            <p class="timeline-event-title">Check-in Horison Palma Hotel 🏨</p>
+                            <p class="timeline-event-desc">Beres-beres, mandi, refresh total setelah perjalanan panjang. Hotel di Jl. Pantai Barat — langsung view laut! ✨</p>
                         </div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-time">15:00</div>
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
-                            <p class="timeline-event-title">Makan Seafood di Kamar 🍤</p>
-                            <p class="timeline-event-desc">Nikmatin hasil belanja tadi habis check-in. Makan santai di kamar/balkon berdua.</p>
+                            <p class="timeline-event-title">Cagar Alam Pangandaran 🌿</p>
+                            <p class="timeline-event-desc">Jelajahi hutan tropis di dalam kawasan Taman Wisata Cagar Alam Pananjung. Ketemu monyet liar, burung tropis, dan pemandangan tebing karang. Masuk via gerbang Pantai Timur atau Pantai Barat.</p>
                         </div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-time">16:30</div>
+                        <div class="timeline-time">16:00</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <p class="timeline-event-title">Pantai Pasir Putih 🤍🌊</p>
+                            <p class="timeline-event-desc">Pantai eksotis di dalam kawasan cagar alam — naik perahu dari Pantai Barat (±Rp20.000/orang, 5–10 menit) atau trekking 45 menit. Pasir putih, air jernih, ada bintang laut & kuda laut. Spot foto yang unik banget!</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">17:30</div>
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
                             <p class="timeline-event-title">Golden Hour di Pantai Barat 📸</p>
-                            <p class="timeline-event-desc">Jalan sore ke Pantai Barat, foto-foto, nikmatin angin laut. Golden hour terbaik pukul 16:30–17:30.</p>
+                            <p class="timeline-event-desc">Balik ke depan hotel, nikmatin golden hour langsung dari Pantai Barat. Langit jingga ke Samudera Hindia — cakep banget dari sini!</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">19:00</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <p class="timeline-event-title">Free Time 🌙</p>
+                            <p class="timeline-event-desc">Santai di kamar, jalan-jalan malam di Kampung Turis, atau makan malam sesuka hati. Istirahat yang cukup buat hari esok!</p>
                         </div>
                     </div>
                 </div>
@@ -546,6 +674,7 @@
                         <p class="day-header-date">Day Trip Batu Karas</p>
                     </div>
                 </div>
+                <div class="outfit-hint">👗 Outfit: Baju biru + celana pendek putih</div>
                 <div class="timeline">
                     <div class="timeline-item">
                         <div class="timeline-time">05:00</div>
@@ -559,8 +688,8 @@
                         <div class="timeline-time">07:00</div>
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
-                            <p class="timeline-event-title">Sarapan 🍳</p>
-                            <p class="timeline-event-desc">Sarapan di hotel atau warung lokal sekitar.</p>
+                            <p class="timeline-event-title">Sarapan di Hotel 🍳</p>
+                            <p class="timeline-event-desc">Included breakfast di Horison Palma. Makan kenyang dulu sebelum berangkat ke Batu Karas!</p>
                         </div>
                     </div>
                     <div class="timeline-item">
@@ -636,9 +765,10 @@
                     <div class="day-number">3</div>
                     <div class="day-header-info">
                         <p class="day-header-label">Senin, 27 April</p>
-                        <p class="day-header-date">Sarapan Santai + Oleh-oleh + Pulang</p>
+                        <p class="day-header-date">Sarapan + Aquarium + Check-out + Pulang</p>
                     </div>
                 </div>
+                <div class="outfit-hint">👗 Outfit: Atasan putih + jeans</div>
                 <div class="timeline">
                     <div class="timeline-item">
                         <div class="timeline-time">05:00</div>
@@ -652,16 +782,20 @@
                         <div class="timeline-time">07:00</div>
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
-                            <p class="timeline-event-title">Sarapan Santai 🍳☕</p>
-                            <p class="timeline-event-desc">Nikmatin sarapan terakhir di Pangandaran pelan-pelan. Gak perlu buru-buru!</p>
+                            <p class="timeline-event-title">Sarapan di Hotel 🍳☕</p>
+                            <p class="timeline-event-desc">Included breakfast di Horison Palma — nikmatin pelan-pelan. Beresin koper sekalian biar tinggal angkat pas check-out.</p>
                         </div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-time">09:30</div>
+                        <div class="timeline-time">09:00</div>
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
-                            <p class="timeline-event-title">Beli Oleh-oleh 🛍️🐟</p>
-                            <p class="timeline-event-desc">Theresia Seafood (dekat Pantai Barat, spesialis jambal roti & ikan asin, buka 07:30–18:00) atau Owen Pusat Oleh-oleh (terbesar, Jl. Raya Babakan No.115, buka 08:00–22:00). Wajib beli: Ikan Asin Jambal Roti!</p>
+                            <p class="timeline-event-title">Aquarium Indonesia Pangandaran 🐠🦈</p>
+                            <p class="timeline-event-desc">Akuarium indoor terbesar di Pangandaran dengan koleksi biota laut khas Indonesia. Ada feeding show di Main Aquarium (11:00 & 15:00) dan Touchpool (10:00 & 14:00) — jangan lupa foto sama ikan! Tiket Rp40.000/orang (hari kerja). Buka 09:00–16:00.</p>
+                            <div class="spot-card-meta" style="margin-top: var(--space-2);">
+                                <span class="spot-meta-pill">📍 Komplek PPI Cikidang, Desa Babakan</span>
+                                <span class="spot-meta-pill">🎟️ Rp40K/orang</span>
+                            </div>
                         </div>
                     </div>
                     <div class="timeline-item">
@@ -887,6 +1021,7 @@
                                 <li>🔋 Extra battery kamera</li>
                                 <li>💾 SSD external</li>
                                 <li>💳 SD card cadangan</li>
+                                <li>🍳 Panci listrik</li>
                                 <li>🎬 Mini tripod/gorillapod</li>
                                 <li>🤿 Waterproof pouch HP</li>
                                 <li>🧺 Dry bag</li>
@@ -924,12 +1059,13 @@
                     <p class="trip-section-title">Hotel</p>
                     <div class="hotel-card">
                         <div class="hotel-card-body">
-                            <p class="hotel-name">Menara Laut Hotel</p>
-                            <p class="hotel-detail">Pangandaran, Jawa Barat</p>
+                            <p class="hotel-name">Horison Palma Pangandaran</p>
+                            <p class="hotel-detail">Jl. Pantai Barat No. 91, Pangandaran, Jawa Barat 46596</p>
                             <p class="hotel-detail" style="margin-top: var(--space-2);">Check-in: 14:00 &nbsp;·&nbsp; Check-out: 11:00</p>
+                            <p class="hotel-detail" style="margin-top: var(--space-1); color: var(--color-secondary);">🌊 Beachfront langsung di Pantai Barat</p>
                         </div>
                         <div class="map-container">
-                            <iframe src="https://maps.google.com/maps?q=Menara+Laut+Hotel+Pangandaran&output=embed" allowfullscreen loading="lazy"></iframe>
+                            <iframe src="https://maps.google.com/maps?q=Horison+Palma+Pangandaran&output=embed" allowfullscreen loading="lazy"></iframe>
                         </div>
                     </div>
                 </div>
@@ -972,18 +1108,21 @@
                 document.getElementById('cd-days').textContent = '0';
                 document.getElementById('cd-hours').textContent = '0';
                 document.getElementById('cd-mins').textContent = '0';
+                document.getElementById('cd-secs').textContent = '0';
                 return;
             }
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            document.getElementById('hero-countdown').textContent = days + ' days to go';
+            const secs = Math.floor((diff % (1000 * 60)) / 1000);
+            document.getElementById('hero-countdown').textContent = days + 'd ' + hours + 'h ' + mins + 'm ' + secs + 's';
             document.getElementById('cd-days').textContent = days;
             document.getElementById('cd-hours').textContent = hours;
             document.getElementById('cd-mins').textContent = mins;
+            document.getElementById('cd-secs').textContent = secs;
         }
         updateCountdown();
-        setInterval(updateCountdown, 60000);
+        setInterval(updateCountdown, 1000);
     </script>
 </body>
 </html>

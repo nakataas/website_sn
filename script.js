@@ -180,9 +180,11 @@ function initMoments() {
             metaText = formatDate(moment.date);
             countdownHtml = `
                 <div class="mini-countdown" data-date="${moment.date}">
-                    <span class="mini-countdown-label">⏱ Countdown</span>
-                    <span class="mini-countdown-value" data-days>0</span>
-                    <span class="mini-countdown-label">days</span>
+                    <span class="mini-countdown-label">⏱ COUNTDOWN</span>
+                    <span class="mini-countdown-value" data-days>0</span><span class="mini-countdown-unit">d</span>
+                    <span class="mini-countdown-value" data-hours>0</span><span class="mini-countdown-unit">h</span>
+                    <span class="mini-countdown-value" data-mins>0</span><span class="mini-countdown-unit">m</span>
+                    <span class="mini-countdown-value" data-secs>0</span><span class="mini-countdown-unit">s</span>
                 </div>
             `;
         } else if (isLatest) {
@@ -240,7 +242,7 @@ function initMoments() {
     // Setup buttons
     setupPlanButtons();
     updateCountdowns();
-    setInterval(updateCountdowns, 60000); // Update every minute
+    setInterval(updateCountdowns, 1000);
 }
 
 function setupPlanButtons() {
@@ -261,7 +263,13 @@ function updateCountdowns() {
         const diff = targetDate - now;
         if (diff > 0) {
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const secs = Math.floor((diff % (1000 * 60)) / 1000);
             el.querySelector('[data-days]').textContent = days;
+            el.querySelector('[data-hours]').textContent = hours;
+            el.querySelector('[data-mins]').textContent = mins;
+            el.querySelector('[data-secs]').textContent = secs;
         } else {
             el.style.display = 'none';
         }

@@ -180,11 +180,13 @@ function initMoments() {
             metaText = formatDate(moment.date);
             countdownHtml = `
                 <div class="mini-countdown" data-date="${moment.date}">
-                    <span class="mini-countdown-label">⏱ COUNTDOWN</span>
-                    <span class="mini-countdown-value" data-days>0</span><span class="mini-countdown-unit">d</span>
-                    <span class="mini-countdown-value" data-hours>0</span><span class="mini-countdown-unit">h</span>
-                    <span class="mini-countdown-value" data-mins>0</span><span class="mini-countdown-unit">m</span>
-                    <span class="mini-countdown-value" data-secs>0</span><span class="mini-countdown-unit">s</span>
+                    <span class="mini-countdown-label">⏱ Countdown</span>
+                    <div class="mini-countdown-blocks">
+                        <div class="mini-cd-block"><span class="mini-cd-num" data-days>0</span><span class="mini-cd-sub">d</span></div>
+                        <div class="mini-cd-block"><span class="mini-cd-num" data-hours>0</span><span class="mini-cd-sub">h</span></div>
+                        <div class="mini-cd-block"><span class="mini-cd-num" data-mins>0</span><span class="mini-cd-sub">m</span></div>
+                        <div class="mini-cd-block"><span class="mini-cd-num" data-secs>0</span><span class="mini-cd-sub">s</span></div>
+                    </div>
                 </div>
             `;
         } else if (isLatest) {
@@ -266,10 +268,10 @@ function updateCountdowns() {
             const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
             const secs = Math.floor((diff % (1000 * 60)) / 1000);
-            el.querySelector('[data-days]').textContent = days;
-            el.querySelector('[data-hours]').textContent = hours;
-            el.querySelector('[data-mins]').textContent = mins;
-            el.querySelector('[data-secs]').textContent = secs;
+            el.querySelector('[data-days]').textContent = String(days).padStart(2, '0');
+            el.querySelector('[data-hours]').textContent = String(hours).padStart(2, '0');
+            el.querySelector('[data-mins]').textContent = String(mins).padStart(2, '0');
+            el.querySelector('[data-secs]').textContent = String(secs).padStart(2, '0');
         } else {
             el.style.display = 'none';
         }
